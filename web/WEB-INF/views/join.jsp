@@ -4,6 +4,6 @@
     <title>Title</title>
 </head>
 <body>
-    ${info}
+    <p>${join}</p>
 </body>
 </html>

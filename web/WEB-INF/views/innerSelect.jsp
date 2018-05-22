@@ -4,6 +4,6 @@
     <title>Title</title>
 </head>
 <body>
-    ${info}
+    <p>${innerSelect}</p>
 </body>
 </html>

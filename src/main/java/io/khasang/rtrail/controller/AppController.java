@@ -21,39 +21,51 @@ public class AppController {
     private CreateTable createTable;
 
     @RequestMapping("/")
-    public String getHelloPage(Model model){
+    public String getHelloPage(Model model) {
         model.addAttribute("name", message.getInfo());
         return "index";
     }
 
     @RequestMapping("/create")
-    public String getCreateTableStatus(Model model){
+    public String getCreateTableStatus(Model model) {
         model.addAttribute("status", createTable.createTableStatus());
         return "create";
     }
 
     @RequestMapping(value = "/get/{name}", method = RequestMethod.GET)
-    public String getCatByName(@PathVariable("name") String name, Model model){
+    public String getCatByName(@PathVariable("name") String name, Model model) {
         model.addAttribute("info", createTable.getCatByName(name));
         return "info";
     }
 
     @RequestMapping(value = "/update/{description}/{id}", method = RequestMethod.GET)
-    public String updateCatDescription(@PathVariable("description") String description, @PathVariable("id") int id, Model model){
+    public String updateCatDescription(@PathVariable("description") String description, @PathVariable("id") int id, Model model) {
         model.addAttribute("update", createTable.updateCatDescription(description, id));
         return "update";
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String deleteCatById(@PathVariable("id") int id, Model model){
+    public String deleteCatById(@PathVariable("id") int id, Model model) {
         model.addAttribute("delete", createTable.deleteCatById(id));
         return "delete";
     }
 
     @RequestMapping(value = "/insert/{id}/{name}/{description}/{color_id}", method = RequestMethod.GET)
     public String insertNewCat(@PathVariable("id") int id, @PathVariable("name") String name, @PathVariable("description")
-            String description, @PathVariable("color_id") int color_id, Model model){
+            String description, @PathVariable("color_id") int color_id, Model model) {
         model.addAttribute("insert", createTable.insertNewCat(id, name, description, color_id));
         return "insert";
+    }
+
+    @RequestMapping(value = "/join")
+    public String joinTables(Model model) {
+        model.addAttribute("join", createTable.joinTables());
+        return "join";
+    }
+
+    @RequestMapping(value = "/innerselect/{catColor}", method = RequestMethod.GET)
+    public String innerSelect(@PathVariable("catColor") String catColor, Model model) {
+        model.addAttribute("innerSelect", createTable.innerSelect(catColor));
+        return "innerSelect";
     }
 }
