@@ -17,6 +17,8 @@ public class AppController {
     @Qualifier("main")
     private Message message;
 
+
+
     @Autowired
     private CreateTable createTable;
 
