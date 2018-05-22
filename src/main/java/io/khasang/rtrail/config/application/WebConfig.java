@@ -12,6 +12,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @ComponentScan({"io.khasang.rtrail"})
 @EnableWebMvc
 public class WebConfig extends WebMvcConfigurerAdapter {
+
     @Bean
     public InternalResourceViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
