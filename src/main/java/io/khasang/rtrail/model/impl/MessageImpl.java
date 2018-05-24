@@ -33,7 +33,7 @@ public class MessageImpl implements Message {
     @PostConstruct
     public void start() {
         saySomething();
-        System.out.println("Strating...");
+        System.out.println("Starting...");
     }
 
     @Async // не дожидаясь ответа идет дальше
