@@ -9,6 +9,13 @@ public class Cat {
     public Cat() {
     }
 
+    public Cat(int id, String name, String description, int colorId) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.colorId = colorId;
+    }
+
     public int getId() {
         return id;
     }

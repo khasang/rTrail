@@ -1,5 +1,6 @@
 package io.khasang.rtrail.controller;
 
+import io.khasang.rtrail.model.Cat;
 import io.khasang.rtrail.model.CreateTable;
 import io.khasang.rtrail.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class AppController {
     private CreateTable createTable;
 
     @RequestMapping("/")
-    public String getHelloPage(Model model){
+    public String getHelloPage(Model model) {
         model.addAttribute("name", message.getInfo());
         return "index";
     }
@@ -42,4 +43,36 @@ public class AppController {
         model.addAttribute("info", createTable.getCatByName(name));
         return "info";
     }
+
+    @RequestMapping(value = "/update/{name}/setColor={colorId}", method = RequestMethod.GET)
+    public String updateColorofCats(@PathVariable("name") String name, @PathVariable("colorId") int id, Model model) {
+        model.addAttribute("info", createTable.updateColorCat(id, name));
+        return "changeColor";
+    }
+
+    @RequestMapping("/showAll")
+    public String showAllCats(Model model) {
+        model.addAttribute("status", createTable.showAllCats());
+        return "create";
+    }
+
+    @RequestMapping(value = "/show/{color}", method = RequestMethod.GET)
+    public String showCatsWithColor(@PathVariable("color") String color, Model model) {
+        model.addAttribute("info", createTable.showAllCatsWithColor(color));
+        return "info";
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String deleteCatById(@PathVariable("id") int id, Model model) {
+        model.addAttribute("info", createTable.deleteCatById(id));
+        return "info";
+    }
+
+    @RequestMapping(value = "/add/{id}/{name}/{description}/{colorId}", method = RequestMethod.GET)
+    public String addCat(@PathVariable("id") int id, @PathVariable("name") String name,
+                         @PathVariable("description") String description, @PathVariable("colorId") int colorId, Model model) {
+        model.addAttribute("info", createTable.insertIntoCat(new Cat(id,name,description,colorId)));
+        return "info";
+    }
+
 }

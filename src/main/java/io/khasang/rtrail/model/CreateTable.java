@@ -1,11 +1,8 @@
 package io.khasang.rtrail.model;
 
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.jdbc.core.RowMapper;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -37,9 +34,7 @@ public class CreateTable {
     }
 
     public String getCatByName(String name) {
-        String query = "SELECT * FROM cats WHERE name = 'Barsik'";
-
-        return String.valueOf(jdbcTemplate.query(query, new RowMapper<Cat>() {
+        return String.valueOf(jdbcTemplate.query("SELECT * FROM cats WHERE name = 'Barsik'", new RowMapper<Cat>() {
             @Override
             public Cat mapRow(ResultSet rs, int rowCount) throws SQLException {
                 Cat cat = new Cat();
@@ -58,6 +53,54 @@ public class CreateTable {
 //            }
 //        });
 
+    }
+
+    public String updateColorCat(int colorId, String name) {
+        try {
+            jdbcTemplate.update("UPDATE cats SET color_id = ? WHERE name = ?", colorId, name);
+            return "cat's color updated";
+        } catch (Exception e) {
+            return "color's updating failed: \n" + e;
+        }
+    }
+
+    public String deleteCatById(int id) {
+        try {
+            jdbcTemplate.update("DELETE FROM cats WHERE id = ?", id);
+            return "cat deleted";
+        } catch (Exception e) {
+            return "cat's deletion failed: \n" + e;
+        }
+    }
+
+    public String insertIntoCat(Cat cat) {
+        try {
+            jdbcTemplate.update("INSERT INTO cats (id, name, description, color_id) VALUES (?,?,?,?)",
+                    cat.getId(), cat.getName(), cat.getDescription(), cat.getColorId());
+            return "New cat inserted";
+        } catch (Exception e) {
+            return "cat's insert failed: \n" + e;
+        }
+    }
+
+    public String showAllCatsWithColor(String colorName) {
+        return String.valueOf(jdbcTemplate.query("SELECT * FROM cats WHERE color_id in " +
+                "(SELECT id FROM cats_color WHERE name = '" + colorName + "')", new RowMapper<Cat>() {
+            @Override
+            public Cat mapRow(ResultSet rs, int rowCount) throws SQLException {
+                return new Cat(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+            }
+        }));
+
+    }
+
+    public String showAllCats() {
+        return String.valueOf(jdbcTemplate.query("SELECT c.*, cc.name FROM cats c JOIN cats_color cc ON c.color_id = cc.id", new RowMapper<ColorfulCat>() {
+            @Override
+            public ColorfulCat mapRow(ResultSet rs, int rowCount) throws SQLException {
+                return new ColorfulCat(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5));
+            }
+        }));
     }
 
     public JdbcTemplate getJdbcTemplate() {
