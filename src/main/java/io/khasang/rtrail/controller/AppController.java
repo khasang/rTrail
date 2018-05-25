@@ -1,7 +1,10 @@
 package io.khasang.rtrail.controller;
 
 import io.khasang.rtrail.model.CreateTable;
+import io.khasang.rtrail.model.catsquery.DeleteCat;
 import io.khasang.rtrail.model.Message;
+import io.khasang.rtrail.model.catsquery.InsertNewCat;
+import io.khasang.rtrail.model.catsquery.UpdateCat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,10 +21,17 @@ public class AppController {
     @Qualifier("main")
     private Message message;
 
+    @Autowired
+    private UpdateCat updateCat;
 
+    @Autowired
+    private DeleteCat deleteCat;
 
     @Autowired
     private CreateTable createTable;
+
+    @Autowired
+    private InsertNewCat insertNewCat;
 
     @RequestMapping("/")
     public String getHelloPage(Model model) {
@@ -43,20 +53,20 @@ public class AppController {
 
     @RequestMapping(value = "/update/{description}/{id}", method = RequestMethod.GET)
     public String updateCatDescription(@PathVariable("description") String description, @PathVariable("id") int id, Model model) {
-        model.addAttribute("update", createTable.updateCatDescription(description, id));
+        model.addAttribute("update", updateCat.updateCatDescription(description, id));
         return "update";
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteCatById(@PathVariable("id") int id, Model model) {
-        model.addAttribute("delete", createTable.deleteCatById(id));
+        model.addAttribute("delete", deleteCat.deleteCatById(id));
         return "delete";
     }
 
     @RequestMapping(value = "/insert/{id}/{name}/{description}/{color_id}", method = RequestMethod.GET)
     public String insertNewCat(@PathVariable("id") int id, @PathVariable("name") String name, @PathVariable("description")
             String description, @PathVariable("color_id") int color_id, Model model) {
-        model.addAttribute("insert", createTable.insertNewCat(id, name, description, color_id));
+        model.addAttribute("insert", insertNewCat.insertNewCat(id, name, description, color_id));
         return "insert";
     }
 

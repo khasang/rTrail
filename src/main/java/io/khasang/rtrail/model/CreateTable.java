@@ -56,32 +56,7 @@ public class CreateTable {
 
     }
 
-    public String updateCatDescription(String description, int catId) {
-        try {
-            jdbcTemplate.update("UPDATE cats SET description = ? WHERE id = ?", description, catId);
-            return "table updated, cats id: " + catId + "new description is: " + description;
-        } catch (Exception e) {
-            return "table undated failed: " + e;
-        }
-    }
 
-    public String deleteCatById(int catId) {
-        try {
-            jdbcTemplate.update("DELETE FROM cats WHERE id = ?", catId);
-            return "cat under id: " + catId + " was successfully deleted!";
-        } catch (Exception e) {
-            return "cat was not deleted: " + e;
-        }
-    }
-
-    public String insertNewCat(int id, String name, String description, int colorId) {
-        try {
-            jdbcTemplate.update("INSERT INTO cats (id, name, description ,color_id) VALUES (?, ?, ?, ?)", id, name, description, colorId);
-            return "cat id:" + id + " name: " + name + " description: " + description + " color_id: " + colorId + " was inserted!";
-        } catch (Exception e) {
-            return "cat was not inserted: " + e;
-        }
-    }
 
     public String joinTables() {
         return String.valueOf(jdbcTemplate.query("select cats.name, cats.description, color.color from cats LEFT JOIN color ON cats.color_id=color.id", new RowMapper<CatDescription>() {
