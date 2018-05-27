@@ -33,11 +33,11 @@ public class AppController {
         return "create";
     }
 
-    @RequestMapping(value = "/get/{name}", method = RequestMethod.GET)
-    public String getCatByName(@PathVariable("name") String name, Model model) {
-        model.addAttribute("info", createTable.getCatByName(name));
-        return "info";
-    }
+//    @RequestMapping(value = "/get/{name}", method = RequestMethod.GET)
+//    public String getCatByName(@PathVariable("name") String name, Model model) {
+//        model.addAttribute("info", createTable.getCatByName(name));
+//        return "info";
+//    }
 
     @RequestMapping(value = "/password/{password}", method = RequestMethod.GET)
     public String getPasswordByEncode(@PathVariable("password") String password, Model model) {
