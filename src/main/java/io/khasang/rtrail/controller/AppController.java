@@ -1,5 +1,8 @@
 package io.khasang.rtrail.controller;
 
+import io.khasang.rtrail.entity.Iblock;
+import io.khasang.rtrail.entity.IblockElement;
+import io.khasang.rtrail.entity.IblockSection;
 import io.khasang.rtrail.model.Catalog;
 import io.khasang.rtrail.model.CreateTable;
 import io.khasang.rtrail.model.Message;
@@ -11,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
+import javax.persistence.ManyToOne;
 import java.util.*;
 
 @Controller
@@ -39,11 +43,11 @@ public class AppController {
         return "create";
     }
 
-    @RequestMapping(value = "/get/{name}", method = RequestMethod.GET)
-    public String getCatByName(@PathVariable("name") String name, Model model) {
-        model.addAttribute("info", createTable.getCatByName(name));
-        return "info";
-    }
+//    @RequestMapping(value = "/get/{name}", method = RequestMethod.GET)
+//    public String getCatByName(@PathVariable("name") String name, Model model) {
+//        model.addAttribute("info", createTable.getCatByName(name));
+//        return "info";
+//    }
 
     @RequestMapping(value = "/password/{password}", method = RequestMethod.GET)
     public String getPasswordByEncode(@PathVariable("password") String password, Model model) {
@@ -52,25 +56,73 @@ public class AppController {
         return "password";
     }
 
+    @RequestMapping("/catalog/create")
+    public String createCatalog(Model model) {
+        String isEmpty = "";
+        Iblock iblock = catalog.getIblockByCode("catalog");
+        if (iblock == null) {
+            //return "404";
+            catalog.fillingCatalog(); // todo return flag filling
+            isEmpty = "Каталог был заполнен";
+        }else{
+            isEmpty = "Каталог не пуст";
+        }
+
+        model.addAttribute("isEmpty", isEmpty);
+
+        return "fillCatalog";
+    }
+
     @RequestMapping("/catalog/")
     public String getCatalog(Model model) {
-        model.addAttribute("sections", catalog.getSections());
+        Iblock iblock = catalog.getIblockByCode("catalog");
+        if (iblock == null) {
+//            return "404";
+            return "createCatalog";
+
+        }
+
+        model.addAttribute("title", iblock.getName());
+        model.addAttribute("h1", iblock.getName());
+        model.addAttribute("text", iblock.getDescription());
+        model.addAttribute("sections", catalog.getSectionsList(iblock));
+
         return "catalog";
     }
 
-    @RequestMapping(value = "/catalog/{section}", method = RequestMethod.GET)
-    public String getCatalogSection(@PathVariable("section") String section, Model model) {
-        Map<String, String> elements = catalog.getElements(section);
-        if (elements == null) {
+    @RequestMapping(value = "/catalog/{sectionCode}", method = RequestMethod.GET)
+    public String getCatalogSection(@PathVariable("sectionCode") String sectionCode, Model model) {
+
+        Iblock iblock = catalog.getIblockByCode("catalog");
+        IblockSection iblockSection = catalog.getSectionByCode(sectionCode, iblock);
+        if (iblock == null || iblockSection == null) {
             return "404";
         }
-        model.addAttribute("elements", elements);
+
+        model.addAttribute("title", iblockSection.getName());
+        model.addAttribute("h1", iblockSection.getName());
+        model.addAttribute("text", iblockSection.getDescription());
+        model.addAttribute("elements", catalog.getElementsList(iblock, iblockSection));
+        model.addAttribute("back", "/" + iblock.getCode() + "/");
+
         return "catalogSection";
     }
 
-    @RequestMapping(value = "/catalog/{section}/{element}", method = RequestMethod.GET)
-    public String getCatalogElement(@PathVariable("section") String section, @PathVariable("element") String element, Model model) {
-        model.addAttribute("element", catalog.getElement(section, element));
+    @RequestMapping(value = "/catalog/{sectionCode}/{elementCode}", method = RequestMethod.GET)
+    public String getCatalogElement(@PathVariable("sectionCode") String sectionCode, @PathVariable("elementCode") String elementCode, Model model) {
+
+        Iblock iblock = catalog.getIblockByCode("catalog");
+        IblockSection iblockSection = catalog.getSectionByCode(sectionCode, iblock);
+        IblockElement iblockElement = catalog.getElementByCode(elementCode, iblock, iblockSection);
+        if (iblock == null || iblockSection == null || iblockElement == null) {
+            return "404";
+        }
+
+        model.addAttribute("title", iblockElement.getName());
+        model.addAttribute("h1", iblockElement.getName());
+        model.addAttribute("text", iblockElement.getDescription());
+        model.addAttribute("back", "/" + iblock.getCode() + "/" + iblockSection.getCode());
+
         return "catalogElement";
     }
 

@@ -64,20 +64,20 @@ public class CreateTable {
 //        }));
 //    }
 
-    // todo небезопасно + name +
-    public String getCatByName(String name) {
-        return String.valueOf(jdbcTemplate.query("select * from cats where name = '" + name + "'", new RowMapper<Cat>() {
-            @Override
-            public Cat mapRow(ResultSet rs, int rownumber) throws SQLException {
-                Cat e = new Cat();
-                e.setId(rs.getInt(1));
-                e.setName(rs.getString(2));
-                e.setDescription(rs.getString(3));
-                e.setColorId(rs.getInt(4));
-                return e;
-            }
-        }));
-    }
+//    // todo небезопасно + name +
+//    public String getCatByName(String name) {
+//        return String.valueOf(jdbcTemplate.query("select * from cats where name = '" + name + "'", new RowMapper<Cat>() {
+//            @Override
+//            public Cat mapRow(ResultSet rs, int rownumber) throws SQLException {
+//                Cat e = new Cat();
+//                e.setId(rs.getInt(1));
+//                e.setName(rs.getString(2));
+//                e.setDescription(rs.getString(3));
+//                e.setColorId(rs.getInt(4));
+//                return e;
+//            }
+//        }));
+//    }
 
     public CreateTable(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
