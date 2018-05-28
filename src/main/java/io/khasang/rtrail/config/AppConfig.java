@@ -1,10 +1,7 @@
 package io.khasang.rtrail.config;
 
 import io.khasang.rtrail.model.CreateTable;
-import io.khasang.rtrail.model.catsquery.DeleteCat;
 import io.khasang.rtrail.model.Message;
-import io.khasang.rtrail.model.catsquery.InsertNewCat;
-import io.khasang.rtrail.model.catsquery.UpdateCat;
 import io.khasang.rtrail.model.impl.MessageImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -63,18 +60,4 @@ public class AppConfig {
         return new CreateTable(jdbcTemplate());
     }
 
-    @Bean
-    public UpdateCat updateCat(){
-        return new UpdateCat(jdbcTemplate());
-    }
-
-    @Bean
-    public DeleteCat deleteCat(){
-        return new DeleteCat(jdbcTemplate());
-    }
-
-    @Bean
-    public InsertNewCat insertNewCat(){
-        return new InsertNewCat(jdbcTemplate());
-    }
 }

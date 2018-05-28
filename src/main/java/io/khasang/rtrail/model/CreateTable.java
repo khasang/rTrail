@@ -16,14 +16,6 @@ public class CreateTable {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public JdbcTemplate getJdbcTemplate() {
-        return jdbcTemplate;
-    }
-
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-
     public String createTableStatus() {
         try {
             jdbcTemplate.execute("DROP TABLE IF EXISTS cats");
@@ -41,7 +33,9 @@ public class CreateTable {
         }
     }
 
-    public String getCatByName(String name) {
+
+
+    /*public String getCatByName(String name) {
         return String.valueOf(jdbcTemplate.query("select * from cats where name = " + "'" + name + "'", new RowMapper<Cat>() {
             @Override
             public Cat mapRow(ResultSet rs, int rownumber) throws SQLException {
@@ -54,11 +48,11 @@ public class CreateTable {
             }
         }));
 
-    }
+    }*/
 
 
 
-    public String joinTables() {
+    /*public String joinTables() {
         return String.valueOf(jdbcTemplate.query("select cats.name, cats.description, color.color from cats LEFT JOIN color ON cats.color_id=color.id", new RowMapper<CatDescription>() {
             @Override
             public CatDescription mapRow(ResultSet rs, int rownumber) throws SQLException {
@@ -82,6 +76,12 @@ public class CreateTable {
                 return e;
             }
         }));
-    }
+    }*/
 
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+    public JdbcTemplate getJdbcTemplate() {
+        return jdbcTemplate;
+    }
 }
