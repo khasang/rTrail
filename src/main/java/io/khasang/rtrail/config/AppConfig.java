@@ -1,5 +1,14 @@
 package io.khasang.rtrail.config;
 
+import io.khasang.rtrail.dao.CatDao;
+import io.khasang.rtrail.dao.catalog.IblockDao;
+import io.khasang.rtrail.dao.catalog.IblockSectionDao;
+import io.khasang.rtrail.dao.catalog.impl.IblockDaoImpl;
+import io.khasang.rtrail.dao.catalog.impl.IblockSectionDaoImpl;
+import io.khasang.rtrail.dao.impl.CatDaoImpl;
+import io.khasang.rtrail.entity.Cat;
+import io.khasang.rtrail.entity.catalog.Iblock;
+import io.khasang.rtrail.entity.catalog.IblockSection;
 import io.khasang.rtrail.model.Catalog;
 import io.khasang.rtrail.model.CreateTable;
 import io.khasang.rtrail.model.Message;
@@ -60,9 +69,24 @@ public class AppConfig {
         return new CreateTable(jdbcTemplate());
     }
 
+//    @Bean
+//    public Catalog catalog() {
+//        return new Catalog(jdbcTemplate());
+//    }
+
     @Bean
-    public Catalog catalog() {
-        return new Catalog(jdbcTemplate());
+    CatDao catDao() {
+        return new CatDaoImpl(Cat.class);
+    }
+
+    @Bean
+    IblockDao iblockDao() {
+        return new IblockDaoImpl(Iblock.class);
+    }
+
+    @Bean
+    IblockSectionDao iblockSectionDao() {
+        return new IblockSectionDaoImpl(IblockSection.class);
     }
 
 }

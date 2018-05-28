@@ -1,8 +1,44 @@
 package io.khasang.rtrail.dao;
 
-import org.springframework.stereotype.Repository;
+import io.khasang.rtrail.entity.Cat;
+import org.hibernate.Session;
 
-@Repository
-public class BasicDao {
+import java.util.List;
 
+public interface BasicDao<T> {
+    /**
+     * for getting session factory
+     * */
+    Session getSessionFactory();
+
+    /**
+     * method for add entity
+     *
+     * @param entity - new entity for creation
+     * @return created entity
+     */
+    T create(T entity);
+
+    /**
+     * method for getting entity
+     *
+     * @param id - entity's id for getting
+     * @return entity by id
+     */
+    T getById(Long id);
+
+    /**
+     * method for getting entity
+     *
+     * @param code - entity's code for getting
+     * @return entity by code
+     */
+    T getByCode(String code);
+
+    /**
+     * method for getting all entities
+     *
+     * @return all entities
+     */
+    List<T> getList();
 }

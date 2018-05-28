@@ -8,13 +8,13 @@ public class Cat {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cat_id")
+//    @Column(name = "cat_id")
     private long id;
 
     private String name;
 
 //    @Transient // не является полем БД / с этим полем в БД ничего не происходит, если оно там есть
-    @Column(name = "descr")
+//    @Column(name = "descr")
     private String description;
 
     public String getDescription() {

@@ -1,9 +1,9 @@
-package io.khasang.rtrail.dao;
+package io.khasang.rtrail.dao.catalog.impl;
 
-import io.khasang.rtrail.dao.interfaces.IblockElementDao;
-import io.khasang.rtrail.entity.Iblock;
-import io.khasang.rtrail.entity.IblockElement;
-import io.khasang.rtrail.entity.IblockSection;
+import io.khasang.rtrail.dao.catalog.IblockElementDao;
+import io.khasang.rtrail.entity.catalog.Iblock;
+import io.khasang.rtrail.entity.catalog.IblockElement;
+import io.khasang.rtrail.entity.catalog.IblockSection;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

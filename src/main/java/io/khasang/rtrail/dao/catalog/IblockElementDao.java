@@ -1,8 +1,8 @@
-package io.khasang.rtrail.dao.interfaces;
+package io.khasang.rtrail.dao.catalog;
 
-import io.khasang.rtrail.entity.Iblock;
-import io.khasang.rtrail.entity.IblockElement;
-import io.khasang.rtrail.entity.IblockSection;
+import io.khasang.rtrail.entity.catalog.Iblock;
+import io.khasang.rtrail.entity.catalog.IblockElement;
+import io.khasang.rtrail.entity.catalog.IblockSection;
 
 import java.util.List;
 
