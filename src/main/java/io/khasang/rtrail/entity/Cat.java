@@ -10,7 +10,6 @@ public class Cat {
     @Column(name = "cat_id")
     private long id;
     private String name;
-    @Column(name = "descr")
     private String description;
 
     public long getId() {
