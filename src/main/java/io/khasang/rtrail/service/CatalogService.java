@@ -1,6 +1,7 @@
 package io.khasang.rtrail.service;
 
 import io.khasang.rtrail.entity.catalog.Iblock;
+import io.khasang.rtrail.entity.catalog.IblockSection;
 
 import java.util.Map;
 
@@ -29,4 +30,12 @@ public interface CatalogService {
      * @return sections by iblock
      */
     Map<String, String> getIblockSections(Iblock iblock);
+
+    /**
+     * method for getting iblockSection
+     *
+     * @param code - iblockSection's code for getting
+     * @return iblockSection by code
+     */
+    IblockSection getIblockSectionByCode(String code);
 }

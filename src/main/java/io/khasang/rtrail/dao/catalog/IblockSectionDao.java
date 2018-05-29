@@ -7,12 +7,4 @@ import io.khasang.rtrail.entity.catalog.IblockSection;
 import java.util.List;
 import java.util.Map;
 
-public interface IblockSectionDao extends BasicDao<IblockSection> {
-//    void add(IblockSection iblockSection);
-//
-//    List<IblockSection> listSections(Iblock iblock);
-//
-//    IblockSection getSectionByCode(String code, Iblock iblock);
-//
-//    Map<String, String> getList(Iblock iblock);
-}
+public interface IblockSectionDao extends BasicDao<IblockSection> {}

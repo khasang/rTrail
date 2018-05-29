@@ -1,11 +1,16 @@
 package io.khasang.rtrail.controller;
 
 import io.khasang.rtrail.entity.catalog.Iblock;
+import io.khasang.rtrail.entity.catalog.IblockSection;
 import io.khasang.rtrail.service.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/catalog")
@@ -23,16 +28,48 @@ public class CatalogController {
 //            return "createCatalog";
         }
 
-
-        catalogService.getIblockSections(iblock);
-
         model.addAttribute("title", iblock.getName());
         model.addAttribute("h1", iblock.getName());
         model.addAttribute("text", iblock.getDescription());
-//        model.addAttribute("sections", catalogService.getIblockSections(iblock));
+        model.addAttribute("sections", catalogService.getIblockSections(iblock));
 
         return "catalog";
     }
+
+    @RequestMapping(value = "/{sectionCode}", method = RequestMethod.GET)
+    public String getCatalogSection(@PathVariable("sectionCode") String sectionCode, Model model) {
+
+        Iblock iblock = catalogService.getIblockByCode("catalog");
+        IblockSection iblockSection = catalogService.getIblockSectionByCode(sectionCode);
+        if (iblock == null || iblockSection == null) {
+            return "404";
+        }
+
+        model.addAttribute("title", iblockSection.getName());
+        model.addAttribute("h1", iblockSection.getName());
+        model.addAttribute("text", iblockSection.getDescription());
+
+        model.addAttribute("back", "/" + iblock.getCode() + "/");
+
+        return "catalogSection";
+
+//        Iblock iblock = catalog.getIblockByCode("catalog");
+//        IblockSection iblockSection = catalog.getSectionByCode(sectionCode, iblock);
+//        if (iblock == null || iblockSection == null) {
+//            return "404";
+//        }
+//
+//        model.addAttribute("title", iblockSection.getName());
+//        model.addAttribute("h1", iblockSection.getName());
+//        model.addAttribute("text", iblockSection.getDescription());
+//        model.addAttribute("elements", catalog.getElementsList(iblock, iblockSection));
+//        model.addAttribute("back", "/" + iblock.getCode() + "/");
+
+//        return "catalogSection";
+
+    }
+
+
 
 //    @Autowired
 //    private Catalog catalog;
