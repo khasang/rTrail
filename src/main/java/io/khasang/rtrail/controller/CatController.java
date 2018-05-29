@@ -31,4 +31,16 @@ public class CatController {
     public List<Cat> getCats() {
         return catService.getAllCats();
     }
+
+    @RequestMapping(value = "/get/name/{name}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public List<Cat> getCatsByName(@PathVariable(value = "name") String name) {
+        return catService.getCatsByName(name);
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public Cat deleteCat(@RequestParam(value = "id") String id) {
+        return catService.deleteCat(Long.parseLong(id));
+    }
 }

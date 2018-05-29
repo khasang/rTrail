@@ -22,8 +22,7 @@ public class AppController {
     private CreateTable createTable;
 
     @RequestMapping("/")
-    public String getHelloPage(Model model) {
-        model.addAttribute("name", message.getInfo());
+    public String getHelloPage() {
         return "index";
     }
 

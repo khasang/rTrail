@@ -33,4 +33,12 @@ public interface BasicDao<T> {
      * @return all entities
      */
     List<T> getList();
+
+    /**
+     * method for deletion entityForDelete
+     *
+     * @param entityForDelete - entityForDelete's id for delete
+     * @return deleted entityForDelete
+     */
+    T delete(T entityForDelete);
 }

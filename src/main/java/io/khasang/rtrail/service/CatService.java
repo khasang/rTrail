@@ -28,4 +28,20 @@ public interface CatService {
      * @return all cats
      */
     List<Cat> getAllCats();
+
+    /**
+     * method for deletion cat
+     *
+     * @param id - cat's id for delete
+     * @return deleted cat
+     */
+    Cat deleteCat(long id);
+
+    /**
+     * method for getting cats by name
+     *
+     * @param name = filter
+     * @return cats by name
+     */
+    List<Cat> getCatsByName(String name);
 }
