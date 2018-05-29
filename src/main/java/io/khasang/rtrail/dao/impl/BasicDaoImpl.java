@@ -67,6 +67,18 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
     }
 
     @Override
+    public T delete(T entityForDelete) {
+        getSessionFactory().delete(entityForDelete);
+        return entityForDelete;
+    }
+
+    @Override
+    public T update(T entityForUpdate) {
+        getSessionFactory().update(entityForUpdate);
+        return entityForUpdate;
+    }
+
+    @Override
     public Session getSessionFactory() {
         return sessionFactory.getCurrentSession();
     }

@@ -6,9 +6,10 @@ import org.hibernate.Session;
 import java.util.List;
 
 public interface BasicDao<T> {
+
     /**
      * for getting session factory
-     * */
+     */
     Session getSessionFactory();
 
     /**
@@ -41,4 +42,21 @@ public interface BasicDao<T> {
      * @return all entities
      */
     List<T> getList();
+
+    /**
+     * method for deletion entityForDelete
+     *
+     * @param entityForDelete - entity's entityForDelete for delete
+     * @return deleted entity
+     */
+    T delete(T entityForDelete);
+
+    /**
+     * method for updation entity
+     *
+     * @param entityForUpdate - entity's entityForUpdate for update
+     * @return updated entity
+     */
+    T update(T entityForUpdate);
+
 }
