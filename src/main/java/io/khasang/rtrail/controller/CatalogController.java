@@ -70,7 +70,6 @@ public class CatalogController {
     }
 
 
-
 //    @Autowired
 //    private Catalog catalog;
 //
