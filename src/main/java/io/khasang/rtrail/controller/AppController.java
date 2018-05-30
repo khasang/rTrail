@@ -1,5 +1,6 @@
 package io.khasang.rtrail.controller;
 
+import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import io.khasang.rtrail.model.Cat;
 import io.khasang.rtrail.model.CreateTable;
 import io.khasang.rtrail.model.Message;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -75,4 +77,10 @@ public class AppController {
         return "info";
     }
 
+    @RequestMapping(value = "/password/{password}",method = RequestMethod.GET)
+    public String getPasswordByEncode(@PathVariable("password") String password, Model model) {
+        model.addAttribute("password", password);
+        model.addAttribute("encodePassword", new BCryptPasswordEncoder().encode(password));
+        return "password";
+    }
 }
