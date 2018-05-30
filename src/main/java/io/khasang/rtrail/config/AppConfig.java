@@ -1,6 +1,9 @@
 package io.khasang.rtrail.config;
 
 import io.khasang.rtrail.Model.CreateTable;
+import io.khasang.rtrail.dao.CatDao;
+import io.khasang.rtrail.dao.impl.CatDaoImpl;
+import io.khasang.rtrail.entity.Cat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,5 +40,10 @@ public class AppConfig {
     @Bean
     public CreateTable createTable() {
         return new CreateTable(jdbcTemplate());
+    }
+
+    @Bean
+    CatDao catDao() {
+        return new CatDaoImpl(Cat.class);
     }
 }
