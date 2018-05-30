@@ -6,12 +6,13 @@
 </head>
 <h1>${h1}</h1>
 <p>${text}</p>
-<c:if test="${sections != null && sections.size() > 0}">
+<c:if test="${links != null && links.size() > 0}">
     <ul>
-        <c:forEach items="${sections}" var="section">
-            <li><a href="${section.key}">${section.value}</a></li>
+        <c:forEach items="${links}" var="link">
+            <li><a href="${link.key}">${link.value}</a></li>
         </c:forEach>
     </ul>
 </c:if>
+<p><a href="${back}">&larr;&nbsp;назад</a></p>
 </body>
 </html>

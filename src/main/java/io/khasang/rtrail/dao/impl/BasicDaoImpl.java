@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
@@ -32,27 +31,6 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
     @Override
     public T getById(Long id) {
         return getSessionFactory().get(entityClass, id);
-    }
-
-    @Override
-    public T getByCode(String code) {
-
-        // todo NoResultException: No entity found for query - find the best solution
-
-        try {
-
-            CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
-            CriteriaQuery<T> criteriaQuery = builder.createQuery(entityClass);
-            Root<T> root = criteriaQuery.from(entityClass);
-
-            criteriaQuery.select(root);
-            Predicate p = builder.equal(root.get("code"), code);
-            criteriaQuery.where(p);
-
-            return getSessionFactory().createQuery(criteriaQuery).getSingleResult();
-        }catch(Exception ignored){}
-
-        return null;
     }
 
     @Override

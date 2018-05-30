@@ -51,5 +51,4 @@ public class CatController {
         return catService.updateCat(catForUpdate);
     }
 
-
 }

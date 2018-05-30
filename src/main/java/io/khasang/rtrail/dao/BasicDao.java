@@ -1,6 +1,5 @@
 package io.khasang.rtrail.dao;
 
-import io.khasang.rtrail.entity.Cat;
 import org.hibernate.Session;
 
 import java.util.List;
@@ -27,14 +26,6 @@ public interface BasicDao<T> {
      * @return entity by id
      */
     T getById(Long id);
-
-    /**
-     * method for getting entity
-     *
-     * @param code - entity's code for getting
-     * @return entity by code
-     */
-    T getByCode(String code);
 
     /**
      * method for getting all entities

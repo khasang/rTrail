@@ -12,7 +12,9 @@ public class CatDaoImpl extends BasicDaoImpl<Cat> implements CatDao {
 
     @Override
     public List<Cat> getByName(String name) {
-        return (List<Cat>) getSessionFactory().
-                createQuery("from Cat as c where c.name = ?").setParameter(0, name).list();
+        return (List<Cat>) getSessionFactory()
+                .createQuery("from Cat as c where c.name = ?")
+                .setParameter(0, name)
+                .list();
     }
 }

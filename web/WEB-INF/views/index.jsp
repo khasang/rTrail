@@ -43,7 +43,7 @@
         </tr>
         <tr>
             <td>
-                Add cat <code><<strong>POST</strong>></code>
+                Add cat <code><strong>POST</strong></code>
             </td>
             <td>/cat/add</td>
             <td>
