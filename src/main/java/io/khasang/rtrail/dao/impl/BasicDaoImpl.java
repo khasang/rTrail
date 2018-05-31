@@ -40,7 +40,20 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
         Root<T> root = criteriaQuery.from(entityClass);
 
         criteriaQuery.select(root);
+
         return getSessionFactory().createQuery(criteriaQuery).list();
+    }
+
+    @Override
+    public T delete(T entityForDelete) {
+        getSessionFactory().delete(entityForDelete);
+        return entityForDelete;
+    }
+
+    @Override
+    public T update(T entity) {
+        getSessionFactory().update(entity);
+        return entity;
     }
 
     @Override

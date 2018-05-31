@@ -17,19 +17,38 @@ public class CatController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public Cat addCat(@RequestBody Cat cat){
+    public Cat addCat(@RequestBody Cat cat) {
         return catService.addCat(cat);
     }
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public Cat getCatById(@PathVariable(value = "id") String id){
+    public Cat getCatById(@PathVariable(value = "id") String id) {
         return catService.getCatById(Long.parseLong(id));
+    }
+
+    @RequestMapping(value = "/get/name/{name}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public List<Cat> getCatsByName(@PathVariable(value = "name") String name) {
+        return catService.getCatByName(name);
+    }
+
+
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public Cat deleteCat(@RequestParam(value = "id") String id) {
+        return catService.deleteCat(Long.parseLong(id));
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public Cat updateCat(@RequestBody Cat cat) {
+        return catService.updateCat(cat);
     }
 
     @RequestMapping(value = "/get/all", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public List<Cat> getCats(){
+    public List<Cat> getCats() {
         return catService.getAllCats();
     }
 }
