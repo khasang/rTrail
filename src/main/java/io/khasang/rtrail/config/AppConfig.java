@@ -1,5 +1,8 @@
 package io.khasang.rtrail.config;
 
+import io.khasang.rtrail.dao.CatDao;
+import io.khasang.rtrail.dao.impl.CatDaoImpl;
+import io.khasang.rtrail.entity.Cat;
 import io.khasang.rtrail.model.CreateTable;
 import io.khasang.rtrail.model.Message;
 import io.khasang.rtrail.model.impl.MessageImpl;
@@ -60,6 +63,11 @@ public class AppConfig {
     @Bean
     public CreateTable createTable() {
         return new CreateTable(jdbcTemplate());
+    }
+
+    @Bean
+    CatDao catDao() {
+        return new CatDaoImpl(Cat.class);
     }
 
 }
