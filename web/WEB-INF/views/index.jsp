@@ -33,11 +33,23 @@
     </tr>
 </table>
 
+<button type="button" onclick="FillCatTable()">fill table</button>
+
 <div class="panel panel-default">
     <div class="panel-heading">
         <strong>RESPONSE</strong>
     </div>
     <div class="panel-body" id="response"></div>
+</div>
+<div id="cats">
+    <table class="table" id="catTable">
+        <tr>
+            <th>Cat ID</th>
+            <th>Cat name</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+    </table>
 </div>
 </body>
 </html>
