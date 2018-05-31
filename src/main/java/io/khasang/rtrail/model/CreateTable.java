@@ -33,27 +33,27 @@ public class CreateTable {
         }
     }
 
-    public String getCatByName(String name) {
-        return String.valueOf(jdbcTemplate.query("SELECT * FROM cats WHERE name = 'Barsik'", new RowMapper<Cat>() {
-            @Override
-            public Cat mapRow(ResultSet rs, int rowCount) throws SQLException {
-                Cat cat = new Cat();
-                cat.setId(rs.getInt(1));
-                cat.setName(rs.getString(2));
-                cat.setDescription(rs.getString(3));
-                cat.setColorId(rs.getInt(4));
-                return cat;
-            }
-        }));
-//        return jdbcTemplate.execute(query, new PreparedStatementCallback<String>() {
+//    public String getCatByName(String name) {
+//        return String.valueOf(jdbcTemplate.query("SELECT * FROM cats WHERE name = 'Barsik'", new RowMapper<Cat>() {
 //            @Override
-//            public String doInPreparedStatement(PreparedStatement ps) throws SQLException, DataAccessException {
-//                ps.setString(1, name);
-//                return String.valueOf(ps.execute());
+//            public Cat mapRow(ResultSet rs, int rowCount) throws SQLException {
+//                Cat cat = new Cat();
+//                cat.setId(rs.getInt(1));
+//                cat.setName(rs.getString(2));
+//                cat.setDescription(rs.getString(3));
+//                cat.setColorId(rs.getInt(4));
+//                return cat;
 //            }
-//        });
-
-    }
+//        }));
+////        return jdbcTemplate.execute(query, new PreparedStatementCallback<String>() {
+////            @Override
+////            public String doInPreparedStatement(PreparedStatement ps) throws SQLException, DataAccessException {
+////                ps.setString(1, name);
+////                return String.valueOf(ps.execute());
+////            }
+////        });
+//
+//    }
 
     public String updateColorCat(int colorId, String name) {
         try {
@@ -73,35 +73,35 @@ public class CreateTable {
         }
     }
 
-    public String insertIntoCat(Cat cat) {
-        try {
-            jdbcTemplate.update("INSERT INTO cats (id, name, description, color_id) VALUES (?,?,?,?)",
-                    cat.getId(), cat.getName(), cat.getDescription(), cat.getColorId());
-            return "New cat inserted";
-        } catch (Exception e) {
-            return "cat's insert failed: \n" + e;
-        }
-    }
+//    public String insertIntoCat(Cat cat) {
+//        try {
+//            jdbcTemplate.update("INSERT INTO cats (id, name, description, color_id) VALUES (?,?,?,?)",
+//                    cat.getId(), cat.getName(), cat.getDescription(), cat.getColorId());
+//            return "New cat inserted";
+//        } catch (Exception e) {
+//            return "cat's insert failed: \n" + e;
+//        }
+//    }
 
-    public String showAllCatsWithColor(String colorName) {
-        return String.valueOf(jdbcTemplate.query("SELECT * FROM cats WHERE color_id in " +
-                "(SELECT id FROM cats_color WHERE name = '" + colorName + "')", new RowMapper<Cat>() {
-            @Override
-            public Cat mapRow(ResultSet rs, int rowCount) throws SQLException {
-                return new Cat(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4));
-            }
-        }));
+//    public String showAllCatsWithColor(String colorName) {
+//        return String.valueOf(jdbcTemplate.query("SELECT * FROM cats WHERE color_id in " +
+//                "(SELECT id FROM cats_color WHERE name = '" + colorName + "')", new RowMapper<Cat>() {
+//            @Override
+//            public Cat mapRow(ResultSet rs, int rowCount) throws SQLException {
+//                return new Cat(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+//            }
+//        }));
+//
+//    }
 
-    }
-
-    public String showAllCats() {
-        return String.valueOf(jdbcTemplate.query("SELECT c.*, cc.name FROM cats c JOIN cats_color cc ON c.color_id = cc.id", new RowMapper<ColorfulCat>() {
-            @Override
-            public ColorfulCat mapRow(ResultSet rs, int rowCount) throws SQLException {
-                return new ColorfulCat(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5));
-            }
-        }));
-    }
+//    public String showAllCats() {
+//        return String.valueOf(jdbcTemplate.query("SELECT c.*, cc.name FROM cats c JOIN cats_color cc ON c.color_id = cc.id", new RowMapper<ColorfulCat>() {
+//            @Override
+//            public ColorfulCat mapRow(ResultSet rs, int rowCount) throws SQLException {
+//                return new ColorfulCat(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5));
+//            }
+//        }));
+//    }
 
     public JdbcTemplate getJdbcTemplate() {
         return jdbcTemplate;
