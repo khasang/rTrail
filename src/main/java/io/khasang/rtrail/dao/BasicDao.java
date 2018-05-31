@@ -33,4 +33,20 @@ public interface BasicDao<T> {
      * @return all cats
      */
     List<T> getList();
+
+    /**
+     * method for deletion entity
+     *
+     * @param entityForDelete - entityForDelete for delete
+     * @return deleted entityForDelete
+     */
+    T delete(T entityForDelete);
+
+    /**
+     * method for updating entity
+     *
+     * @param entityForUpdate - entity for update
+     * @return updated entity
+     */
+    T update(T entityForUpdate);
 }

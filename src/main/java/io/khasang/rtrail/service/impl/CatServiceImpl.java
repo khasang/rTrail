@@ -27,4 +27,21 @@ public class CatServiceImpl implements CatService {
     public List<Cat> getAllCats() {
         return catDao.getList();
     }
+
+    @Override
+    public Cat deleteCat(long id) {
+        Cat catForDelete = getCatById(id);
+        catDao.delete(catForDelete);
+        return catForDelete;
+    }
+
+    @Override
+    public List<Cat> getAllCatsByName(String name) {
+        return catDao.getByName(name);
+    }
+
+    @Override
+    public Cat updateCat(Cat catForUpdate) {
+        return catDao.update(catForUpdate);
+    }
 }
