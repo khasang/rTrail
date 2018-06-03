@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
+    <script src="js/jquery.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <title>Title</title>
 </head>
@@ -19,6 +19,36 @@
             url: service + '/add',
             contentType: 'application/json;utf-8',
             data: JSON.stringify(JSONObject),
+            dataType: 'json',
+            async: false,
+            success: function (result) {
+                $('#response').html(JSON.stringify(result));
+            },
+            error: function (jqXHR, testStatus, errorThrown) {
+                $('#response').html(JSON.stringify(jqXHR));
+            }
+        });
+    };
+
+    var RestGet = function (id) {
+        $.ajax({
+            type: 'GET',
+            url: service + '/get/' + id,
+            dataType: 'json',
+            async: false,
+            success: function (result) {
+                $('#response').html(JSON.stringify(result));
+            },
+            error: function (jqXHR, testStatus, errorThrown) {
+                $('#response').html(JSON.stringify(jqXHR));
+            }
+        });
+    };
+
+    var RestGetAll = function () {
+        $.ajax({
+            type: 'GET',
+            url: service + '/get/all',
             dataType: 'json',
             async: false,
             success: function (result) {
@@ -50,6 +80,29 @@
                     name: <input type="text" id="postName" value="Cat name">
                     description: <input type="text" id="postDescription" value="Cat description">
                     <button type="button" onclick="RestPost($('#postName').val(), $('#postDescription').val())">try</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+               Get cat by id <code><strong>GET</strong></code>
+            </td>
+            <td>/cat/get</td>
+            <td>
+                <form class="form-inline">
+                    id: <input type="text" id="getCatID" value=""/>
+                    <button type="button" onclick="RestGet($('#getCatID').val())">try</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Get all cats <code><strong>GET</strong></code>
+            </td>
+            <td>/cat/get/all</td>
+            <td>
+                <form class="form-inline">
+                    <button type="button" onclick="RestGetAll()">try</button>
                 </form>
             </td>
         </tr>
