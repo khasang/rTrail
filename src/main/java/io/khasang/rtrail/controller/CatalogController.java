@@ -4,6 +4,7 @@ import io.khasang.rtrail.entity.catalog.Iblock;
 import io.khasang.rtrail.entity.catalog.IblockElement;
 import io.khasang.rtrail.entity.catalog.IblockSection;
 import io.khasang.rtrail.service.CatalogService;
+import io.khasang.rtrail.service.Menu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,8 +31,9 @@ public class CatalogController {
 
         model.addAttribute("title", iblock.getName());
         model.addAttribute("h1", iblock.getName());
+        model.addAttribute("breadcrumbs", catalogService.getBreadcrumbs(iblock, null, null));
+        model.addAttribute("leftMenu", catalogService.getMenu(iblock, null, null));
         model.addAttribute("text", iblock.getDescription());
-        model.addAttribute("links", catalogService.getIblockSections(iblock));
         model.addAttribute("back", "/");
 
         return "catalog";
@@ -41,7 +43,7 @@ public class CatalogController {
     public String fillCatalog(Model model) {
 
         Iblock checkIblock = catalogService.getIblockByCode(catalogCode);
-        if(checkIblock == null) {
+        if (checkIblock == null) {
 
             Iblock iblock = new Iblock("Каталог товаров", "catalog", "Интернет магазин автотоваров");
             catalogService.addIblock(iblock);
@@ -64,7 +66,6 @@ public class CatalogController {
             catalogService.addIblockElement(iblockElement4);
             catalogService.addIblockElement(iblockElement5);
 
-
             model.addAttribute("info", "Каталог заполнен");
         } else {
             model.addAttribute("info", "Каталог уже был заполнен");
@@ -84,8 +85,9 @@ public class CatalogController {
 
         model.addAttribute("title", iblockSection.getName());
         model.addAttribute("h1", iblockSection.getName());
+        model.addAttribute("breadcrumbs", catalogService.getBreadcrumbs(iblock, iblockSection, null));
+        model.addAttribute("leftMenu", catalogService.getMenu(iblock, iblockSection, null));
         model.addAttribute("text", iblockSection.getDescription());
-        model.addAttribute("links", catalogService.getIblockElements(iblock, iblockSection));
         model.addAttribute("back", "/" + iblock.getCode() + "/");
 
         return "catalog";
@@ -103,6 +105,8 @@ public class CatalogController {
 
         model.addAttribute("title", iblockElement.getName());
         model.addAttribute("h1", iblockElement.getName());
+        model.addAttribute("breadcrumbs", catalogService.getBreadcrumbs(iblock, iblockSection, iblockElement));
+        model.addAttribute("leftMenu", catalogService.getMenu(iblock, iblockSection, iblockElement));
         model.addAttribute("text", iblockElement.getDescription());
         model.addAttribute("back", "/" + iblock.getCode() + "/" + iblockSection.getCode());
 

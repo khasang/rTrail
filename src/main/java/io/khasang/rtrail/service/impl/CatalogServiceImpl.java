@@ -7,12 +7,11 @@ import io.khasang.rtrail.entity.catalog.Iblock;
 import io.khasang.rtrail.entity.catalog.IblockElement;
 import io.khasang.rtrail.entity.catalog.IblockSection;
 import io.khasang.rtrail.service.CatalogService;
+import io.khasang.rtrail.service.Menu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class CatalogServiceImpl implements CatalogService {
@@ -47,34 +46,8 @@ public class CatalogServiceImpl implements CatalogService {
     }
 
     @Override
-    public Map<String, String> getIblockSections(Iblock iblock) {
-
-        List<IblockSection> iblockSectionList = iblockSectionDao.getList(iblock);
-
-        Map<String, String> sections = new HashMap<>();
-        for (IblockSection iblockSection : iblockSectionList) {
-            sections.put("/" + iblock.getCode() + "/" + iblockSection.getCode(), iblockSection.getName());
-        }
-
-        return sections;
-    }
-
-    @Override
     public IblockSection getIblockSectionByCode(Iblock iblock, String code) {
         return iblockSectionDao.getByCode(iblock, code);
-    }
-
-    @Override
-    public Map<String, String> getIblockElements(Iblock iblock, IblockSection iblockSection) {
-
-        List<IblockElement> iblockElementList = iblockElementDao.getList(iblock, iblockSection);
-
-        Map<String, String> elements = new HashMap<>();
-        for (IblockElement iblockElement : iblockElementList) {
-            elements.put("/" + iblock.getCode() + "/" + iblockSection.getCode() + "/" + iblockElement.getCode(), iblockElement.getName());
-        }
-
-        return elements;
     }
 
     @Override
@@ -82,5 +55,50 @@ public class CatalogServiceImpl implements CatalogService {
         return iblockElementDao.getByCode(iblock, iblockSection, elementCode);
     }
 
+    @Override
+    public Map<String, String> getBreadcrumbs(Iblock iblock, IblockSection iblockSection, IblockElement iblockElement) {
+
+        Map<String, String> breadcrumbs = new LinkedHashMap<>();
+        breadcrumbs.put("/", "Главная");
+        if (iblockSection != null) {
+            breadcrumbs.put("/" + iblock.getCode() + "/" + iblockSection.getCode(), iblockSection.getName());
+            if (iblockElement != null) {
+                breadcrumbs.put("/" + iblock.getCode() + "/" + iblockSection.getCode() + "/" + iblockElement.getCode(), iblockElement.getName());
+            }
+        }
+
+        return breadcrumbs;
+    }
+
+    @Override
+    public List<Menu> getMenu(Iblock iblock, IblockSection iblockSection, IblockElement iblockElement) {
+        List<IblockSection> iblockSectionList = iblockSectionDao.getList(iblock);
+
+        List<Menu> menuItems = new LinkedList<>();
+        for (IblockSection section : iblockSectionList) {
+
+            Menu menuItem = new Menu(
+                    section.getName(),
+                    "/" + section.getIblock().getCode() + "/" + section.getCode(),
+                    iblockSection != null && section.getId() == iblockSection.getId(),
+                    iblockSection != null && section.getId() == iblockSection.getId() && iblockElement == null
+            );
+
+            List<IblockElement> iblockElementList = iblockElementDao.getList(iblock, iblockSection);
+            for (IblockElement element : iblockElementList) {
+                Menu menuSubItem = new Menu(
+                        element.getName(),
+                        "/" + element.getIblock().getCode() + "/" + element.getIblock_section().getCode() + "/" + element.getCode(),
+                        iblockElement != null && element.getId() == iblockElement.getId(),
+                        iblockElement != null && element.getId() == iblockElement.getId()
+                );
+                menuItem.addSubMenu(menuSubItem);
+            }
+
+            menuItems.add(menuItem);
+        }
+
+        return menuItems;
+    }
 
 }
