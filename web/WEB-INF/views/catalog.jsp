@@ -54,9 +54,8 @@
         <div class="col-md-8">${text}</div>
     </div>
     <div class="row">
-        <div class="col-md-12">
-            <p><a href="${back}">&larr;&nbsp;назад</a></p>
-        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-8"><p><a href="${back}">&larr;&nbsp;назад</a></p></div>
     </div>
 </div>
 

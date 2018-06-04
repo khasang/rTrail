@@ -13,6 +13,7 @@
         <spring.version>4.3.11.RELEASE</spring.version>
         <hibernate.version>5.2.12.Final</hibernate.version>
         <spring.security.version>4.2.3.RELEASE</spring.security.version>
+        <junit.version>4.12</junit.version>
     </properties>
 
     <dependencies>
@@ -103,6 +104,14 @@
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>2.7.8</version>
         </dependency>
+
+        <!-- Junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+        </dependency>
+
 
     </dependencies>
 

@@ -9,7 +9,7 @@ public interface CatService {
     /**
      * method for add cat
      *
-     * @param cat - new cat for creation
+     * @param cat = new cat
      * @return created cat
      */
     Cat addCat(Cat cat);
@@ -30,10 +30,10 @@ public interface CatService {
     List<Cat> getAllCats();
 
     /**
-     * method for deletion cat
+     * method for delete specify cat by id
      *
-     * @param id - cat's id for delete
-     * @return deleted cat
+     * @param id = cat's id
+     * @return cat by id
      */
     Cat deleteCat(long id);
 
@@ -46,11 +46,12 @@ public interface CatService {
     List<Cat> getCatByName(String name);
 
     /**
-     * method for updation cat
+     * method for update cat
      *
-     * @param catForUpdate - cat's entity for update
+     * @param cat - updated cat
      * @return updated cat
      */
-    Cat updateCat(Cat catForUpdate);
+    Cat updateCat(Cat cat);
 
+    Cat patchCat(Cat cat);
 }

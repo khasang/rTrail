@@ -41,8 +41,13 @@ public class CatServiceImpl implements CatService {
     }
 
     @Override
-    public Cat updateCat(Cat catForUpdate) {
-        return catDao.update(catForUpdate);
+    public Cat updateCat(Cat cat) {
+        return catDao.update(cat);
+    }
+
+    @Override
+    public Cat patchCat(Cat cat) {
+        return catDao.update(cat);
     }
 
 }
