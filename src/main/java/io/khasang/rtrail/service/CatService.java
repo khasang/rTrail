@@ -18,7 +18,7 @@ public interface CatService {
      * @param id - cat's id for getting
      * @return  Cat by Id
      */
-    Cat getCatById(long id);
+    Cat getCatById(Long id);
 
     /**
      * method for getting all cats
@@ -31,7 +31,7 @@ public interface CatService {
      * @param id - cat's id for remove
      * @return  delete
      */
-    Cat deleteCat(long id);
+    Cat deleteCat(Long id);
 
     /**
      * method for getting cats by name
@@ -42,7 +42,9 @@ public interface CatService {
     /**
      * method for update cat
      * @param cat - updated cat
-     * @return created Cat
+     * @return updated Cat
      */
     Cat updateCat(Cat cat);
+
+    Cat patchCat(Cat cat);
 }
