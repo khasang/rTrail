@@ -135,7 +135,7 @@ public class CatControllerIntegrationTest {
             assertEquals(cat.getName(), receivedCat.getName());
         }
     }
-
+//
     @Test
     public void updateCat() {
         String newCatName = "Boris";
