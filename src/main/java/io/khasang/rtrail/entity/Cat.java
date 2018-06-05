@@ -36,7 +36,7 @@ public class Cat {
     private long id;
 
     private String name;
-    @Column(name = "descr")
+    //@Column(name = "descr")
     private String description;
 
 
