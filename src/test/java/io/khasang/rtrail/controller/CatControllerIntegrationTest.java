@@ -20,6 +20,7 @@ public class CatControllerIntegrationTest {
     private static final String GET = "/get";
     private static final String ALL = "/all";
     private static final String DELETE = "/delete";
+    private static final String UPDATE = "/update";
 
 
     @Before
@@ -68,6 +69,25 @@ public class CatControllerIntegrationTest {
         List<Cat> catList = responseEntity.getBody();
         assertNotNull(catList.get(0));
         assertNotNull(catList.get(1));
+    }
+
+    @Test
+    public void updateCat(){
+        Cat cat = createdCat();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+        cat.setDescription("UpdatedCat");
+        HttpEntity<Cat> httpEntity = new HttpEntity<>(cat, headers);
+        RestTemplate template = new RestTemplate();
+        Cat updatedCat = template.exchange(
+                ROOT + UPDATE,
+                    HttpMethod.PUT,
+                    httpEntity,
+                    Cat.class
+                ).getBody();
+
+        assertNotNull(updatedCat);
+        assertEquals("UpdatedCat", updatedCat.getDescription());
     }
 
     @Test
