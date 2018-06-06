@@ -62,51 +62,51 @@
 </script>
 
 <body>
-<h1>Admin menu</h1>
+    <h1>Admin menu</h1>
 
-<table class="table">
-    <tr>
-        <th>Request Type</th>
-        <th>URL</th>
-        <th>Value</th>
-    </tr>
-    <tr>
-        <td>
-            Add cat <code><strong>POST</strong></code>
-        </td>
-        <td>/cat/add</td>
-        <td>
-            <form class="form-inline">
-                name: <input type="text" id="postName" value="Cat name">
-                description: <input type="text" id="postDescription" value="Cat description">
-                <button type="button" onclick="RestPost($('#postName').val(), $('#postDescription').val())">try</button>
-            </form>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Get cat by id <code><strong>GET</strong></code>
-        </td>
-        <td>/cat/get</td>
-        <td>
-            <form class="form-inline">
-                id: <input type="text" id="getCatID" value=""/>
-                <button type="button" onclick="RestGet($('#getCatID').val())">try</button>
-            </form>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Get all cats <code><strong>GET</strong></code>
-        </td>
-        <td>/cat/get/all</td>
-        <td>
-            <form class="form-inline">
-                <button type="button" onclick="RestGetAll()">try</button>
-            </form>
-        </td>
-    </tr>
-</table>
+    <table class="table">
+        <tr>
+            <th>Request Type</th>
+            <th>URL</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>
+                Add cat <code><strong>POST</strong></code>
+            </td>
+            <td>/cat/add</td>
+            <td>
+                <form class="form-inline">
+                    name: <input type="text" id="postName" value="Cat name">
+                    description: <input type="text" id="postDescription" value="Cat description">
+                    <button type="button" onclick="RestPost($('#postName').val(), $('#postDescription').val())">try</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+               Get cat by id <code><strong>GET</strong></code>
+            </td>
+            <td>/cat/get</td>
+            <td>
+                <form class="form-inline">
+                    id: <input type="text" id="getCatID" value=""/>
+                    <button type="button" onclick="RestGet($('#getCatID').val())">try</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Get all cats <code><strong>GET</strong></code>
+            </td>
+            <td>/cat/get/all</td>
+            <td>
+                <form class="form-inline">
+                    <button type="button" onclick="RestGetAll()">try</button>
+                </form>
+            </td>
+        </tr>
+    </table>
 
 <div class="panel panel-default">
     <div class="panel-heading">

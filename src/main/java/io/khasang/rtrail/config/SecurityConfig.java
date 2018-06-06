@@ -26,23 +26,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /*
-     *Spring security in memory
-     */
-
-    /*@Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception{
-        auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
-        auth.inMemoryAuthentication().withUser("user").password("user").roles("USER");
-
-    }*/
+     * Spring in memory
+     * */
+//    @Override
+//    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
+//        auth.inMemoryAuthentication().withUser("user").password("user").roles("USER");
+//    }
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-
     }
 
     private PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 }

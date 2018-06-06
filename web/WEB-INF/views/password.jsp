@@ -4,6 +4,6 @@
     <title>Title</title>
 </head>
 <body>
-<p>Password for value: ${password} is: ${encodePassword}</p>
+<p>Password for value - ${password} is: ${encodePassword}</p>
 </body>
 </html>

@@ -8,43 +8,40 @@ public interface CatService {
 
     /**
      * method for add cat
-     * @param cat - new cat for creating
-     * @return created Cat
+     *
+     * @param cat - new cat for creation
+     * @return created cat
      */
     Cat addCat(Cat cat);
 
     /**
      * method for getting cat
+     *
      * @param id - cat's id for getting
-     * @return  Cat by Id
+     * @return cat by id
      */
-    Cat getCatById(Long id);
+    Cat getCatById(long id);
 
     /**
      * method for getting all cats
-     * @return all Cats
+     *
+     * @return all cats
      */
     List<Cat> getAllCats();
 
     /**
-     * method for remove cat
-     * @param id - cat's id for remove
-     * @return  delete
+     * method for deletion cat
+     *
+     * @param id - cat's id for delete
+     * @return deleted cat
      */
-    Cat deleteCat(Long id);
+    Cat deleteCat(long id);
 
     /**
      * method for getting cats by name
-     * @return list of cats
+     *
+     * @param name = filter
+     * @return cats by name
      */
-    List<Cat> getCatByName(String name);
-
-    /**
-     * method for update cat
-     * @param cat - updated cat
-     * @return updated Cat
-     */
-    Cat updateCat(Cat cat);
-
-    Cat patchCat(Cat cat);
+    List<Cat> getCatsByName(String name);
 }

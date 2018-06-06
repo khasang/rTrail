@@ -1,8 +1,11 @@
 package io.khasang.rtrail.config;
 
 import io.khasang.rtrail.dao.CatDao;
+import io.khasang.rtrail.dao.UserDao;
 import io.khasang.rtrail.dao.impl.CatDaoImpl;
+import io.khasang.rtrail.dao.impl.UserDaoImpl;
 import io.khasang.rtrail.entity.Cat;
+import io.khasang.rtrail.entity.User;
 import io.khasang.rtrail.model.CreateTable;
 import io.khasang.rtrail.model.Message;
 import io.khasang.rtrail.model.impl.MessageImpl;
@@ -17,7 +20,6 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 
-
 @Configuration
 @PropertySource(value = "classpath:util.properties")
 @PropertySource(value = "classpath:auth.properties")
@@ -28,11 +30,11 @@ public class AppConfig {
     @Bean
     @Scope("prototype")
     public Message message(){
-        return new MessageImpl("Hello World!");
+        return new MessageImpl("HelloWorld!");
     }
 
     @Bean
-    public DriverManagerDataSource dataSource(){
+    public DriverManagerDataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.postgresql.driver"));
         dataSource.setUrl(environment.getRequiredProperty("jdbc.postgresql.url"));
@@ -48,7 +50,6 @@ public class AppConfig {
         jdbcDao.setUsersByUsernameQuery(environment.getRequiredProperty("userByQuery"));
         jdbcDao.setAuthoritiesByUsernameQuery(environment.getRequiredProperty("rolesByQuery"));
         return jdbcDao;
-
     }
 
     @Bean
@@ -68,4 +69,8 @@ public class AppConfig {
         return new CatDaoImpl(Cat.class);
     }
 
+    @Bean
+    UserDao userDao(){
+        return new UserDaoImpl(User.class);
+    }
 }
