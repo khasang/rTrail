@@ -10,7 +10,6 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
 public class UserControllerIntegrationTest {
 
@@ -35,7 +34,6 @@ public class UserControllerIntegrationTest {
         );
 
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
-
         User receivedUser = responseEntity.getBody();
         assertNotNull(receivedUser);
     }
@@ -57,10 +55,6 @@ public class UserControllerIntegrationTest {
         List<User> users = responseEntity.getBody();
         assertNotNull(users.get(0));
         assertNotNull(users.get(1));
-
-        // restTemplate.delete(ROOT+DELETE, user1.getId());
-        //restTemplate.delete(ROOT+DELETE, user2.getId());
-        // clean
     }
 
     @Test
@@ -82,30 +76,23 @@ public class UserControllerIntegrationTest {
 
         assertEquals(user.getEmail(), updatedUser.getEmail());
         assertNotNull(updatedUser.getId());
-        //template.delete(ROOT+DELETE);
-
     }
 
     @Test
     public void checkDeleteUser() {
         User user = createUser();
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-        HttpEntity<User> httpEntity = new HttpEntity<>(user, headers);
         RestTemplate template = new RestTemplate();
 
-        User deletedUser = template.exchange(
-                ROOT + DELETE + "{id}",
+        ResponseEntity<User> deletedUser = template.exchange(
+                ROOT + DELETE + "?id={id}",
                 HttpMethod.DELETE,
-                httpEntity,
+                null,
                 User.class,
                 user.getId()
+        );
 
-        ).getBody();
-
-        System.out.println(deletedUser);
-        assertNull(deletedUser.getId());
+        assertNotNull(deletedUser.getBody());
     }
 
     private User createUser() {
