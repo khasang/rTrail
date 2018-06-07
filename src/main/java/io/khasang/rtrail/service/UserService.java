@@ -41,11 +41,11 @@ public interface UserService {
     /**
      * method for getting a list of users with the given name
      *
-     * @param name - requested users's name
+     * @param username - requested users's name
      * @return list of users
      */
 
-    List<User> getUserByName(String name);
+    List<User> getUserByName(String username);
 
     /**
      * method for remove user

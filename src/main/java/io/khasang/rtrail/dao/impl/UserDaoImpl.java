@@ -17,8 +17,8 @@ public class UserDaoImpl extends BasicDaoImpl<User> implements UserDao {
     }
 
     @Override
-    public List<User> getByName(String name) {
+    public List<User> getByName(String username) {
         return (List<User>) getSessionFactory()
-                .createQuery("from User where User.username = ?").setParameter(0, name).list();
+                .createQuery("from User as u where u.username = ?").setParameter(0, username).list();
     }
 }

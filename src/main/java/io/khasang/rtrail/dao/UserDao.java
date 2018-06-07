@@ -16,8 +16,8 @@ public interface UserDao extends BasicDao<User> {
     /**
      * method for getting users by name
      *
-     * @param name user's name as filter
+     * @param username user's name as filter
      * @return a list of users
      */
-    List<User> getByName(String name);
+    List<User> getByName(String username);
 }

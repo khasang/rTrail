@@ -39,10 +39,10 @@ public class UserController {
         return userService.getUserById(Long.parseLong(id));
     }
 
-    @RequestMapping(value = "/get/{name}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
+    @RequestMapping(value = "/get/name/{username}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public List<User> getUserByName(@PathVariable(value = "name") String name) {
-        return userService.getUserByName(name);
+    public List<User> getUserByName(@PathVariable(value = "username") String username) {
+        return userService.getUserByName(username);
     }
 
     @RequestMapping(value = "/get/all", method = RequestMethod.GET, produces = "application/json;charset=utf-8")

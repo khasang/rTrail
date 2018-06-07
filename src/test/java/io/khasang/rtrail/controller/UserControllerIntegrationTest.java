@@ -10,6 +10,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 public class UserControllerIntegrationTest {
 
@@ -35,14 +36,14 @@ public class UserControllerIntegrationTest {
 
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
 
-        User receivedUser= responseEntity.getBody();
+        User receivedUser = responseEntity.getBody();
         assertNotNull(receivedUser);
     }
 
     @Test
     public void checkAllUsers() {
-       User user1 = createUser();
-       User user2 = createUser();
+        User user1 = createUser();
+        User user2 = createUser();
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<List<User>> responseEntity = restTemplate.exchange(
@@ -57,16 +58,61 @@ public class UserControllerIntegrationTest {
         assertNotNull(users.get(0));
         assertNotNull(users.get(1));
 
-       // restTemplate.delete(ROOT+DELETE, user1.getId());
+        // restTemplate.delete(ROOT+DELETE, user1.getId());
         //restTemplate.delete(ROOT+DELETE, user2.getId());
         // clean
+    }
+
+    @Test
+    public void checkUpdateUser() {
+        User user = createUser();
+        user.setEmail("changedemail@test.me");
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+
+        HttpEntity<User> httpEntity = new HttpEntity<>(user, headers);
+        RestTemplate template = new RestTemplate();
+
+        User updatedUser = template.exchange(
+                ROOT + UPDATE,
+                HttpMethod.PUT,
+                httpEntity,
+                User.class
+        ).getBody();
+
+        assertEquals(user.getEmail(), updatedUser.getEmail());
+        assertNotNull(updatedUser.getId());
+        //template.delete(ROOT+DELETE);
+
+    }
+
+    @Test
+    public void checkDeleteUser() {
+        User user = createUser();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+
+        HttpEntity<User> httpEntity = new HttpEntity<>(user, headers);
+        RestTemplate template = new RestTemplate();
+
+        User deletedUser = template.exchange(
+                ROOT + DELETE + "{id}",
+                HttpMethod.DELETE,
+                httpEntity,
+                User.class,
+                user.getId()
+
+        ).getBody();
+
+        System.out.println(deletedUser);
+        assertNull(deletedUser.getId());
     }
 
     private User createUser() {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-        User user = prefillUser("testUserName", "password");
+        User user = prefillUser("testUserName", "password", "test@check.me");
 
         HttpEntity<User> httpEntity = new HttpEntity<>(user, headers);
         RestTemplate template = new RestTemplate();
@@ -83,11 +129,11 @@ public class UserControllerIntegrationTest {
         return createdUser;
     }
 
-    private User prefillUser(String username, String password) {
+    private User prefillUser(String username, String password, String email) {
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
-        user.setEmail("default@test");
+        user.setEmail(email);
         return user;
     }
 }
