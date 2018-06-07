@@ -44,4 +44,6 @@ public interface CatService {
      * @return cats by name
      */
     List<Cat> getCatsByName(String name);
+
+    Cat updateCat(Cat cat);
 }

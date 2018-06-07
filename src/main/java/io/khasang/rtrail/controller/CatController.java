@@ -20,6 +20,12 @@ public class CatController {
         return catService.addCat(cat);
     }
 
+    @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public Cat updateCat(@RequestBody Cat cat) {
+        return catService.updateCat(cat);
+    }
+
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
     public Cat getCatById(@PathVariable(value = "id") String id) {
@@ -38,6 +44,7 @@ public class CatController {
         return catService.getCatsByName(name);
     }
 
+    //localhost:8080/cat/delete?id="2"
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE, produces = "application/json;charset=utf-8")
     @ResponseBody
     public Cat deleteCat(@RequestParam(value = "id") String id) {
