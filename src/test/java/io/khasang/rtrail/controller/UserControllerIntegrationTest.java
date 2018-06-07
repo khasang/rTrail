@@ -87,6 +87,7 @@ public class UserControllerIntegrationTest {
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
+        user.setEmail("default@test");
         return user;
     }
 }
