@@ -1,6 +1,7 @@
 package io.khasang.rtrail.dao;
 
 import io.khasang.rtrail.entity.Cat;
+import io.khasang.rtrail.entity.User;
 import org.hibernate.Session;
 
 import java.util.List;
@@ -41,4 +42,12 @@ public interface BasicDao<T> {
      * @return deleted entityForDelete
      */
     T delete(T entityForDelete);
+
+    /**
+     * method for update entityForUpdate
+     * @param entityForUpdate - entity for update
+     * @return updated entityForUpdate
+     */
+    T update(T entityForUpdate);
+
 }
