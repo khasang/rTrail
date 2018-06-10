@@ -6,6 +6,8 @@ import io.khasang.rtrail.service.RoutService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * concrete realize of RoutService
  */
@@ -42,5 +44,20 @@ public class RoutServiceImpl implements RoutService {
     @Override
     public Rout updateRout(Rout rout) {
         return routDao.update(rout);
+    }
+
+    @Override
+    public List<Rout> getAllRouts() {
+        return routDao.getList();
+    }
+
+    @Override
+    public List<Rout> getRoutByName(String name) {
+        return routDao.getByName(name);
+    }
+
+    @Override
+    public List<Rout> getAllOwnerRout(String owner) {
+        return routDao.getByOwner(owner);
     }
 }
