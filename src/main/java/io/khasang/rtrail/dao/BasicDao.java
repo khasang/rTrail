@@ -1,6 +1,5 @@
 package io.khasang.rtrail.dao;
 
-import io.khasang.rtrail.entity.Cat;
 import io.khasang.rtrail.entity.User;
 import org.hibernate.Session;
 

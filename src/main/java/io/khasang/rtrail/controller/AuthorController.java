@@ -1,7 +1,7 @@
 package io.khasang.rtrail.controller;
 
-import io.khasang.rtrail.entity.User;
-import io.khasang.rtrail.service.UserService;
+import io.khasang.rtrail.entity.Author;
+import io.khasang.rtrail.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -16,43 +16,45 @@ import java.util.List;
  */
 
 @Controller
-@RequestMapping("/users")
-public class UserController {
+@RequestMapping("/author")
+public class AuthorController {
     @Autowired
-    private UserService userService;
+    private AuthorService authorService;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public User addUser(@RequestBody User user) {
-        return userService.addUser(user);
+    public Author addAuthor(@RequestBody Author author) {
+        return authorService.addAuthor(author);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public User updateUser(@RequestBody User user) {
-        return userService.updateUser(user);
+    public Author updateAuthor(@RequestBody Author author) {
+        return authorService.updateAuthor(author);
     }
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public User getUserById(@PathVariable(value = "id") String id) {
-        return userService.getUserById(Long.parseLong(id));
+    public Author getAuthorById(@PathVariable(value = "id") String id) {
+        return authorService.getAuthorById(Long.parseLong(id));
     }
 
-    @RequestMapping(value = "/get/name/{username}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
+    @RequestMapping(value = "/get/name/{authorname}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public List<User> getUserByName(@PathVariable(value = "username") String username) {
-        return userService.getUserByName(username);
+    public List<Author> getBookByName(@PathVariable(value = "authorname") String authorname) {
+        return authorService.getAuthorByName(authorname);
     }
 
     @RequestMapping(value = "/get/all", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public List<User> getUsers() {
-        return userService.getAllUsers();
+    public List<Author> getAuthor() {
+        return authorService.getAllAuthor();
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public User deleteUser(@RequestParam(value = "id") String id) {
-        return userService.deleteUser(Long.parseLong(id)); }
+    public Author deleteUser(@RequestParam(value = "id") String id) {
+        return authorService.deleteAuthor(Long.parseLong(id)); }
 }
+
+
