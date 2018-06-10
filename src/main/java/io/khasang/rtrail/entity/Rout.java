@@ -1,14 +1,14 @@
 package io.khasang.rtrail.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * entity for rout
  */
 @Entity
+@Table(name = "routs")
 public class Rout {
 
     @Id
@@ -21,7 +21,8 @@ public class Rout {
 
     private String owner;
 
-    private String pathJson;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<CheckPoint> checkPointList = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -55,11 +56,11 @@ public class Rout {
         this.owner = owner;
     }
 
-    public String getPathJson() {
-        return pathJson;
+    public List<CheckPoint> getCheckPointList() {
+        return checkPointList;
     }
 
-    public void setPathJson(String pathJson) {
-        this.pathJson = pathJson;
+    public void setCheckPointList(List<CheckPoint> checkPointList) {
+        this.checkPointList = checkPointList;
     }
 }

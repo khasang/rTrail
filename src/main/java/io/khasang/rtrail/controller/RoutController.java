@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * controller for routs
  */
@@ -38,5 +40,23 @@ public class RoutController {
     @ResponseBody
     public Rout updateRout(@RequestBody Rout rout) {
         return routService.updateRout(rout);
+    }
+
+    @RequestMapping(value = "/get/all", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public List<Rout> getAllRouts() {
+        return routService.getAllRouts();
+    }
+
+    @RequestMapping(value = "/get/name/{name}", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public List<Rout> getRoutByName(@PathVariable(value = "name") String name) {
+        return routService.getRoutByName(name);
+    }
+
+    @RequestMapping(value = "/get/routByOwner/{owner}", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public List<Rout> getAllOwnerRouts(@PathVariable(value = "owner") String owner) {
+        return routService.getAllOwnerRout(owner);
     }
 }
