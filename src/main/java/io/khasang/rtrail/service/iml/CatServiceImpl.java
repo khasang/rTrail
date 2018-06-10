@@ -13,7 +13,6 @@ public class CatServiceImpl implements CatService {
     @Autowired
     private CatDao catDao;
 
-
     @Override
     public Cat addCat(Cat cat) {
         return catDao.create(cat);

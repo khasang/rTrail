@@ -3,6 +3,8 @@ package io.khasang.rtrail.entity;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "cats")
@@ -18,6 +20,9 @@ public class Cat {
     private String description;
     @Column(name = "color_id")
     private int colorID;
+
+    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
+    private List<CatWoman> catWomenList = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -49,5 +54,13 @@ public class Cat {
 
     public void setColorID(int colorID) {
         this.colorID = colorID;
+    }
+
+    public List<CatWoman> getCatWomenList() {
+        return catWomenList;
+    }
+
+    public void setCatWomenList(List<CatWoman> catWomenList) {
+        this.catWomenList = catWomenList;
     }
 }

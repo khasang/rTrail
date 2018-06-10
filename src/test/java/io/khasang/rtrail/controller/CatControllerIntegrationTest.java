@@ -1,11 +1,14 @@
 package io.khasang.rtrail.controller;
 
 import io.khasang.rtrail.entity.Cat;
+import io.khasang.rtrail.entity.CatWoman;
 import org.junit.*;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -193,6 +196,17 @@ public class CatControllerIntegrationTest {
         cat.setName(name);
         cat.setDescription("happy");
         cat.setColorID(2);
+
+        CatWoman catWoman1 = new CatWoman();
+        CatWoman catWoman2 = new CatWoman();
+
+        catWoman1.setName("Murka");
+        catWoman2.setName("Riska");
+
+        List<CatWoman> catWomanList = new ArrayList<>(Arrays.asList(catWoman1, catWoman2));
+
+        cat.setCatWomenList(catWomanList);
+
         return cat;
     }
 

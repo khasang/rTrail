@@ -1,7 +1,12 @@
 package io.khasang.rtrail.config;
 
+import io.khasang.rtrail.dao.BookDao;
 import io.khasang.rtrail.dao.CatDao;
+import io.khasang.rtrail.dao.impl.AuthorDaoImpl;
+import io.khasang.rtrail.dao.impl.BookDaoImpl;
 import io.khasang.rtrail.dao.impl.CatDaoImpl;
+import io.khasang.rtrail.entity.Author;
+import io.khasang.rtrail.entity.Book;
 import io.khasang.rtrail.entity.Cat;
 import io.khasang.rtrail.model.CreateTable;
 import io.khasang.rtrail.model.Message;
@@ -62,7 +67,17 @@ public class AppConfig {
     }
 
     @Bean
-    CatDao catDao() {
+    public CatDao catDao() {
         return new CatDaoImpl(Cat.class);
+    }
+
+    @Bean
+    public BookDaoImpl bookDao() {
+        return new BookDaoImpl(Book.class);
+    }
+
+    @Bean
+    public AuthorDaoImpl authorDao() {
+        return new AuthorDaoImpl(Author.class);
     }
 }

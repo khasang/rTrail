@@ -12,5 +12,5 @@ public interface CatDao extends BasicDao<Cat>{
      * @param  name - filter
      * @return list of cats by name
      */
-    List getByName(String name);
+    List<Cat> getByName(String name);
 }
