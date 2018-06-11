@@ -75,9 +75,11 @@ public class CommentControllerIntegrationTest {
     @Test
     public void checkUpdateLocation() {
         Comment comment = createComment();
-        comment.setDescription("we hunted 123");
+
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+
+        comment.setName("we hunted 123");
 
         HttpEntity<Comment> httpEntity = new HttpEntity<>(comment, headers);
         RestTemplate template = new RestTemplate();
@@ -89,10 +91,19 @@ public class CommentControllerIntegrationTest {
                 Comment.class
         ).getBody();
 
-        assertEquals(comment.getName(), updateComment.getName());
-        assertNotNull(updateComment.getId());
+        ResponseEntity<Comment> responseEntity = template.exchange(
+                ROOT + GET_BY_ID + "/{id}",
+                HttpMethod.GET,
+                null,
+                Comment.class,
+                updateComment.getId()
+        );
 
+        assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
 
+        Comment receivedCat = responseEntity.getBody();
+        assertNotNull(receivedCat);
+        assertEquals("New Name", receivedCat.getName());
     }
 
     @Test
