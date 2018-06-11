@@ -2,8 +2,8 @@
 <html>
 <head>
     <title>Title</title>
-    <script type="text/javascript" src="/resources/js/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <script type="text/javascript">
         var service = 'http://localhost:8080/cat';
         var RestPost = function (name, description) {

@@ -1,5 +1,6 @@
 package io.khasang.rtrail.service;
 
+import io.khasang.rtrail.dto.CatDTO;
 import io.khasang.rtrail.entity.Cat;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public interface CatService {
      * @param cat = new cat
      * @return created cat
      */
-    Cat addCat(Cat cat);
+    CatDTO addCat(Cat cat);
 
     /**
      * method for getting cat
@@ -20,14 +21,14 @@ public interface CatService {
      * @param id - cat's id for getting
      * @return cat by id
      */
-    Cat getCatById(Long id);
+    CatDTO getCatById(Long id);
 
     /**
      * method for getting all cats
      *
      * @return all cats
      */
-    List<Cat> getAllCats();
+    List<CatDTO> getAllCats();
 
     /**
      * method for delete specify cat by id
@@ -35,7 +36,7 @@ public interface CatService {
      * @param id = cat's id
      * @return cat by id
      */
-    Cat deleteCat(long id);
+    CatDTO deleteCat(long id);
 
     /**
      * method for getting cats by name
@@ -43,7 +44,7 @@ public interface CatService {
      * @param name = filter
      * @return cats by name
      */
-    List<Cat> getCatByName(String name);
+    List<CatDTO> getCatByName(String name);
 
     /**
      * method for update cat
@@ -51,7 +52,7 @@ public interface CatService {
      * @param cat - updated cat
      * @return updated cat
      */
-    Cat updateCat(Cat cat);
+    CatDTO updateCat(Cat cat);
 
-    Cat patchCat(Cat cat);
+    CatDTO patchCat(Cat cat);
 }

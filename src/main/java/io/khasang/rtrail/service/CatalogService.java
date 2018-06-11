@@ -1,5 +1,8 @@
 package io.khasang.rtrail.service;
 
+import io.khasang.rtrail.dto.IblockDTO;
+import io.khasang.rtrail.dto.IblockElementDTO;
+import io.khasang.rtrail.dto.IblockSectionDTO;
 import io.khasang.rtrail.entity.catalog.Iblock;
 import io.khasang.rtrail.entity.catalog.IblockElement;
 import io.khasang.rtrail.entity.catalog.IblockSection;
@@ -39,44 +42,49 @@ public interface CatalogService {
      * @param code - iblock's code for getting
      * @return iblock by code
      */
-    Iblock getIblockByCode(String code);
+    IblockDTO getIblockByCode(String code);
 
     /**
      * method for getting iblockSection
      *
-     * @param iblock - entity's iblock for getting
-     * @param code   - iblockSection's code for getting
+     * @param iblockDTO - entity's iblock for getting
+     * @param code   - entity's code for getting
      * @return iblockSection by iblock and code
      */
-    IblockSection getIblockSectionByCode(Iblock iblock, String code);
+    IblockSectionDTO getIblockSectionByCode(IblockDTO iblockDTO, String code);
 
     /**
      * method for getting iblockElement
      *
-     * @param iblock        - entity's iblock for getting
-     * @param iblockSection - entity's iblockSection for getting
-     * @param iblockSection - iblockElement's iblockSection for getting
+     * @param iblockDTO        - entity's iblock for getting
+     * @param iblockSectionDTO - entity's iblockSection for getting
+     * @param elementCode - entity's elementCode for getting
      * @return iblockElement by iblock, iblockSection and elementCode
      */
-    IblockElement getIblockElementByCode(Iblock iblock, IblockSection iblockSection, String elementCode);
+    IblockElementDTO getIblockElementByCode(IblockDTO iblockDTO, IblockSectionDTO iblockSectionDTO, String elementCode);
 
     /**
      * method for getting breadcrumbs
      *
-     * @param iblock        - entity's iblock for getting
-     * @param iblockSection - entity's iblockSection for getting
-     * @param iblockElement - entity's iblockElement for getting
+     * @param iblockDTO        - entity's iblock for getting
+     * @param iblockSectionDTO - entity's iblockSection for getting
+     * @param iblockElementDTO - entity's iblockElement for getting
      * @return LinkedHashMap<String , String> by iblock, iblockSection, iblockElement
      */
-    Map<String, String> getBreadcrumbs(Iblock iblock, IblockSection iblockSection, IblockElement iblockElement);
+    Map<String, String> getBreadcrumbs(IblockDTO iblockDTO, IblockSectionDTO iblockSectionDTO, IblockElementDTO iblockElementDTO);
 
     /**
      * method for getting menu
      *
-     * @param iblock        - entity's iblock for getting
-     * @param iblockSection - entity's iblockSection for getting
-     * @param iblockElement - entity's iblockElement for getting
+     * @param iblockDTO        - entity's iblock for getting
+     * @param iblockSectionDTO - entity's iblockSection for getting
+     * @param iblockElementDTO - entity's iblockElement for getting
      * @return LinkedHashMap<Menu> by iblock, iblockSection, iblockElement
      */
-    List<Menu> getMenu(Iblock iblock, IblockSection iblockSection, IblockElement iblockElement);
+    List<Menu> getMenu(IblockDTO iblockDTO, IblockSectionDTO iblockSectionDTO, IblockElementDTO iblockElementDTO);
+
+    /**
+     * Fill empty catalog
+     * */
+    void fillCatalog();
 }

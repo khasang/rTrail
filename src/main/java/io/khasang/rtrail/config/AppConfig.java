@@ -1,6 +1,7 @@
 package io.khasang.rtrail.config;
 
 import io.khasang.rtrail.dao.CatDao;
+import io.khasang.rtrail.dao.EmployeeDao;
 import io.khasang.rtrail.dao.catalog.IblockDao;
 import io.khasang.rtrail.dao.catalog.IblockElementDao;
 import io.khasang.rtrail.dao.catalog.IblockSectionDao;
@@ -8,7 +9,10 @@ import io.khasang.rtrail.dao.catalog.impl.IblockDaoImpl;
 import io.khasang.rtrail.dao.catalog.impl.IblockElementDaoImpl;
 import io.khasang.rtrail.dao.catalog.impl.IblockSectionDaoImpl;
 import io.khasang.rtrail.dao.impl.CatDaoImpl;
+import io.khasang.rtrail.dao.impl.EmployeeDaoImpl;
+import io.khasang.rtrail.dto.IblockDTO;
 import io.khasang.rtrail.entity.Cat;
+import io.khasang.rtrail.entity.Employee;
 import io.khasang.rtrail.entity.catalog.Iblock;
 import io.khasang.rtrail.entity.catalog.IblockElement;
 import io.khasang.rtrail.entity.catalog.IblockSection;
@@ -73,23 +77,27 @@ public class AppConfig {
 
 
     @Bean
-    CatDao catDao() {
+    public CatDao catDao() {
         return new CatDaoImpl(Cat.class);
     }
 
     @Bean
-    IblockDao iblockDao() {
+    public IblockDao iblockDao() {
         return new IblockDaoImpl(Iblock.class);
     }
 
     @Bean
-    IblockSectionDao iblockSectionDao() {
+    public IblockSectionDao iblockSectionDao() {
         return new IblockSectionDaoImpl(IblockSection.class);
     }
 
     @Bean
-    IblockElementDao iblockElementDao() {
+    public IblockElementDao iblockElementDao() {
         return new IblockElementDaoImpl(IblockElement.class);
     }
 
+    @Bean
+    public EmployeeDao employeeDao() {
+        return new EmployeeDaoImpl(Employee.class);
+    }
 }

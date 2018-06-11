@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Страница не найдена 404</title>
-    <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 </head>
 <body>
 
