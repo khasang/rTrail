@@ -1,14 +1,11 @@
 package io.khasang.rtrail.entity;
 
-import org.hibernate.annotations.DynamicUpdate;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "books")
-@DynamicUpdate
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,7 +13,9 @@ public class Book {
     private Long id;
     @Column(name = "name")
     private String name;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @Column(name = "genre")
+    private String genre;
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "bookList")
     private List<Author> authorList = new ArrayList<>();
 
     public Long getId() {
@@ -33,6 +32,14 @@ public class Book {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public List<Author> getAuthorList() {

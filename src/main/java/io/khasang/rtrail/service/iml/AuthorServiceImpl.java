@@ -1,6 +1,7 @@
 package io.khasang.rtrail.service.iml;
 
 import io.khasang.rtrail.dao.AuthorDao;
+import io.khasang.rtrail.dto.AuthorDTO;
 import io.khasang.rtrail.entity.Author;
 import io.khasang.rtrail.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import java.util.List;
 public class AuthorServiceImpl implements AuthorService {
     @Autowired
     private AuthorDao authorDao;
+    @Autowired
+    private AuthorDTO authorDTO;
 
     @Override
     public Author addAuthor(Author author) {
@@ -19,8 +22,8 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public Author getAuthorById(long id) {
-        return authorDao.getById(id);
+    public AuthorDTO getAuthorById(long id) {
+        return authorDTO.getAuthorDTO(authorDao.getById(id));
     }
 
     @Override
@@ -29,9 +32,9 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public Author deleteAuthor(long id) {
-        Author authorForDelete = getAuthorById(id);
-        return authorDao.delete(authorForDelete);
+    public AuthorDTO deleteAuthor(long id) {
+        Author authorForDelete = authorDao.getById(id);
+        return authorDTO.getAuthorDTO(authorDao.delete(authorForDelete));
     }
 
     @Override

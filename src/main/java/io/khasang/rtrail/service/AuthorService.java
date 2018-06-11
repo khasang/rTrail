@@ -1,5 +1,6 @@
 package io.khasang.rtrail.service;
 
+import io.khasang.rtrail.dto.AuthorDTO;
 import io.khasang.rtrail.entity.Author;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public interface AuthorService {
      * @param id - author's id for getting
      * @return author by id
      */
-    Author getAuthorById(long id);
+    AuthorDTO getAuthorById(long id);
 
     /**
      * method for getting all author
@@ -34,7 +35,7 @@ public interface AuthorService {
      * @param id - author's id for deleting
      * @return deleted author
      */
-    Author deleteAuthor(long id);
+    AuthorDTO deleteAuthor(long id);
 
     /**
      * method for getting author by firs name

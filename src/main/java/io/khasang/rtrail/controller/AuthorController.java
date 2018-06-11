@@ -1,5 +1,6 @@
 package io.khasang.rtrail.controller;
 
+import io.khasang.rtrail.dto.AuthorDTO;
 import io.khasang.rtrail.entity.Author;
 import io.khasang.rtrail.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class AuthorController {
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public Author getAuthorById(@PathVariable(value = "id") String id) {
+    public AuthorDTO getAuthorById(@PathVariable(value = "id") String id) {
         return authorService.getAuthorById(Long.parseLong(id));
     }
 
@@ -34,7 +35,7 @@ public class AuthorController {
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public Author deleteAuthor(@RequestParam(value = "id") String id) {
+    public AuthorDTO deleteAuthor(@RequestParam(value = "id") String id) {
         return authorService.deleteAuthor(Long.parseLong(id));
     }
 

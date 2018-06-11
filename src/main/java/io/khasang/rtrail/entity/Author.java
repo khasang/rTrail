@@ -15,8 +15,8 @@ public class Author {
     @Column(name = "last_name")
     private String lastName;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    List<Book> bookList = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Book> bookList = new ArrayList<>();
 
     public Long getId() {
         return id;
