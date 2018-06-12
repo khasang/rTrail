@@ -6,18 +6,18 @@
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <script type="text/javascript">
         var service = 'http://localhost:8080/cat';
+
         var RestPost = function (name, description) {
             var JSONObject = {
                 'name': name,
                 'description': description
             };
-
             $.ajax({
                 type: 'POST',
                 url: service + '/add',
-                contentType: 'application/json',
                 data: JSON.stringify(JSONObject),
-                dateType: 'json',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
                 async: false,
                 success: function (result) {
                     $('#response').html(JSON.stringify(result));
@@ -30,19 +30,17 @@
 
         var RestUpdate = function (id, name, description) {
             id = parseInt(id) || 0;
-
             var JSONObject = {
                 'id': id,
                 'name': name,
                 'description': description
             };
-
             $.ajax({
                 type: 'PUT',
                 url: service + '/update',
-                contentType: 'application/json',
                 data: JSON.stringify(JSONObject),
-                dateType: 'json',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
                 async: false,
                 success: function (result) {
                     $('#response').html(JSON.stringify(result));
@@ -54,14 +52,12 @@
         };
 
         var RestGet = function (id) {
-
             id = parseInt(id) || 0;
-
             $.ajax({
                 type: 'GET',
                 url: service + /get/ + id,
-                contentType: 'application/json',
-                dateType: 'json',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
                 async: false,
                 success: function (result) {
                     $('#response').html(JSON.stringify(result));
@@ -73,14 +69,12 @@
         };
 
         var RestDelete = function (id) {
-
             id = parseInt(id) || 0;
-
             $.ajax({
                 type: 'DELETE',
                 url: service + '/delete/?id=' + id,
-                contentType: 'application/json',
-                dateType: 'json',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
                 async: false,
                 success: function (result) {
                     $('#response').html(JSON.stringify(result));
@@ -91,6 +85,20 @@
             });
         };
 
+        var RestGetAll = function () {
+            $.ajax({
+                type: 'GET',
+                url: service + '/get/all',
+                dataType: 'json',
+                async: false,
+                success: function (result) {
+                    $('#response').html(JSON.stringify(result));
+                },
+                error: function (jqXHR, testStatus, errorThrown) {
+                    $('#response').html(JSON.stringify(jqXHR));
+                }
+            });
+        };
 
     </script>
 
@@ -150,8 +158,18 @@
             </form>
         </td>
     </tr>
+    <tr>
+        <td>
+            Get all cats <code><strong>GET</strong></code>
+        </td>
+        <td>/cat/get/all</td>
+        <td>
+            <form class="form-inline">
+                <button type="button" onclick="RestGetAll()">try</button>
+            </form>
+        </td>
+    </tr>
 </table>
-
 
 <div class="panel panel-default">
     <div class="panel-heading">
