@@ -1,0 +1,6 @@
+.list-sub-group{ display:none; }
+.list-sub-group .list-group-item{ padding-left:60px; border-radius:0; }
+.list-sub-group.active{ display:block; }
+.list-sub-group .list-group-item:last-child{ margin-bottom: -1px; }
+
+.jumbotron-small-padding{ padding-top:20px; padding-bottom:20px; }
