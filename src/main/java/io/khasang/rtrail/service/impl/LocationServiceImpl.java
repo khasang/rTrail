@@ -1,6 +1,7 @@
 package io.khasang.rtrail.service.impl;
 
 import io.khasang.rtrail.dao.LocationDao;
+import io.khasang.rtrail.dto.LocationDTO;
 import io.khasang.rtrail.entity.Location;
 import io.khasang.rtrail.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,36 +14,38 @@ public class LocationServiceImpl implements LocationService {
 
     @Autowired
     private LocationDao locationDao;
+    @Autowired
+    private LocationDTO locationDTO;
 
     @Override
-    public Location addLocation(Location location) {
-        return locationDao.create(location);
+    public LocationDTO addLocation(Location location) {
+        return locationDTO.getLocationDTO(locationDao.create(location));
     }
 
     @Override
-    public Location getLocationById(long id) {
-        return locationDao.getById(id);
+    public LocationDTO getLocationById(long id) {
+        return locationDTO.getLocationDTO(locationDao.getById(id));
     }
 
     @Override
-    public List<Location> getAllLocations() {
-        return locationDao.getList();
+    public List<LocationDTO> getAllLocations() {
+        return locationDTO.getList(locationDao.getList()) ;
     }
 
     @Override
-    public List<Location> getLocationsByName(String name) {
-        return locationDao.getByName(name);
+    public List<LocationDTO> getLocationsByName(String name) {
+        return locationDTO.getList(locationDao.getByName(name));
     }
 
     @Override
-    public Location deleteLocation(long id) {
-        Location locationForDelete = getLocationById(id);
-        return locationDao.delete(locationForDelete);
+    public LocationDTO deleteLocation(long id) {
+
+        return locationDTO.getLocationDTO(locationDao.delete(locationDao.getById(id)));
     }
 
     @Override
-    public Location updateLocation(Location location) {
-        return locationDao.update(location);
+    public LocationDTO updateLocation(Location location) {
+        return locationDTO.getLocationDTO(locationDao.update(location));
     }
 }
 

@@ -1,5 +1,6 @@
 package io.khasang.rtrail.service;
 
+import io.khasang.rtrail.dto.LocationDTO;
 import io.khasang.rtrail.entity.Location;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface LocationService {
      * @param location - new location for creation
      * @return created location
      */
-    Location addLocation(Location location);
+    LocationDTO addLocation(Location location);
 
     /**
      * method for getting location
@@ -19,14 +20,14 @@ public interface LocationService {
      * @param id - location's id for getting
      * @return location by id
      */
-    Location getLocationById(long id);
+    LocationDTO getLocationById(long id);
 
     /**
      * method for getting all locations
      *
      * @return all locations
      */
-    List<Location> getAllLocations();
+    List<LocationDTO> getAllLocations();
 
     /**
      * method for getting locations by name
@@ -34,7 +35,7 @@ public interface LocationService {
      * @param name = filter
      * @return locations by name
      */
-    List<Location> getLocationsByName(String name);
+    List<LocationDTO> getLocationsByName(String name);
 
     /**
      * method for deletion location
@@ -42,7 +43,7 @@ public interface LocationService {
      * @param id - location's id for delete
      * @return deleted location
      */
-    Location deleteLocation(long id);
+    LocationDTO deleteLocation(long id);
 
     /**
      * method for update location
@@ -50,5 +51,5 @@ public interface LocationService {
      * @param location for update
      * @return updated location
      */
-    Location updateLocation(Location location);
+    LocationDTO updateLocation(Location location);
 }
