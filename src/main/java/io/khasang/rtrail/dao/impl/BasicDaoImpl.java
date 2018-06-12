@@ -1,6 +1,7 @@
 package io.khasang.rtrail.dao.impl;
 
 import io.khasang.rtrail.dao.BasicDao;
+import io.khasang.rtrail.entity.Comment;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

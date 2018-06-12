@@ -1,6 +1,6 @@
 package io.khasang.rtrail.dao;
 
-import io.khasang.rtrail.entity.Cat;
+import io.khasang.rtrail.entity.Comment;
 import org.hibernate.Session;
 
 import java.util.List;
