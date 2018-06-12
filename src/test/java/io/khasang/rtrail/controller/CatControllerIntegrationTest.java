@@ -2,13 +2,16 @@ package io.khasang.rtrail.controller;
 
 import io.khasang.rtrail.dao.CatDao;
 import io.khasang.rtrail.entity.Cat;
+import io.khasang.rtrail.entity.CatWoman;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -18,6 +21,8 @@ public class CatControllerIntegrationTest {
 
     private final static String ROOT = "http://localhost:8080/cat";
     private final static String ADD = "/add";
+    private final static String UPDATE = "/update";
+    private final static String DELETE = "/delete";
     private final static String ALL = "/all";
     private final static String GET_BY_ID = "/get";
 
@@ -48,6 +53,51 @@ public class CatControllerIntegrationTest {
 
         Cat recievedCat = responseEntity.getBody();
         assertNotNull(recievedCat);
+
+        deleteCat(cat.getId());
+
+        ResponseEntity<Cat> responseEntity2 = template.exchange(
+                ROOT + GET_BY_ID + "/{id}",
+                HttpMethod.GET,
+                null,
+                Cat.class,
+                cat.getId()
+        );
+        assertEquals("OK", responseEntity2.getStatusCode().getReasonPhrase());
+    }
+
+    @Test
+    public void checkUpdate() {
+        Cat cat = createCat();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+
+        cat.setName("New Name");
+
+        HttpEntity<Cat> httpEntity = new HttpEntity<>(cat, headers);
+        RestTemplate template = new RestTemplate();
+
+        Cat updatedCat = template.exchange(
+                ROOT + UPDATE,
+                HttpMethod.PUT,
+                httpEntity,
+                Cat.class
+        ).getBody();
+
+        ResponseEntity<Cat> responseEntity = template.exchange(
+                ROOT + GET_BY_ID + "/{id}",
+                HttpMethod.GET,
+                null,
+                Cat.class,
+                updatedCat.getId()
+        );
+
+        assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
+
+        Cat receivedCat = responseEntity.getBody();
+        assertNotNull(receivedCat);
+        assertEquals("New Name", receivedCat.getName());
     }
 
     @Test
@@ -98,6 +148,32 @@ public class CatControllerIntegrationTest {
         cat.setName(name);
         cat.setDescription("hungry");
 
+        CatWoman catWoman1 = new CatWoman();
+        CatWoman catWoman2 = new CatWoman();
+
+        catWoman1.setName("Riska");
+        catWoman2.setName("Murka");
+
+        List<CatWoman> catWomanList = new ArrayList<>();
+        catWomanList.add(catWoman1);
+        catWomanList.add(catWoman2);
+
+        cat.setCatWomanList(catWomanList);
+
         return cat;
+    }
+
+    private void deleteCat(Long id){
+        RestTemplate template = new RestTemplate();
+        ResponseEntity<Cat> responseEntity = template.exchange(
+                ROOT + DELETE + "?id={id}",
+                HttpMethod.DELETE,
+                null,
+                Cat.class,
+                id
+        );
+
+        Assert.assertNotNull(responseEntity.getBody());
+
     }
 }
