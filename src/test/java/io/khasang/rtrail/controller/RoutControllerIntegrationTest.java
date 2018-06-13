@@ -43,11 +43,11 @@ public class RoutControllerIntegrationTest {
                 Rout.class,
                 rout.getId()
         );
+
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
 
         Rout receivedRout = getRoutById(rout.getId());
         assertNull(receivedRout);
-
     }
 
     @Test
@@ -83,6 +83,7 @@ public class RoutControllerIntegrationTest {
                 new ParameterizedTypeReference<List<Rout>>() {
                 }
         );
+
         List<Rout> routList = responseEntity.getBody();
         boolean result = false;
         for (Rout routCheck : routList) {
@@ -90,6 +91,7 @@ public class RoutControllerIntegrationTest {
                 result = true;
             }
         }
+
         assertTrue(result);
     }
 
@@ -106,6 +108,7 @@ public class RoutControllerIntegrationTest {
                 },
                 rout.getName()
         );
+
         List<Rout> routList = responseEntity.getBody();
         boolean result = false;
         for (Rout routCheck : routList) {
@@ -116,6 +119,7 @@ public class RoutControllerIntegrationTest {
                 break;
             }
         }
+
         assertTrue(result);
     }
 
@@ -132,6 +136,7 @@ public class RoutControllerIntegrationTest {
                 },
                 rout.getOwner()
         );
+
         List<Rout> routList = responseEntity.getBody();
         boolean result = false;
         for (Rout routCheck : routList) {
@@ -142,6 +147,7 @@ public class RoutControllerIntegrationTest {
                 break;
             }
         }
+
         assertTrue(result);
     }
 

@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * controller for routs
- */
 @Controller
 @RequestMapping("/rout")
 public class RoutController {

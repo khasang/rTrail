@@ -1,6 +1,5 @@
 package io.khasang.rtrail.entity;
 
-
 import javax.persistence.*;
 
 @Entity
@@ -9,9 +8,7 @@ public class CheckPoint {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private Long coordX;
-
     private Long coordY;
 
     public Long getId() {
