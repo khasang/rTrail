@@ -8,9 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * concrete realize of RoutService
- */
 @Service
 public class RoutServiceImpl implements RoutService {
 
@@ -29,7 +26,7 @@ public class RoutServiceImpl implements RoutService {
         try {
             result = routDao.getById(Long.parseLong(id));
         } catch (NumberFormatException e) {
-            System.out.println("Error - id is not a number");
+            e.printStackTrace();
         }
         return result;
     }

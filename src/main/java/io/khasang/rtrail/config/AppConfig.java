@@ -73,7 +73,7 @@ public class AppConfig {
     }
 
     @Bean
-    RoutDao routDao() {
+    public RoutDao routDao() {
         return new RoutDaoImpl(Rout.class);
     }
 
