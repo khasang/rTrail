@@ -5,6 +5,9 @@ import io.khasang.rtrail.dao.LocationDao;
 import io.khasang.rtrail.dao.impl.CatDaoImpl;
 import io.khasang.rtrail.dao.impl.LocationDaoImpl;
 import io.khasang.rtrail.entity.Cat;
+import io.khasang.rtrail.dao.EmployeeDao;
+import io.khasang.rtrail.dao.impl.EmployeeDaoImpl;
+import io.khasang.rtrail.entity.Employee;
 import io.khasang.rtrail.entity.Location;
 import io.khasang.rtrail.model.CreateTable;
 import io.khasang.rtrail.model.Message;
@@ -72,5 +75,10 @@ public class AppConfig {
     @Bean
     LocationDao locationDao() {
         return new LocationDaoImpl(Location.class);
+    }
+
+    @Bean
+    EmployeeDao employeeDao() {
+        return new EmployeeDaoImpl(Employee.class);
     }
 }
