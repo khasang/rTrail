@@ -1,12 +1,13 @@
 package io.khasang.rtrail.controller;
 
+import io.khasang.rtrail.entity.Role;
 import io.khasang.rtrail.entity.User;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -35,7 +36,9 @@ public class UserControllerIntegrationTest {
 
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
         User receivedUser = responseEntity.getBody();
+        assertEquals(Collections.singleton(Role.ROLE_ADMIN), receivedUser.getRoles());
         assertNotNull(receivedUser);
+        removeUserFromDao(user);
     }
 
     @Test
@@ -55,12 +58,15 @@ public class UserControllerIntegrationTest {
         List<User> users = responseEntity.getBody();
         assertNotNull(users.get(0));
         assertNotNull(users.get(1));
+        removeUserFromDao(user1);
+        removeUserFromDao(user2);
     }
 
     @Test
     public void checkUpdateUser() {
         User user = createUser();
         user.setEmail("changedemail@test.me");
+        user.setRoles(Collections.singleton(Role.ROLE_MODERATOR));
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
@@ -74,8 +80,11 @@ public class UserControllerIntegrationTest {
                 User.class
         ).getBody();
 
+        assertEquals(user.getRoles(), updatedUser.getRoles());
         assertEquals(user.getEmail(), updatedUser.getEmail());
         assertNotNull(updatedUser.getId());
+
+        removeUserFromDao(updatedUser);
     }
 
     @Test
@@ -98,8 +107,7 @@ public class UserControllerIntegrationTest {
     private User createUser() {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
-
-        User user = prefillUser("testUserName", "password", "test@check.me");
+        User user = prefillUser("testUserName", "password", "test@check.me", Collections.singleton(Role.ROLE_ADMIN));
 
         HttpEntity<User> httpEntity = new HttpEntity<>(user, headers);
         RestTemplate template = new RestTemplate();
@@ -116,11 +124,24 @@ public class UserControllerIntegrationTest {
         return createdUser;
     }
 
-    private User prefillUser(String username, String password, String email) {
+    private User prefillUser(String username, String password, String email, Set<Role> userRole) {
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
         user.setEmail(email);
+        user.setActive(true);
+        user.setRoles(userRole);
         return user;
+    }
+
+    private void removeUserFromDao(User user){
+        RestTemplate template = new RestTemplate();
+        template.exchange(
+                ROOT + DELETE + "?id={id}",
+                HttpMethod.DELETE,
+                null,
+                User.class,
+                user.getId()
+        );
     }
 }
