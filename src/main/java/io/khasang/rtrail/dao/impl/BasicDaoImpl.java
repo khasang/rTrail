@@ -52,6 +52,7 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
 
     @Override
     public T update(T entityForUpdate) {
+        getSessionFactory().update(entityForUpdate);
         return entityForUpdate;
     }
 
