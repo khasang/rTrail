@@ -12,6 +12,7 @@ import io.khasang.rtrail.entity.Location;
 import io.khasang.rtrail.model.CreateTable;
 import io.khasang.rtrail.model.Message;
 import io.khasang.rtrail.model.impl.MessageImpl;
+import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -67,18 +68,18 @@ public class AppConfig {
         return new CreateTable(jdbcTemplate());
     }
 
-    @Bean
-    CatDao catDao() {
+    @Bean 
+    public CatDao catDao(){
         return new CatDaoImpl(Cat.class);
     }
 
     @Bean
-    LocationDao locationDao() {
+    public LocationDao locationDao() {
         return new LocationDaoImpl(Location.class);
     }
-
-    @Bean
-    EmployeeDao employeeDao() {
+   
+    @Bean  
+    public EmployeeDao employeeDao() {
         return new EmployeeDaoImpl(Employee.class);
     }
 }
