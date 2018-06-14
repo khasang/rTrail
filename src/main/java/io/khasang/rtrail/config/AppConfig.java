@@ -2,9 +2,15 @@ package io.khasang.rtrail.config;
 
 import io.khasang.rtrail.dao.CatDao;
 import io.khasang.rtrail.dao.UserDao;
+import io.khasang.rtrail.dao.EmployeeDao;
+import io.khasang.rtrail.dao.UserDao;
 import io.khasang.rtrail.dao.impl.CatDaoImpl;
 import io.khasang.rtrail.dao.impl.UserDaoImpl;
+import io.khasang.rtrail.dao.impl.EmployeeDaoImpl;
+import io.khasang.rtrail.dao.impl.UserDaoImpl;
 import io.khasang.rtrail.entity.Cat;
+import io.khasang.rtrail.entity.User;
+import io.khasang.rtrail.entity.Employee;
 import io.khasang.rtrail.entity.User;
 import io.khasang.rtrail.model.CreateTable;
 import io.khasang.rtrail.model.Message;
@@ -67,6 +73,11 @@ public class AppConfig {
     @Bean
     CatDao catDao(){
         return new CatDaoImpl(Cat.class);
+    }
+
+    @Bean
+    public EmployeeDao employeeDao() {
+        return new EmployeeDaoImpl(Employee.class);
     }
 
     @Bean
