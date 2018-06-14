@@ -1,10 +1,10 @@
 package io.khasang.rtrail.config;
 
 import io.khasang.rtrail.dao.CatDao;
-import io.khasang.rtrail.dao.EmployeeDao;
-import io.khasang.rtrail.dao.UserDao;
 import io.khasang.rtrail.dao.LocationDao;
 import io.khasang.rtrail.dao.impl.CatDaoImpl;
+import io.khasang.rtrail.dao.EmployeeDao;
+import io.khasang.rtrail.dao.UserDao;
 import io.khasang.rtrail.dao.impl.EmployeeDaoImpl;
 import io.khasang.rtrail.dao.impl.UserDaoImpl;
 import io.khasang.rtrail.dao.impl.LocationDaoImpl;
@@ -35,7 +35,7 @@ public class AppConfig {
 
     @Bean
     @Scope("prototype")
-    public Message message(){
+    public Message message() {
         return new MessageImpl("HelloWorld!");
     }
 
@@ -50,7 +50,7 @@ public class AppConfig {
     }
 
     @Bean
-    public UserDetailsService userDetailsService(){
+    public UserDetailsService userDetailsService() {
         JdbcDaoImpl jdbcDao = new JdbcDaoImpl();
         jdbcDao.setDataSource(dataSource());
         jdbcDao.setUsersByUsernameQuery(environment.getRequiredProperty("userByQuery"));
@@ -59,20 +59,20 @@ public class AppConfig {
     }
 
     @Bean
-    public JdbcTemplate jdbcTemplate(){
+    public JdbcTemplate jdbcTemplate() {
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
         jdbcTemplate.setDataSource(dataSource());
         return jdbcTemplate;
     }
 
     @Bean
-    public CreateTable createTable(){
+    public CreateTable createTable() {
         return new CreateTable(jdbcTemplate());
     }
 
     @Bean
-    CatDao catDao(){
-        return new CatDaoImpl(Cat.class);
+    public CatDao catDao(){
+       return new CatDaoImpl(Cat.class);
     }
 
     @Bean
@@ -88,10 +88,5 @@ public class AppConfig {
     @Bean
     LocationDao locationDao() {
         return new LocationDaoImpl(Location.class);
-    }
-
-    @Bean
-    EmployeeDao employeeDao() {
-        return new EmployeeDaoImpl(Employee.class);
     }
 }
