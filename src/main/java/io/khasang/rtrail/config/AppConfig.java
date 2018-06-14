@@ -7,8 +7,7 @@ import io.khasang.rtrail.dao.impl.CatDaoImpl;
 import io.khasang.rtrail.dao.impl.EmployeeDaoImpl;
 import io.khasang.rtrail.dao.impl.UserDaoImpl;
 import io.khasang.rtrail.entity.Cat;
-import io.khasang.rtrail.entity.Employee;
-import io.khasang.rtrail.entity.User;
+import io.khasang.rtrail.entity.Location;
 import io.khasang.rtrail.model.CreateTable;
 import io.khasang.rtrail.model.Message;
 import io.khasang.rtrail.model.impl.MessageImpl;
@@ -68,11 +67,13 @@ public class AppConfig {
     }
 
     @Bean
-    public CatDao catDao(){
+    CatDao catDao() {
         return new CatDaoImpl(Cat.class);
     }
 
     @Bean
+    public LocationDao locationDao() {
+        return new LocationDaoImpl(Location.class);
     public EmployeeDao employeeDao() {
         return new EmployeeDaoImpl(Employee.class);
     }
