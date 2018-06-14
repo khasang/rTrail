@@ -1,4 +1,6 @@
 package io.khasang.rtrail.dao;
 
-public class EmployeeDao {
+import io.khasang.rtrail.entity.Employee;
+
+public interface EmployeeDao extends BasicDao<Employee> {
 }
