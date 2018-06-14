@@ -6,9 +6,13 @@ import io.khasang.rtrail.dao.impl.CatDaoImpl;
 import io.khasang.rtrail.dao.impl.CommentDaoImpl;
 import io.khasang.rtrail.entity.Cat;
 import io.khasang.rtrail.entity.Comment;
+import io.khasang.rtrail.dao.EmployeeDao;
+import io.khasang.rtrail.dao.impl.EmployeeDaoImpl;
+import io.khasang.rtrail.entity.Employee;
 import io.khasang.rtrail.model.CreateTable;
 import io.khasang.rtrail.model.Message;
 import io.khasang.rtrail.model.impl.MessageImpl;
+import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -65,12 +69,17 @@ public class AppConfig {
     }
 
     @Bean
-    CatDao catDao() {
+    public CatDao catDao(){
         return new CatDaoImpl(Cat.class);
     }
 
     @Bean
-    CommentDao commentDao() {
+    public CommentDao commentDao() {
         return new CommentDaoImpl(Comment.class);
+    }
+    
+  @Bean
+    public EmployeeDao employeeDao() {
+        return new EmployeeDaoImpl(Employee.class);
     }
 }
