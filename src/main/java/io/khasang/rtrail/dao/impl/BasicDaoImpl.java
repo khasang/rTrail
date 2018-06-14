@@ -1,7 +1,6 @@
 package io.khasang.rtrail.dao.impl;
 
 import io.khasang.rtrail.dao.BasicDao;
-import io.khasang.rtrail.entity.Comment;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +52,7 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
 
     @Override
     public T update(T entityForUpdate) {
+        getSessionFactory().update(entityForUpdate);
         return entityForUpdate;
     }
 
