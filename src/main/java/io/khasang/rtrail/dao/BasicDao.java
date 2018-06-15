@@ -48,5 +48,4 @@ public interface BasicDao<T> {
      * @return updated entityForUpdate
      */
     T update(T entityForUpdate);
-
 }
