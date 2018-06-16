@@ -1,17 +1,16 @@
 package io.khasang.rtrail.service;
 
 
+import io.khasang.rtrail.dto.UserDTO;
 import io.khasang.rtrail.entity.User;
-
 import java.util.List;
 
 /**
  * interface for CRUD methods
  *
  * @author Ilya Bogachev
- * @since 06.08.2018
+ * @since 16.08.2018
  */
-
 public interface UserService {
 
     /**
@@ -20,7 +19,7 @@ public interface UserService {
      * @param user - new user for creation
      * @return created user
      */
-    User addUser(User user);
+    UserDTO addUser(User user);
 
     /**
      * method for update user
@@ -28,7 +27,7 @@ public interface UserService {
      * @param user for update
      * @return updated user
      */
-    User updateUser(User user);
+    UserDTO updateUser(User user);
 
     /**
      * method for getting user
@@ -36,7 +35,7 @@ public interface UserService {
      * @param id - user's id for getting
      * @return user by id
      */
-    User getUserById(long id);
+    UserDTO getUserById(long id);
 
     /**
      * method for getting a list of users with the given name
@@ -45,7 +44,7 @@ public interface UserService {
      * @return list of users
      */
 
-    List<User> getUserByName(String username);
+    List<UserDTO> getUserByName(String username);
 
     /**
      * method for remove user
@@ -53,12 +52,12 @@ public interface UserService {
      * @param id - user's id
      * @return removed user
      */
-    User deleteUser(long id);
+    UserDTO deleteUser(long id);
 
     /**
      * method for getting all users
      *
      * @return a list of users
      */
-    List<User> getAllUsers();
+    List<UserDTO> getAllUsers();
 }
