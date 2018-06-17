@@ -36,17 +36,21 @@ public class EmployeeDTO {
 
     public EmployeeDTO getEmployeeDTO(Employee employee) {
 
-        EmployeeDTO employeeDTO = new EmployeeDTO();
-        employeeDTO.setId(employee.getId());
-        employeeDTO.setName(employee.getName());
-        employeeDTO.setState(employee.getState());
+        if (employee != null) {
+            EmployeeDTO employeeDTO = new EmployeeDTO();
+            employeeDTO.setId(employee.getId());
+            employeeDTO.setName(employee.getName());
+            employeeDTO.setState(employee.getState());
 
-        List<CarDTO> carDTOList = new ArrayList<>();
-        getCarDTOListFromCar(employee, carDTOList);
+            List<CarDTO> carDTOList = new ArrayList<>();
+            getCarDTOListFromCar(employee, carDTOList);
 
-        employeeDTO.setCarDTOList(carDTOList);
+            employeeDTO.setCarDTOList(carDTOList);
 
-        return employeeDTO;
+            return employeeDTO;
+        }
+
+        throw new IllegalArgumentException("Argument employee is: null");
     }
 
     private void getCarDTOListFromCar(Employee employee, List<CarDTO> carDTOList) {

@@ -15,30 +15,30 @@ public class CatDTO {
 
     public CatDTO getCatDTO(Cat cat) {
 
-        if (cat == null) {
-            return null;
+        if (cat != null) {
+            CatDTO catDTO = new CatDTO();
+            catDTO.setId(cat.getId());
+            catDTO.setName(cat.getName());
+            catDTO.setDescription(cat.getDescription());
+
+            return catDTO;
         }
 
-        CatDTO catDTO = new CatDTO();
-        catDTO.setId(cat.getId());
-        catDTO.setName(cat.getName());
-        catDTO.setDescription(cat.getDescription());
-
-        return catDTO;
+        throw new IllegalArgumentException("Argument cat is: null");
     }
 
     public Cat getCat(CatDTO catDTO) {
 
-        if (catDTO == null) {
-            return null;
+        if (catDTO != null) {
+            Cat cat = new Cat();
+            cat.setId(catDTO.getId());
+            cat.setName(catDTO.getName());
+            cat.setDescription(catDTO.getDescription());
+
+            return cat;
         }
 
-        Cat cat = new Cat();
-        cat.setId(catDTO.getId());
-        cat.setName(catDTO.getName());
-        cat.setDescription(catDTO.getDescription());
-
-        return cat;
+        throw new IllegalArgumentException("Argument catDTO is: null");
     }
 
     public List<CatDTO> getList(List<Cat> catList) {

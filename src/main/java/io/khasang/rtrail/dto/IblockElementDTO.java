@@ -17,36 +17,36 @@ public class IblockElementDTO {
 
     public IblockElementDTO getIblockElementDTO(IblockElement iblockElement) {
 
-        if (iblockElement == null) {
-            return null;
+        if (iblockElement != null) {
+            IblockElementDTO iblockElementDTO = new IblockElementDTO();
+            iblockElementDTO.setId(iblockElement.getId());
+            iblockElementDTO.setName(iblockElement.getName());
+            iblockElementDTO.setCode(iblockElement.getCode());
+            iblockElementDTO.setDescription(iblockElement.getDescription());
+            iblockElementDTO.setIblock(iblockElement.getIblock());
+            iblockElementDTO.setIblock_section(iblockElement.getIblock_section());
+
+            return iblockElementDTO;
         }
 
-        IblockElementDTO iblockElementDTO = new IblockElementDTO();
-        iblockElementDTO.setId(iblockElement.getId());
-        iblockElementDTO.setName(iblockElement.getName());
-        iblockElementDTO.setCode(iblockElement.getCode());
-        iblockElementDTO.setDescription(iblockElement.getDescription());
-        iblockElementDTO.setIblock(iblockElement.getIblock());
-        iblockElementDTO.setIblock_section(iblockElement.getIblock_section());
-
-        return iblockElementDTO;
+        throw new IllegalArgumentException("Argument iblockElement is: null");
     }
 
     public IblockElement getIblockElement(IblockElementDTO iblockElementDTO) {
 
-        if (iblockElementDTO == null) {
-            return null;
+        if (iblockElementDTO != null) {
+            IblockElement iblockElement = new IblockElement();
+            iblockElement.setId(iblockElementDTO.getId());
+            iblockElement.setName(iblockElementDTO.getName());
+            iblockElement.setCode(iblockElementDTO.getCode());
+            iblockElement.setDescription(iblockElementDTO.getDescription());
+            iblockElement.setIblock(iblockElementDTO.getIblock());
+            iblockElement.setIblock_section(iblockElementDTO.getIblock_section());
+
+            return iblockElement;
         }
 
-        IblockElement iblockElement = new IblockElement();
-        iblockElement.setId(iblockElementDTO.getId());
-        iblockElement.setName(iblockElementDTO.getName());
-        iblockElement.setCode(iblockElementDTO.getCode());
-        iblockElement.setDescription(iblockElementDTO.getDescription());
-        iblockElement.setIblock(iblockElementDTO.getIblock());
-        iblockElement.setIblock_section(iblockElementDTO.getIblock_section());
-
-        return iblockElement;
+        throw new IllegalArgumentException("Argument iblockElementDTO is: null");
     }
 
     public Long getId() {

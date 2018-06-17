@@ -2,6 +2,7 @@ package io.khasang.rtrail.controller;
 
 import io.khasang.rtrail.model.CreateTable;
 import io.khasang.rtrail.model.Message;
+import io.khasang.rtrail.util.CheckText;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -9,6 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.NoHandlerFoundException;
+
+import javax.xml.ws.Service;
+import java.net.MalformedURLException;
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @ControllerAdvice
@@ -20,6 +26,9 @@ public class AppController {
 
     @Autowired
     private CreateTable createTable;
+
+    @Autowired
+    private CheckText checkText;
 
     @RequestMapping("/")
     public String getHelloPage() {
@@ -45,6 +54,19 @@ public class AppController {
         return "password";
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/text/{text}", method = RequestMethod.GET)
+    public String checkText(@PathVariable("text") String text) throws MalformedURLException {
+        return checkText.checkWord(text);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/texts/{texts}", method = RequestMethod.GET)
+    public String checkTexts(@PathVariable("texts") String texts) throws MalformedURLException {
+        // ex: http://localhost:8080/texts/caats doogs
+        return checkText.checkWords(Arrays.asList(texts.split(" ")));
+    }
+
     @ExceptionHandler(NoHandlerFoundException.class)
     public String handle(Exception ex) {
 //        return "redirect:/404";
@@ -55,7 +77,4 @@ public class AppController {
     public String NotFoudPage() {
         return "404";
     }
-
 }
-
-

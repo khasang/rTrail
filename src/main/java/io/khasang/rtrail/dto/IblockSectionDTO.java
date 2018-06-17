@@ -15,34 +15,34 @@ public class IblockSectionDTO {
 
     public IblockSectionDTO getIblockSectionDTO(IblockSection iblockSection) {
 
-        if (iblockSection == null) {
-            return null;
+        if (iblockSection != null) {
+            IblockSectionDTO iblockSectionDTO = new IblockSectionDTO();
+            iblockSectionDTO.setId(iblockSection.getId());
+            iblockSectionDTO.setName(iblockSection.getName());
+            iblockSectionDTO.setCode(iblockSection.getCode());
+            iblockSectionDTO.setDescription(iblockSection.getDescription());
+            iblockSectionDTO.setIblock(iblockSection.getIblock());
+
+            return iblockSectionDTO;
         }
 
-        IblockSectionDTO iblockSectionDTO = new IblockSectionDTO();
-        iblockSectionDTO.setId(iblockSection.getId());
-        iblockSectionDTO.setName(iblockSection.getName());
-        iblockSectionDTO.setCode(iblockSection.getCode());
-        iblockSectionDTO.setDescription(iblockSection.getDescription());
-        iblockSectionDTO.setIblock(iblockSection.getIblock());
-
-        return iblockSectionDTO;
+        throw new IllegalArgumentException("Argument iblockSection is: null");
     }
 
     public IblockSection getIblockSection(IblockSectionDTO iblockSectionDTO) {
 
-        if (iblockSectionDTO == null) {
-            return null;
+        if (iblockSectionDTO != null) {
+            IblockSection iblockSection = new IblockSection();
+            iblockSection.setId(iblockSectionDTO.getId());
+            iblockSection.setName(iblockSectionDTO.getName());
+            iblockSection.setCode(iblockSectionDTO.getCode());
+            iblockSection.setDescription(iblockSectionDTO.getDescription());
+            iblockSection.setIblock(iblockSectionDTO.getIblock());
+
+            return iblockSection;
         }
 
-        IblockSection iblockSection = new IblockSection();
-        iblockSection.setId(iblockSectionDTO.getId());
-        iblockSection.setName(iblockSectionDTO.getName());
-        iblockSection.setCode(iblockSectionDTO.getCode());
-        iblockSection.setDescription(iblockSectionDTO.getDescription());
-        iblockSection.setIblock(iblockSectionDTO.getIblock());
-
-        return iblockSection;
+        throw new IllegalArgumentException("Argument iblockSectionDTO is: null");
     }
 
     public Long getId() {

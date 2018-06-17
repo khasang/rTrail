@@ -13,32 +13,32 @@ public class IblockDTO {
 
     public IblockDTO getIblockDTO(Iblock iblock) {
 
-        if (iblock == null) {
-            return null;
+        if (iblock != null) {
+            IblockDTO iblockDTO = new IblockDTO();
+            iblockDTO.setId(iblock.getId());
+            iblockDTO.setName(iblock.getName());
+            iblockDTO.setCode(iblock.getCode());
+            iblockDTO.setDescription(iblock.getDescription());
+
+            return iblockDTO;
         }
 
-        IblockDTO iblockDTO = new IblockDTO();
-        iblockDTO.setId(iblock.getId());
-        iblockDTO.setName(iblock.getName());
-        iblockDTO.setCode(iblock.getCode());
-        iblockDTO.setDescription(iblock.getDescription());
-
-        return iblockDTO;
+        throw new IllegalArgumentException("Argument iblock is: null");
     }
 
     public Iblock getIblock(IblockDTO iblockDTO) {
 
-        if (iblockDTO == null) {
-            return null;
+        if (iblockDTO != null) {
+            Iblock iblock = new Iblock();
+            iblock.setId(iblockDTO.getId());
+            iblock.setName(iblockDTO.getName());
+            iblock.setCode(iblockDTO.getCode());
+            iblock.setDescription(iblockDTO.getDescription());
+
+            return iblock;
         }
 
-        Iblock iblock = new Iblock();
-        iblock.setId(iblockDTO.getId());
-        iblock.setName(iblockDTO.getName());
-        iblock.setCode(iblockDTO.getCode());
-        iblock.setDescription(iblockDTO.getDescription());
-
-        return iblock;
+        throw new IllegalArgumentException("Argument iblockDTO is: null");
     }
 
     public long getId() {

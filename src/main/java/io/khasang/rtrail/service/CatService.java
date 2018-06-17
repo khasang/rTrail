@@ -36,7 +36,7 @@ public interface CatService {
      * @param id = cat's id
      * @return cat by id
      */
-    CatDTO deleteCat(long id);
+    CatDTO deleteCat(Long id);
 
     /**
      * method for getting cats by name

@@ -34,7 +34,7 @@ public class CatServiceImpl implements CatService {
     }
 
     @Override
-    public CatDTO deleteCat(long id) {
+    public CatDTO deleteCat(Long id) {
         return catDTO.getCatDTO(catDao.delete(catDao.getById(id)));
     }
 

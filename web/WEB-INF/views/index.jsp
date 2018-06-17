@@ -89,6 +89,7 @@
             $.ajax({
                 type: 'GET',
                 url: service + '/get/all',
+                contentType: "application/json; charset=utf-8",
                 dataType: 'json',
                 async: false,
                 success: function (result) {
