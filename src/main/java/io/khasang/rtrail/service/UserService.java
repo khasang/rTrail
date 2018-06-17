@@ -9,7 +9,7 @@ import java.util.List;
  * interface for CRUD methods
  *
  * @author Ilya Bogachev
- * @since 16.08.2018
+ * @since 17.06.2018
  */
 public interface UserService {
 

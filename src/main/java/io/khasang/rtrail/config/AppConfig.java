@@ -8,7 +8,6 @@ import io.khasang.rtrail.dao.impl.CatDaoImpl;
 import io.khasang.rtrail.dao.impl.RoutDaoImpl;
 import io.khasang.rtrail.dao.impl.EmployeeDaoImpl;
 import io.khasang.rtrail.dao.impl.UserDaoImpl;
-import io.khasang.rtrail.dto.UserDTO;
 import io.khasang.rtrail.entity.Cat;
 import io.khasang.rtrail.entity.Rout;
 import io.khasang.rtrail.entity.Employee;
@@ -89,10 +88,5 @@ public class AppConfig {
     @Bean
     UserDao userDao(){
         return new UserDaoImpl(User.class);
-    }
-
-    @Bean
-    UserDTO userDTO(){
-        return new UserDTO();
     }
 }

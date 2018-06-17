@@ -2,6 +2,8 @@ package io.khasang.rtrail.dto;
 
 import io.khasang.rtrail.entity.Role;
 import io.khasang.rtrail.entity.User;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +12,9 @@ import java.util.List;
  * connect View and Service
  *
  * @author Ilya Bogachev
- * @since 15.06.2018
+ * @since 17.06.2018
  */
+@Component
 public class UserDTO {
     private Long id;
     private String username;
