@@ -1,11 +1,7 @@
 package io.khasang.rtrail.dao.impl;
 
-
 import io.khasang.rtrail.dao.LocationDao;
-
 import io.khasang.rtrail.entity.Location;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.List;
 
 public class LocationDaoImpl extends BasicDaoImpl<Location> implements LocationDao {
