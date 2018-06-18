@@ -7,9 +7,7 @@ import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
-
 import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -20,16 +18,6 @@ public class CommentControllerIntegrationTest {
     private final static String GET_BY_ID = "/get";
     private final static String UPDATE = "/update";
     private final static String DELETE = "/delete";
-
-    @Before
-    public void init() {
-
-    }
-
-    @After
-    public void cleanUp() {
-
-    }
 
     @Test
     public void checkAddCommentAndGet() {
@@ -52,7 +40,6 @@ public class CommentControllerIntegrationTest {
 
     @Test
     public void checkAllComments() {
-        // clean
         createComment();
         createComment();
 
@@ -69,7 +56,6 @@ public class CommentControllerIntegrationTest {
         assertNotNull(comments.get(0));
         assertNotNull(comments.get(1));
 
-        // clean
     }
 
     @Test
@@ -148,7 +134,6 @@ public class CommentControllerIntegrationTest {
         Comment comment = new Comment();
         comment.setName(name);
         comment.setDescription("bear hunt ");
-
         return comment;
     }
 }

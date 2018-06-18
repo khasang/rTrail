@@ -1,7 +1,6 @@
 package io.khasang.rtrail.service;
 
 import io.khasang.rtrail.entity.Comment;
-
 import java.util.List;
 
 public interface CommentService {
