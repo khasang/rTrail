@@ -1,8 +1,8 @@
 package io.khasang.rtrail.entity;
 
-
-
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Entity Users to reflect user's fields:
@@ -27,6 +27,9 @@ public class User {
 
     public User() {
     }
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "userList")
+    private List<Role> roleList = new ArrayList<>();
 
     public String getEmail() {
         return email;
@@ -60,4 +63,11 @@ public class User {
         this.password = password;
     }
 
+    public List<Role> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<Role> roleList) {
+        this.roleList = roleList;
+    }
 }
