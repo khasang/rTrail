@@ -21,16 +21,6 @@ public class LocationControllerIntegrationTest {
     private final static String ALL = "/all";
     private final static String GET_BY_ID = "/get";
 
-    @Before
-    public void init() {
-
-    }
-
-    @After
-    public void cleanUp() {
-
-    }
-
     @Test
     public void checkAddLocationAndGet() {
         Location location = createLocation();
@@ -52,7 +42,6 @@ public class LocationControllerIntegrationTest {
 
     @Test
     public void checkAllLocations() {
-        // clean
         createLocation();
         createLocation();
 
@@ -68,8 +57,6 @@ public class LocationControllerIntegrationTest {
         List<Location> locations = responseEntity.getBody();
         assertNotNull(locations.get(0));
         assertNotNull(locations.get(1));
-
-        // clean
     }
 
     @Test
@@ -137,8 +124,6 @@ public class LocationControllerIntegrationTest {
         location.setEvent("hunting");
         location.setDetailed_description("we hunted a bear");
         location.setShort_description("we hunted");
-
         return location;
     }
-
 }
