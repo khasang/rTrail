@@ -2,8 +2,6 @@ package io.khasang.rtrail.controller;
 
 import io.khasang.rtrail.dto.CommentDTO;
 import io.khasang.rtrail.entity.Comment;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -21,16 +19,6 @@ public class CommentControllerIntegrationTest {
     private final static String GET_BY_ID = "/get";
     private final static String UPDATE = "/update";
     private final static String DELETE = "/delete";
-
-    @Before
-    public void init() {
-
-    }
-
-    @After
-    public void cleanUp() {
-
-    }
 
     @Test
     public void checkAddCommentAndGet() {
@@ -53,7 +41,6 @@ public class CommentControllerIntegrationTest {
 
     @Test
     public void checkAllComments() {
-        // clean
         createComment();
         createComment();
 
@@ -69,8 +56,6 @@ public class CommentControllerIntegrationTest {
         List<Comment> comments = responseEntity.getBody();
         assertNotNull(comments.get(0));
         assertNotNull(comments.get(1));
-
-        // clean
     }
 
     @Test

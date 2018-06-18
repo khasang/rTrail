@@ -11,11 +11,12 @@ import java.util.List;
 
 @Service
 public class CommentServiceImpl implements CommentService {
+
     @Autowired
     private CommentDao commentDao;
+
     @Autowired
     private CommentDTO commentDTO;
-
 
     @Override
     public CommentDTO addComment(Comment comment) {

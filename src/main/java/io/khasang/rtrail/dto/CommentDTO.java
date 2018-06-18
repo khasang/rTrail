@@ -2,7 +2,6 @@ package io.khasang.rtrail.dto;
 
 import io.khasang.rtrail.entity.Comment;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,17 +28,15 @@ public class CommentDTO {
         comment.setId(commentDTO.getId());
         comment.setName(commentDTO.getName());
         comment.setDescription(commentDTO.getDescription());
-
         return comment;
     }
 
     public List<CommentDTO> getList(List<Comment> commentList) {
-        List<CommentDTO> catDTOList = new ArrayList<>();
+        List<CommentDTO> commentDTOList = new ArrayList<>();
         for (Comment comment : commentList) {
-            catDTOList.add(getCommentDTO(comment));
+            commentDTOList.add(getCommentDTO(comment));
         }
-
-        return catDTOList;
+        return commentDTOList;
     }
     public Long getId() {
         return id;
