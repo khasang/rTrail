@@ -1,7 +1,6 @@
 package io.khasang.rtrail.dao;
 
 import io.khasang.rtrail.entity.Location;
-
 import java.util.List;
 
 public interface LocationDao extends BasicDao<Location> {

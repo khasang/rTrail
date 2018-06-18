@@ -2,15 +2,11 @@ package io.khasang.rtrail.controller;
 
 import io.khasang.rtrail.dto.LocationDTO;
 import io.khasang.rtrail.entity.Location;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
-
 import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -21,16 +17,6 @@ public class LocationControllerIntegrationTest {
     private final static String DELETE = "/delete";
     private final static String ALL = "/all";
     private final static String GET_BY_ID = "/get";
-
-    @Before
-    public void init() {
-
-    }
-
-    @After
-    public void cleanUp() {
-
-    }
 
     @Test
     public void checkAddLocationAndGet() {
@@ -53,7 +39,6 @@ public class LocationControllerIntegrationTest {
 
     @Test
     public void checkAllLocations() {
-        // clean
         createLocation();
         createLocation();
 
@@ -70,7 +55,6 @@ public class LocationControllerIntegrationTest {
         assertNotNull(locations.get(0));
         assertNotNull(locations.get(1));
 
-        // clean
     }
 
     @Test

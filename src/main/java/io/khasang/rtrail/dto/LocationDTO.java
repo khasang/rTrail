@@ -2,7 +2,6 @@ package io.khasang.rtrail.dto;
 
 import io.khasang.rtrail.entity.Location;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +31,6 @@ public class LocationDTO {
         location.setName(locationDTO.getName());
         location.setDetailed_description(locationDTO.getDetailed_description());
         location.setShort_description(locationDTO.getShort_description());
-
         return location;
     }
 
@@ -41,9 +39,9 @@ public class LocationDTO {
         for (Location location : locationList) {
             locationDTOList.add(getLocationDTO(location));
         }
-
         return locationDTOList;
     }
+
     public Long getId() {
         return id;
     }

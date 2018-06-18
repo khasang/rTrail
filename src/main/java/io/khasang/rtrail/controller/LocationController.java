@@ -12,6 +12,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/location")
 public class LocationController {
+
     @Autowired
     private LocationService locationService;
 
