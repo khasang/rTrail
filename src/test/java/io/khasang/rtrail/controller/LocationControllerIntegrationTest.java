@@ -1,8 +1,6 @@
 package io.khasang.rtrail.controller;
 
 import io.khasang.rtrail.entity.Location;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
