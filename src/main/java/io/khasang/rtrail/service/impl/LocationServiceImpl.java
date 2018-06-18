@@ -14,6 +14,7 @@ public class LocationServiceImpl implements LocationService {
 
     @Autowired
     private LocationDao locationDao;
+
     @Autowired
     private LocationDTO locationDTO;
 

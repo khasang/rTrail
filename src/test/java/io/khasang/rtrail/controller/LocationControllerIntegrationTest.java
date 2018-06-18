@@ -125,7 +125,6 @@ public class LocationControllerIntegrationTest {
         location.setEvent("hunting");
         location.setDetailed_description("we hunted a bear");
         location.setShort_description("we hunted");
-
         return location;
     }
 
