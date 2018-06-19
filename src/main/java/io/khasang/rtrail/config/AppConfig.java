@@ -1,17 +1,22 @@
 package io.khasang.rtrail.config;
 
 import io.khasang.rtrail.dao.CatDao;
+import io.khasang.rtrail.dao.RoutDao;
 import io.khasang.rtrail.dao.EmployeeDao;
 import io.khasang.rtrail.dao.MessageDao;
+import io.khasang.rtrail.dao.UserDao;
 import io.khasang.rtrail.dao.impl.CatDaoImpl;
+import io.khasang.rtrail.dao.impl.RoutDaoImpl;
 import io.khasang.rtrail.dao.impl.EmployeeDaoImpl;
 import io.khasang.rtrail.dao.impl.MessageDaoImpl;
+import io.khasang.rtrail.dao.impl.UserDaoImpl;
 import io.khasang.rtrail.entity.Cat;
+import io.khasang.rtrail.entity.Rout;
 import io.khasang.rtrail.entity.Employee;
+import io.khasang.rtrail.entity.User;
 import io.khasang.rtrail.model.CreateTable;
 import io.khasang.rtrail.model.Message;
 import io.khasang.rtrail.model.impl.MessageImpl;
-import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -68,8 +73,13 @@ public class AppConfig {
     }
 
     @Bean
-    public CatDao catDao(){
+    CatDao catDao(){
         return new CatDaoImpl(Cat.class);
+    }
+
+    @Bean
+    public RoutDao routDao() {
+        return new RoutDaoImpl(Rout.class);
     }
 
     @Bean
@@ -80,5 +90,8 @@ public class AppConfig {
     @Bean
     public MessageDao messageDao() {
         return new MessageDaoImpl(io.khasang.rtrail.entity.Message.class);
+
+    UserDao userDao(){
+        return new UserDaoImpl(User.class);
     }
 }
