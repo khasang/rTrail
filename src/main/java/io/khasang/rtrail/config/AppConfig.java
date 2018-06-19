@@ -3,10 +3,12 @@ package io.khasang.rtrail.config;
 import io.khasang.rtrail.dao.CatDao;
 import io.khasang.rtrail.dao.RoutDao;
 import io.khasang.rtrail.dao.EmployeeDao;
+import io.khasang.rtrail.dao.MessageDao;
 import io.khasang.rtrail.dao.UserDao;
 import io.khasang.rtrail.dao.impl.CatDaoImpl;
 import io.khasang.rtrail.dao.impl.RoutDaoImpl;
 import io.khasang.rtrail.dao.impl.EmployeeDaoImpl;
+import io.khasang.rtrail.dao.impl.MessageDaoImpl;
 import io.khasang.rtrail.dao.impl.UserDaoImpl;
 import io.khasang.rtrail.entity.Cat;
 import io.khasang.rtrail.entity.Rout;
@@ -86,6 +88,9 @@ public class AppConfig {
     }
 
     @Bean
+    public MessageDao messageDao() {
+        return new MessageDaoImpl(io.khasang.rtrail.entity.Message.class);
+
     UserDao userDao(){
         return new UserDaoImpl(User.class);
     }
