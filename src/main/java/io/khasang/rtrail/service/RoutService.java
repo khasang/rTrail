@@ -1,5 +1,6 @@
 package io.khasang.rtrail.service;
 
+import io.khasang.rtrail.dto.RoutDTO;
 import io.khasang.rtrail.entity.Rout;
 
 import java.util.List;
@@ -12,10 +13,10 @@ public interface RoutService {
     /**
      * method for adding rout
      *
-     * @param rout - rout to add
+     * @param routDTO - rout to add
      * @return added rout
      */
-    Rout addRout(Rout rout);
+    RoutDTO addRout(RoutDTO routDTO);
 
     /**
      * method for getting rout by id
@@ -23,7 +24,7 @@ public interface RoutService {
      * @param id - rout id
      * @return required rout
      */
-    Rout getRoutById(String id);
+    RoutDTO getRoutDTOById(String id);
 
     /**
      * method for deleting rout
@@ -31,22 +32,22 @@ public interface RoutService {
      * @param id - rout id for delete
      * @return deleted rout
      */
-    Rout deleteRout(String id);
+    RoutDTO deleteRout(String id);
 
     /**
      * method for updating rout
      *
-     * @param rout - rout to update
+     * @param routDTO - rout to update
      * @return updated rout
      */
-    Rout updateRout(Rout rout);
+    RoutDTO updateRout(RoutDTO routDTO);
 
     /**
      * method for getting all routs
      *
      * @return all routs
      */
-    List<Rout> getAllRouts();
+    List<RoutDTO> getAllRouts();
 
     /**
      * method finds rout by name
@@ -54,7 +55,7 @@ public interface RoutService {
      * @param name - rout's name to find
      * @return list of routs with same name.
      */
-    List<Rout> getRoutByName(String name);
+    List<RoutDTO> getRoutByName(String name);
 
     /**
      * method finds all rout by owner
@@ -62,5 +63,5 @@ public interface RoutService {
      * @param owner - rout owner
      * @return list of routs
      */
-    List<Rout> getAllOwnerRout(String owner);
+    List<RoutDTO> getAllOwnerRout(String owner);
 }

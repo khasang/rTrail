@@ -5,6 +5,7 @@ import io.khasang.rtrail.entity.Rout;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -173,18 +174,24 @@ public class RoutControllerIntegrationTest {
     }
 
     private Rout getRoutById(long id) {
-        RestTemplate template = new RestTemplate();
-        ResponseEntity<Rout> responseEntity = template.exchange(
-                ROOT + GET + "/{id}",
-                HttpMethod.GET,
-                null,
-                Rout.class,
-                id
-        );
+        Rout result = null;
+        try {
+            RestTemplate template = new RestTemplate();
+            ResponseEntity<Rout> responseEntity = template.exchange(
+                    ROOT + GET + "/{id}",
+                    HttpMethod.GET,
+                    null,
+                    Rout.class,
+                    id
+            );
 
-        assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
+            assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
+            result = responseEntity.getBody();
+        } catch (HttpServerErrorException e) {
+            e.printStackTrace();
+        }
 
-        return responseEntity.getBody();
+        return result;
     }
 
     private Rout preFillRout(String name, String owner) {
