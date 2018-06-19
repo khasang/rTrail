@@ -73,7 +73,7 @@ public class AppConfig {
     }
 
     @Bean
-    CatDao catDao(){
+    public CatDao catDao(){
         return new CatDaoImpl(Cat.class);
     }
 
@@ -90,8 +90,10 @@ public class AppConfig {
     @Bean
     public MessageDao messageDao() {
         return new MessageDaoImpl(io.khasang.rtrail.entity.Message.class);
+    }
 
-    UserDao userDao(){
+    @Bean
+    public UserDao userDao(){
         return new UserDaoImpl(User.class);
     }
 }
