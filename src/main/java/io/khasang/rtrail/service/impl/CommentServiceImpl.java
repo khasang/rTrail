@@ -6,7 +6,6 @@ import io.khasang.rtrail.entity.Comment;
 import io.khasang.rtrail.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

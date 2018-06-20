@@ -2,7 +2,6 @@ package io.khasang.rtrail.dao;
 
 
 import io.khasang.rtrail.entity.Comment;
-
 import java.util.List;
 
 public interface CommentDao extends BasicDao<Comment> {

@@ -6,9 +6,7 @@ import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
-
 import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -56,6 +54,7 @@ public class CommentControllerIntegrationTest {
         List<Comment> comments = responseEntity.getBody();
         assertNotNull(comments.get(0));
         assertNotNull(comments.get(1));
+
     }
 
     @Test
@@ -134,7 +133,6 @@ public class CommentControllerIntegrationTest {
         Comment comment = new Comment();
         comment.setName(name);
         comment.setDescription("bear hunt ");
-
         return comment;
     }
 }
