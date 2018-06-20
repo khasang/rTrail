@@ -1,11 +1,13 @@
 package io.khasang.rtrail.service.impl;
 
 import io.khasang.rtrail.dao.RoutDao;
+import io.khasang.rtrail.dto.RoutDTO;
 import io.khasang.rtrail.entity.Rout;
 import io.khasang.rtrail.service.RoutService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,46 +17,62 @@ public class RoutServiceImpl implements RoutService {
     private RoutDao routDao;
 
     @Override
-    public Rout addRout(Rout rout) {
+    public RoutDTO addRout(RoutDTO routDTO) {
+        Rout rout = RoutDTO.createRoutFromDTO(routDTO);
         routDao.create(rout);
-        return rout;
+        return RoutDTO.creteDTOFromRout(rout);
     }
 
     @Override
-    public Rout getRoutById(String id) {
+    public RoutDTO getRoutDTOById(String id) {
+        return RoutDTO.creteDTOFromRout(getRoutById(id));
+    }
+
+    @Override
+    public RoutDTO deleteRout(String id) {
+        Rout result = getRoutById(id);
+        routDao.delete(result);
+        return RoutDTO.creteDTOFromRout(result);
+    }
+
+    private Rout getRoutById(String id) {
         Rout result = null;
         try {
             result = routDao.getById(Long.parseLong(id));
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
+
         return result;
     }
 
     @Override
-    public Rout deleteRout(String id) {
-        Rout result = getRoutById(id);
-        routDao.delete(result);
-        return result;
+    public RoutDTO updateRout(RoutDTO routDTO) {
+        Rout rout = RoutDTO.createRoutFromDTO(routDTO);
+        return RoutDTO.creteDTOFromRout(routDao.update(rout));
     }
 
     @Override
-    public Rout updateRout(Rout rout) {
-        return routDao.update(rout);
+    public List<RoutDTO> getAllRouts() {
+        return createRoutDTOListFromRoutList(routDao.getList());
     }
 
     @Override
-    public List<Rout> getAllRouts() {
-        return routDao.getList();
+    public List<RoutDTO> getRoutByName(String name) {
+        return createRoutDTOListFromRoutList(routDao.getByName(name));
     }
 
     @Override
-    public List<Rout> getRoutByName(String name) {
-        return routDao.getByName(name);
+    public List<RoutDTO> getAllOwnerRout(String owner) {
+        return createRoutDTOListFromRoutList(routDao.getByOwner(owner));
     }
 
-    @Override
-    public List<Rout> getAllOwnerRout(String owner) {
-        return routDao.getByOwner(owner);
+    private List<RoutDTO> createRoutDTOListFromRoutList(List<Rout> routList) {
+        List<RoutDTO> routDTOList = new ArrayList<>();
+        for (Rout rout : routList) {
+            routDTOList.add(RoutDTO.creteDTOFromRout(rout));
+        }
+
+        return routDTOList;
     }
 }
