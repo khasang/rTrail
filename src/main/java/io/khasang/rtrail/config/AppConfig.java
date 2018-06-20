@@ -5,16 +5,21 @@ import io.khasang.rtrail.dao.impl.CatDaoImpl;
 import io.khasang.rtrail.dao.impl.CommentDaoImpl;
 import io.khasang.rtrail.entity.Cat;
 import io.khasang.rtrail.entity.Comment;
+import io.khasang.rtrail.dao.CatDao;
+import io.khasang.rtrail.dao.LocationDao;
+import io.khasang.rtrail.dao.RoutDao;
+import io.khasang.rtrail.dao.EmployeeDao;
+import io.khasang.rtrail.dao.MessageDao;
 import io.khasang.rtrail.dao.UserDao;
 import io.khasang.rtrail.dao.impl.RoutDaoImpl;
 import io.khasang.rtrail.dao.impl.EmployeeDaoImpl;
 import io.khasang.rtrail.dao.impl.MessageDaoImpl;
-import io.khasang.rtrail.dao.impl.UserDaoImpl;
 import io.khasang.rtrail.dao.impl.LocationDaoImpl;
+import io.khasang.rtrail.dao.impl.UserDaoImpl;
 import io.khasang.rtrail.entity.Rout;
 import io.khasang.rtrail.entity.Employee;
-import io.khasang.rtrail.entity.User;
 import io.khasang.rtrail.entity.Location;
+import io.khasang.rtrail.entity.User;
 import io.khasang.rtrail.model.CreateTable;
 import io.khasang.rtrail.model.Message;
 import io.khasang.rtrail.model.impl.MessageImpl;
@@ -84,6 +89,11 @@ public class AppConfig {
     }
 
     @Bean
+    public LocationDao locationDao() {
+        return new LocationDaoImpl(Location.class);
+    }
+
+    @Bean
     public EmployeeDao employeeDao() {
         return new EmployeeDaoImpl(Employee.class);
     }
@@ -99,12 +109,7 @@ public class AppConfig {
     }
 
     @Bean
-    public LocationDao locationDao() {
-        return new LocationDaoImpl(Location.class);
-    }
-
-    @Bean
-    public CommentDao commentDao() {
+    public CommentDao commentDao(){
         return new CommentDaoImpl(Comment.class);
     }
 }

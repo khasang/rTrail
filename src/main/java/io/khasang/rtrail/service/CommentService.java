@@ -1,5 +1,6 @@
 package io.khasang.rtrail.service;
 
+import io.khasang.rtrail.dto.CommentDTO;
 import io.khasang.rtrail.entity.Comment;
 import java.util.List;
 
@@ -10,7 +11,7 @@ public interface CommentService {
      * @param comment - new comment for creation
      * @return created comment
      */
-    Comment addComment(Comment comment);
+    CommentDTO addComment(Comment comment);
 
     /**
      * method for getting comment
@@ -18,14 +19,14 @@ public interface CommentService {
      * @param id - comment's id for getting
      * @return comment by id
      */
-    Comment getCommentById(long id);
+    CommentDTO getCommentById(long id);
 
     /**
      * method for getting all comments
      *
      * @return all comments
      */
-    List<Comment> getAllComments();
+    List<CommentDTO> getAllComments();
 
     /**
      * method for deletion comment
@@ -33,7 +34,7 @@ public interface CommentService {
      * @param id - comment's id for delete
      * @return deleted comment
      */
-    Comment deleteComment(long id);
+    CommentDTO deleteComment(long id);
 
     /**
      * method for getting comments by name
@@ -41,7 +42,7 @@ public interface CommentService {
      * @param name = filter
      * @return comments by name
      */
-    List<Comment> getCommentsByName(String name);
+    List<CommentDTO> getCommentsByName(String name);
 
     /**
      * method for getting comments by name
@@ -49,5 +50,5 @@ public interface CommentService {
      *
      * @return comments by name
      */
-    Comment updateComment(Comment comment);
+    CommentDTO updateComment(Comment comment);
 }

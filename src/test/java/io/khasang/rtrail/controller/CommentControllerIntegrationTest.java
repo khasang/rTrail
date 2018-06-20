@@ -1,5 +1,6 @@
 package io.khasang.rtrail.controller;
 
+import io.khasang.rtrail.dto.CommentDTO;
 import io.khasang.rtrail.entity.Comment;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
@@ -19,20 +20,20 @@ public class CommentControllerIntegrationTest {
 
     @Test
     public void checkAddCommentAndGet() {
-        Comment comment = createComment();
+        CommentDTO comment = createComment();
 
         RestTemplate template = new RestTemplate();
-        ResponseEntity<Comment> responseEntity = template.exchange(
+        ResponseEntity<CommentDTO> responseEntity = template.exchange(
                 ROOT + GET_BY_ID + "/{id}",
                 HttpMethod.GET,
                 null,
-                Comment.class,
+                CommentDTO.class,
                 comment.getId()
         );
 
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
 
-        Comment recComment = responseEntity.getBody();
+        CommentDTO recComment = responseEntity.getBody();
         assertNotNull(recComment);
     }
 
@@ -58,56 +59,56 @@ public class CommentControllerIntegrationTest {
 
     @Test
     public void checkUpdateLocation() {
-        Comment comment = createComment();
+        CommentDTO comment = createComment();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
         comment.setName("we hunted 123");
-
-        HttpEntity<Comment> httpEntity = new HttpEntity<>(comment, headers);
+        CommentDTO commentDTO = new CommentDTO();
+        HttpEntity<CommentDTO> httpEntity = new HttpEntity<>(commentDTO, headers);
         RestTemplate template = new RestTemplate();
 
-        Comment updateComment = template.exchange(
+        CommentDTO updateComment = template.exchange(
                 ROOT + UPDATE,
                 HttpMethod.PUT,
                 httpEntity,
-                Comment.class
+                CommentDTO.class
         ).getBody();
 
-        ResponseEntity<Comment> responseEntity = template.exchange(
+        ResponseEntity<CommentDTO> responseEntity = template.exchange(
                 ROOT + GET_BY_ID + "/{id}",
                 HttpMethod.GET,
                 null,
-                Comment.class,
+                CommentDTO.class,
                 updateComment.getId()
         );
 
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
 
-        Comment receivedCat = responseEntity.getBody();
+        CommentDTO receivedCat = responseEntity.getBody();
         assertNotNull(receivedCat);
         assertEquals("New Name", receivedCat.getName());
     }
 
     @Test
     public void checkDeleteComment() {
-        Comment comment = createComment();
+        CommentDTO comment = createComment();
 
         RestTemplate template = new RestTemplate();
 
-        ResponseEntity<Comment> deletedComment = template.exchange(
+        ResponseEntity<CommentDTO> deletedComment = template.exchange(
                 ROOT + DELETE + "?id={id}",
                 HttpMethod.DELETE,
                 null,
-                Comment.class,
+                CommentDTO.class,
                 comment.getId()
         );
 
         assertNotNull(deletedComment.getBody());
     }
 
-    private Comment createComment() {
+    private CommentDTO createComment() {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
@@ -116,11 +117,11 @@ public class CommentControllerIntegrationTest {
         HttpEntity<Comment> httpEntity = new HttpEntity<>(comment, headers);
         RestTemplate template = new RestTemplate();
 
-        Comment createdComment = template.exchange(
+        CommentDTO createdComment = template.exchange(
                 ROOT + ADD,
                 HttpMethod.POST,
                 httpEntity,
-                Comment.class
+                CommentDTO.class
         ).getBody();
 
         assertEquals(comment.getName(), createdComment.getName());

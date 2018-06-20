@@ -2,9 +2,11 @@ package io.khasang.rtrail.dao.impl;
 
 import io.khasang.rtrail.dao.CommentDao;
 import io.khasang.rtrail.entity.Comment;
+
 import java.util.List;
 
 public class CommentDaoImpl extends BasicDaoImpl<Comment> implements CommentDao {
+
     public CommentDaoImpl(Class<Comment> entityClass) {
         super(entityClass);
     }

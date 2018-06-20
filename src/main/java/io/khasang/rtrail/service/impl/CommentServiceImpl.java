@@ -1,6 +1,7 @@
 package io.khasang.rtrail.service.impl;
 
 import io.khasang.rtrail.dao.CommentDao;
+import io.khasang.rtrail.dto.CommentDTO;
 import io.khasang.rtrail.entity.Comment;
 import io.khasang.rtrail.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,34 +14,37 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private CommentDao commentDao;
 
+    @Autowired
+    private CommentDTO commentDTO;
+
     @Override
-    public Comment addComment(Comment comment) {
-        return commentDao.create(comment);
+    public CommentDTO addComment(Comment comment) {
+        return commentDTO.getCommentDTO(commentDao.create(comment));
     }
 
     @Override
-    public Comment getCommentById(long id) {
-        return commentDao.getById(id);
+    public CommentDTO getCommentById(long id) {
+        return commentDTO.getCommentDTO(commentDao.getById(id));
     }
 
     @Override
-    public List<Comment> getAllComments() {
-        return commentDao.getList();
+    public List<CommentDTO> getAllComments() {
+        return commentDTO.getList(commentDao.getList());
     }
 
     @Override
-    public Comment deleteComment(long id) {
-        Comment commentForDelete = getCommentById(id);
-        return commentDao.delete(commentForDelete);
+    public CommentDTO deleteComment(long id) {
+        CommentDTO commentForDelete = getCommentById(id);
+        return commentDTO.getCommentDTO(commentDao.delete(commentDao.getById(id)));
     }
 
     @Override
-    public List<Comment> getCommentsByName(String name) {
-        return commentDao.getByName(name);
+    public List<CommentDTO> getCommentsByName(String name) {
+        return commentDTO.getList(commentDao.getByName(name));
     }
 
     @Override
-    public Comment updateComment(Comment comment) {
-        return commentDao.update(comment);
+    public CommentDTO updateComment(Comment comment) {
+        return commentDTO.getCommentDTO(commentDao.update(comment));
     }
 }
