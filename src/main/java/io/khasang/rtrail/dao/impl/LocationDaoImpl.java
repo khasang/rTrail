@@ -4,8 +4,7 @@ import io.khasang.rtrail.dao.LocationDao;
 import io.khasang.rtrail.entity.Location;
 import java.util.List;
 
-public class LocationDaoImpl extends BasicDaoImpl<Location> implements LocationDao{
-
+public class LocationDaoImpl extends BasicDaoImpl<Location> implements LocationDao {
     public LocationDaoImpl(Class<Location> entityClass) {
         super(entityClass);
     }

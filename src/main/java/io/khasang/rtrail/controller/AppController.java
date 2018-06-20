@@ -3,6 +3,7 @@ package io.khasang.rtrail.controller;
 import io.khasang.rtrail.model.CreateTable;
 import io.khasang.rtrail.model.Message;
 import io.khasang.rtrail.util.CheckText;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,6 +19,8 @@ import java.net.MalformedURLException;
 @Controller
 // http://localhost:8080
 public class AppController {
+    private static final Logger log = Logger.getLogger(AppController.class);
+
     @Autowired
     @Qualifier("main")
     private Message message;
@@ -29,6 +32,8 @@ public class AppController {
 
     @RequestMapping("/")
     public String getHelloPage() {
+        log.error("Error is coming...");
+        log.info("Error is coming...");
         return "index";
     }
 

@@ -127,5 +127,4 @@ public class LocationControllerIntegrationTest {
         location.setShort_description("we hunted");
         return location;
     }
-
 }

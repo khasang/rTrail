@@ -6,7 +6,6 @@ import io.khasang.rtrail.entity.Location;
 import io.khasang.rtrail.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

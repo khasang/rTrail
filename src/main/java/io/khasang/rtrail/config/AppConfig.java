@@ -1,20 +1,29 @@
 package io.khasang.rtrail.config;
 
 import io.khasang.rtrail.dao.CatDao;
+import io.khasang.rtrail.dao.LocationDao;
+import io.khasang.rtrail.dao.impl.CatDaoImpl;
 import io.khasang.rtrail.dao.RoutDao;
 import io.khasang.rtrail.dao.EmployeeDao;
+import io.khasang.rtrail.dao.MessageDao;
 import io.khasang.rtrail.dao.LocationDao;
 import io.khasang.rtrail.dao.UserDao;
 import io.khasang.rtrail.dao.impl.CatDaoImpl;
 import io.khasang.rtrail.dao.impl.EmployeeDaoImpl;
+import io.khasang.rtrail.dao.impl.MessageDaoImpl;
 import io.khasang.rtrail.dao.impl.LocationDaoImpl;
 import io.khasang.rtrail.dao.impl.UserDaoImpl;
+import io.khasang.rtrail.dao.impl.LocationDaoImpl;
 import io.khasang.rtrail.entity.Cat;
 import io.khasang.rtrail.entity.Employee;
 import io.khasang.rtrail.entity.Location;
 import io.khasang.rtrail.dao.impl.RoutDaoImpl;
 import io.khasang.rtrail.entity.Rout;
 import io.khasang.rtrail.entity.User;
+import io.khasang.rtrail.entity.Location;
+import io.khasang.rtrail.dao.*;
+import io.khasang.rtrail.dao.impl.*;
+import io.khasang.rtrail.entity.*;
 import io.khasang.rtrail.model.CreateTable;
 import io.khasang.rtrail.model.Message;
 import io.khasang.rtrail.model.impl.MessageImpl;
@@ -38,7 +47,7 @@ public class AppConfig {
 
     @Bean
     @Scope("prototype")
-    public Message message() {
+    public Message message(){
         return new MessageImpl("HelloWorld!");
     }
 
@@ -53,7 +62,7 @@ public class AppConfig {
     }
 
     @Bean
-    public UserDetailsService userDetailsService() {
+    public UserDetailsService userDetailsService(){
         JdbcDaoImpl jdbcDao = new JdbcDaoImpl();
         jdbcDao.setDataSource(dataSource());
         jdbcDao.setUsersByUsernameQuery(environment.getRequiredProperty("userByQuery"));
@@ -62,19 +71,19 @@ public class AppConfig {
     }
 
     @Bean
-    public JdbcTemplate jdbcTemplate() {
+    public JdbcTemplate jdbcTemplate(){
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
         jdbcTemplate.setDataSource(dataSource());
         return jdbcTemplate;
     }
 
     @Bean
-    public CreateTable createTable() {
+    public CreateTable createTable(){
         return new CreateTable(jdbcTemplate());
     }
 
     @Bean
-    CatDao catDao() {
+    public CatDao catDao(){
         return new CatDaoImpl(Cat.class);
     }
 
@@ -94,7 +103,17 @@ public class AppConfig {
     }
 
     @Bean
-    UserDao userDao(){
+    public MessageDao messageDao() {
+        return new MessageDaoImpl(io.khasang.rtrail.entity.Message.class);
+    }
+
+    @Bean
+    public UserDao userDao(){
         return new UserDaoImpl(User.class);
+    }
+
+    @Bean
+    public CommentDao commentDao(){
+        return new CommentDaoImpl(Comment.class);
     }
 }
