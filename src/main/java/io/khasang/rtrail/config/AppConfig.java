@@ -2,7 +2,6 @@ package io.khasang.rtrail.config;
 
 import io.khasang.rtrail.dao.*;
 import io.khasang.rtrail.dao.impl.CatDaoImpl;
-import io.khasang.rtrail.dao.impl.CatDaoImpl;
 import io.khasang.rtrail.dao.impl.CommentDaoImpl;
 import io.khasang.rtrail.entity.Cat;
 import io.khasang.rtrail.entity.Comment;
@@ -12,7 +11,6 @@ import io.khasang.rtrail.dao.impl.EmployeeDaoImpl;
 import io.khasang.rtrail.dao.impl.MessageDaoImpl;
 import io.khasang.rtrail.dao.impl.UserDaoImpl;
 import io.khasang.rtrail.dao.impl.LocationDaoImpl;
-import io.khasang.rtrail.entity.Cat;
 import io.khasang.rtrail.entity.Rout;
 import io.khasang.rtrail.entity.Employee;
 import io.khasang.rtrail.entity.User;
