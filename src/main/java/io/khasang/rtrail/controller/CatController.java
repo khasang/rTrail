@@ -11,6 +11,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/cat")
 public class CatController {
+
     @Autowired
     private CatService catService;
 
