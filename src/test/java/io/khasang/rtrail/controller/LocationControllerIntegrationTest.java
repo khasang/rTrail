@@ -1,13 +1,12 @@
 package io.khasang.rtrail.controller;
 
+import io.khasang.rtrail.dto.LocationDTO;
 import io.khasang.rtrail.entity.Location;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
-
 import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -21,20 +20,20 @@ public class LocationControllerIntegrationTest {
 
     @Test
     public void checkAddLocationAndGet() {
-        Location location = createLocation();
+        LocationDTO location = createLocation();
 
         RestTemplate template = new RestTemplate();
-        ResponseEntity<Location> responseEntity = template.exchange(
+        ResponseEntity<LocationDTO> responseEntity = template.exchange(
                 ROOT + GET_BY_ID + "/{id}",
                 HttpMethod.GET,
                 null,
-                Location.class,
+                LocationDTO.class,
                 location.getId()
         );
 
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
 
-        Location recievedLocation = responseEntity.getBody();
+        LocationDTO recievedLocation = responseEntity.getBody();
         assertNotNull(recievedLocation);
     }
 
@@ -55,23 +54,27 @@ public class LocationControllerIntegrationTest {
         List<Location> locations = responseEntity.getBody();
         assertNotNull(locations.get(0));
         assertNotNull(locations.get(1));
+
     }
 
     @Test
     public void checkUpdateLocation() {
-        Location location = createLocation();
+        LocationDTO location = createLocation();
+
         location.setShort_description("we hunted 123");
         HttpHeaders headers = new  HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-        HttpEntity<Location> httpEntity = new HttpEntity<>(location, headers);
+        LocationDTO locationDTO = new LocationDTO();
+
+        HttpEntity<LocationDTO> httpEntity = new HttpEntity<>(location, headers);
         RestTemplate template = new RestTemplate();
 
-        Location updatedLocation = template.exchange(
+        LocationDTO updatedLocation = template.exchange(
                 ROOT + UPDATE,
                 HttpMethod.PUT,
                 httpEntity,
-                Location.class
+                LocationDTO.class
         ).getBody();
 
         assertEquals(location.getShort_description(), updatedLocation.getShort_description());
@@ -80,7 +83,7 @@ public class LocationControllerIntegrationTest {
 
     @Test
     public void checkDeleteLocation() {
-        Location location = createLocation();
+        LocationDTO location = createLocation();
 
         RestTemplate template = new RestTemplate();
 
@@ -95,7 +98,7 @@ public class LocationControllerIntegrationTest {
         assertNotNull(deletedLocation.getBody());
     }
 
-    private Location createLocation() {
+    private LocationDTO createLocation() {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
@@ -104,11 +107,11 @@ public class LocationControllerIntegrationTest {
         HttpEntity<Location> httpEntity = new HttpEntity<>(location, headers);
         RestTemplate template = new RestTemplate();
 
-        Location createdLocation = template.exchange(
+        LocationDTO createdLocation = template.exchange(
                 ROOT + ADD,
                 HttpMethod.POST,
                 httpEntity,
-                Location.class
+                LocationDTO.class
         ).getBody();
 
         assertEquals(createdLocation.getName(), createdLocation.getName());

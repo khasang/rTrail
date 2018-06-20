@@ -1,5 +1,6 @@
 package io.khasang.rtrail.controller;
 
+import io.khasang.rtrail.dto.LocationDTO;
 import io.khasang.rtrail.entity.Location;
 import io.khasang.rtrail.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,37 +17,37 @@ public class LocationController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public Location addLocation(@RequestBody Location location) {
+    public LocationDTO addLocation(@RequestBody Location location) {
         return locationService.addLocation(location);
     }
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public Location getLocationById(@PathVariable(value = "id") String id) {
+    public LocationDTO getLocationById(@PathVariable(value = "id") String id) {
         return locationService.getLocationById(Long.parseLong(id));
     }
 
     @RequestMapping(value = "/get/all", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public List<Location> getCats() {
+    public List<LocationDTO> getCats() {
         return locationService.getAllLocations();
     }
 
     @RequestMapping(value = "/get/name/{name}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public List<Location> getCatsByName(@PathVariable(value = "name") String name) {
+    public List<LocationDTO> getCatsByName(@PathVariable(value = "name") String name) {
         return locationService.getLocationsByName(name);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public Location deleteCat(@RequestParam(value = "id") String id) {
+    public LocationDTO deleteCat(@RequestParam(value = "id") String id) {
         return locationService.deleteLocation(Long.parseLong(id));
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public Location updateLocation(@RequestBody Location location) {
+    public LocationDTO updateLocation(@RequestBody Location location) {
         return locationService.updateLocation(location);
     }
 }
