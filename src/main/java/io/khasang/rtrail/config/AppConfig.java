@@ -76,7 +76,7 @@ public class AppConfig {
     }
 
     @Bean
-    CatDao catDao(){
+    public CatDao catDao(){
         return new CatDaoImpl(Cat.class);
     }
 
@@ -86,7 +86,7 @@ public class AppConfig {
     }
 
     @Bean
-    CommentDao commentDao() {
+    public CommentDao commentDao() {
         return new CommentDaoImpl(Comment.class);
     }
 
