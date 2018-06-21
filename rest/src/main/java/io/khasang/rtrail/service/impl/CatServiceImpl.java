@@ -1,6 +1,7 @@
 package io.khasang.rtrail.service.impl;
 
 import io.khasang.rtrail.dao.CatDao;
+import io.khasang.rtrail.dto.CatDTO;
 import io.khasang.rtrail.entity.Cat;
 import io.khasang.rtrail.service.CatService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,30 +13,32 @@ import java.util.List;
 public class CatServiceImpl implements CatService {
     @Autowired
     private CatDao catDao;
+    @Autowired
+    private CatDTO catDTO;
 
     @Override
-    public Cat addCat(Cat cat) {
-        return catDao.create(cat);
+    public CatDTO addCat(Cat cat) {
+        return catDTO.getCatDTO(catDao.create(cat));
     }
 
     @Override
-    public Cat getCatById(long id) {
-        return catDao.getById(id);
+    public CatDTO getCatById(long id) {
+        return catDTO.getCatDTO(catDao.getById(id));
     }
 
     @Override
-    public List<Cat> getAllCats() {
-        return catDao.getList();
+    public List<CatDTO> getAllCats() {
+        return catDTO.getList(catDao.getList());
     }
 
     @Override
-    public List<Cat> getCatsByName(String name) {
-        return catDao.getByName(name);
+    public List<CatDTO> getCatsByName(String name) {
+        return catDTO.getList(catDao.getByName(name));
     }
 
     @Override
-    public Cat deleteCat(long id) {
-        Cat catForDelete = getCatById(id);
-        return catDao.delete(catForDelete);
+    public CatDTO deleteCat(long id) {
+
+        return catDTO.getCatDTO(catDao.delete(catDao.getById(id)));
     }
 }

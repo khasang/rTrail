@@ -1,12 +1,12 @@
 package io.khasang.rtrail.controller;
 
+import io.khasang.rtrail.dao.CatDao;
 import io.khasang.rtrail.entity.Cat;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -32,22 +32,21 @@ public class CatControllerIntegrationTest {
     }
 
     @Test
-    @WithMockUser
     public void checkAddCatAndGet() {
-        Cat cat = createCat();
+        CatDTO cat = createCat();
 
         RestTemplate template = new RestTemplate();
-        ResponseEntity<Cat> responseEntity = template.exchange(
+        ResponseEntity<CatDTO> responseEntity = template.exchange(
                 ROOT + GET_BY_ID + "/{id}",
                 HttpMethod.GET,
                 null,
-                Cat.class,
+                CatDTO.class,
                 cat.getId()
         );
 
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
 
-        Cat recievedCat = responseEntity.getBody();
+        CatDTO recievedCat = responseEntity.getBody();
         assertNotNull(recievedCat);
     }
 
@@ -73,7 +72,7 @@ public class CatControllerIntegrationTest {
         // clean
     }
 
-    private Cat createCat() {
+    private CatDTO createCat() {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
@@ -82,11 +81,11 @@ public class CatControllerIntegrationTest {
         HttpEntity<Cat> httpEntity = new HttpEntity<>(cat, headers);
         RestTemplate template = new RestTemplate();
 
-        Cat createdCat = template.exchange(
+        CatDTO createdCat = template.exchange(
                 ROOT + ADD,
                 HttpMethod.POST,
                 httpEntity,
-                Cat.class
+                CatDTO.class
         ).getBody();
 
         assertEquals(cat.getName(), createdCat.getName());
