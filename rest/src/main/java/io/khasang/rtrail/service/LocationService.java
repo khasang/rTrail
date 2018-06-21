@@ -2,6 +2,7 @@ package io.khasang.rtrail.service;
 
 import io.khasang.rtrail.dto.LocationDTO;
 import io.khasang.rtrail.entity.Location;
+
 import java.util.List;
 
 public interface LocationService {

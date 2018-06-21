@@ -1,6 +1,6 @@
 package io.khasang.rtrail.controller;
 
-import io.khasang.rtrail.dao.CatDao;
+import io.khasang.rtrail.dto.CatDTO;
 import io.khasang.rtrail.entity.Cat;
 import org.junit.After;
 import org.junit.Before;
