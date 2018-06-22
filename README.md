@@ -71,6 +71,7 @@ correctly displayed on different devices with different sizes and
 screen resolution:
  * On your <a href="#onMobile">mobile device</a>
  * On the <a href="#onComputer">computer</a> and <a href="#onComputer">laptop</a>
+ 
  Structure of this template (helloPage.jsp):
  - Header (header.jsp)
      - Top menu (topMenu.jsp)
