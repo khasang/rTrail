@@ -9,8 +9,8 @@
             }); 
             
             myPlacemark = new ymaps.Placemark([55.76, 37.64], {
-                hintContent: 'Москва!',
-                balloonContent: 'Столица России'
+                hintContent: 'Moscow!',
+                balloonContent: 'Capital of Russia'
             });
             
             myMap.geoObjects.add(myPlacemark);
