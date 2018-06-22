@@ -12,7 +12,7 @@ import java.util.List;
  * connect View and Service
  *
  * @author Ilya Bogachev
- * @since 17.06.2018
+ * @since 22.06.2018
  */
 @Component
 public class UserDTO {
@@ -70,6 +70,7 @@ public class UserDTO {
             userDTO.setId(user.getId());
             userDTO.setUsername(user.getUsername());
             userDTO.setEmail(user.getEmail());
+            userDTO.setPassword(user.getPassword());
             getRoleDTOListFromUser(user, roleDTOList);
             userDTO.setRoleDTOList(roleDTOList);
             userDTOList.add(userDTO);
@@ -83,6 +84,7 @@ public class UserDTO {
             userDTO.setId(user.getId());
             userDTO.setUsername(user.getUsername());
             userDTO.setEmail(user.getEmail());
+            userDTO.setPassword(user.getPassword());
             getRoleDTOListFromUser(user, roleDTOList);
             userDTO.setRoleDTOList(roleDTOList);
         return userDTO;

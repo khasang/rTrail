@@ -23,6 +23,8 @@ public class User {
     private Long id;
     private String username;
     private String password;
+    @Transient
+    private String passwordConfirm;
     private String email;
 
     public User() {
@@ -69,5 +71,14 @@ public class User {
 
     public void setRoleList(List<Role> roleList) {
         this.roleList = roleList;
+    }
+
+    @Transient
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
     }
 }
