@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="icon" href="images/favicon.ico">
 
-    <title>Яндекс Карта</title>
+    <title>Yandex Map</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -40,7 +40,7 @@
 
     <!-- Яндекс карта -->
     <link href="css/yandex-map.css" rel="stylesheet">
-    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=en_RU" type="text/javascript"></script>
     <script type="text/javascript" src="js/yandex.map.js"></script>
 
 </head>
@@ -59,7 +59,7 @@
 
     <hr>
 
-    <div id="footer.jsp">
+    <div id="footer">
         <jsp:include page="parts/footer.jsp"/>
     </div>
 

@@ -60,49 +60,49 @@ Communication uses json format.
 5. /get/all - return all routs. Method GET. Returns list of routs.
 6. /get/name/{name} - return routs list with same name. Method GET. Returns list of routs.
 7. /get/routByOwner/{owner} - return routs list belongs owner. Method GET. Returns list of routs.
- 
+
  _______
  
  ## Hello page
- Шаблон Bootstrap с адаптивной версткой, которая позволяет хорошо смотреться и 
- правильно отображаться на различных устройствах с разным размером и 
- разрешением экрана:
- * На <a href="#onMobile">мобильном</a> устройстве
- * На <a href="#onComputer">настольном компьютере</a> и <a href="#onComputer">ноутбуке</a>
+Link location: http://localhost:8080/hellopage
  
- Структура данного шаблона (helloPage.jsp) следующая:
- - шапка (header.jsp)
-     - верхнее меню (topMenu.jsp)
-     - форма авторизации (auth.jsp)
- - основное содержимое (body.jsp)
-     - <a href="#onMobileLeftMenu">левое меню</a> (leftMenu.jsp)
-     - хлебные крошки (breadcrumbs.jsp)
- - футер (footer.jsp)
+Bootstrap template with adaptive layout, which allows to look good and
+correctly displayed on different devices with different sizes and
+screen resolution:
+ * On your <a href="#onMobile">mobile device</a>
+ * On the <a href="#onComputer">computer</a> and <a href="#onComputer">laptop</a>
  
- **Горизонтальное адаптивное меню** для сайта имеет 2 режима отображения:
- - десктопный (обычный) – выводятся все элементы меню;
- - мобильный (свёрнутый) – по умолчанию отображается бренд и кнопка «Гамбургер» 
- (для <a href="#onMobileTopMenu">открытия</a> основного содержимого меню).
+ Structure of this template (helloPage.jsp):
+ - Header (header.jsp)
+     - Top menu (topMenu.jsp)
+     - Authorization form (auth.jsp)
+ - Main content (body.jsp)
+     - <a href="#onMobileLeftMenu">Left menu</a> (leftMenu.jsp)
+     - Bread crumbs (breadcrumbs.jsp)
+ - Footer (footer.jsp)
  
- ### <a name="onComputer"></a> Настольный компьютер
- Отображение шаблона на настольном компьютере и ноутбуке.
+ The horizontal adaptive menu for the site has 2 display modes:
+ - desktop (normal) - all menu items are displayed;
+ - mobile (minimized) - by default, the brand and the button "Hamburger" 
+ (to <a href="#onMobileTopMenu">open</a> the main menu content).
  
- ![Настольный компьютер и ноутбук](https://image.prntscr.com/image/U-88-ykmT06DsL-ubVzlSQ.jpg)
+ ### <a name="onComputer"></a> Desktop computer and laptop
+ Display a template on a desktop computer and laptop.
  
- ### <a name="onMobile"></a> Мобильное устройство
- Отображение шаблона на мобильном устройстве.
+ ![Desktop computer and laptop](https://image.prntscr.com/image/RZR3lKd7QOmUcN8lJaak3Q.png)
  
- ![Настольный компьютер и ноутбук](https://image.prntscr.com/image/LqTd1gfTQiSRBRFL3ufUEw.png)
+ ### <a name="onMobile"></a> Mobile device
+ Display a template on the mobile device.
  
+ ![Mobile device](https://image.prntscr.com/image/zocu98pWRgmqj1xpJw-7ig.png)
  
- ### <a name="onMobileTopMenu"></a> Мобильная версия верхнего меню
- Развернутое верхнее меню на мобильном устройстве.
+ ### <a name="onMobileTopMenu"></a> Mobile version of the top menu
+ Deployed the top menu on the mobile device.
  
- ![Настольный компьютер и ноутбук](https://image.prntscr.com/image/JSj3lMVtRgutU7STCAx1aQ.png)
+ ![Mobile version of the top menu](https://image.prntscr.com/image/L-H2MHrTRNKah2KK5VvGOg.png)
  
+ ### <a name="onMobileLeftMenu"></a> Mobile version of the left menu
+ In the mobile device, the left menu is hidden by default. 
+ When you click the **Toggle nav** button, the menu appears.
  
- ### <a name="onMobileLeftMenu"></a> Мобильная версия левого меню
- В мобильном устройстве по умолчанию левое меню скрыто. При клике по кнопке 
- **Переключить навигацию** меню появляется.
- 
- ![Настольный компьютер и ноутбук](https://image.prntscr.com/image/1vDO9L1ZSwikCTqvV4wb3g.png)
+ ![Mobile version of the left menu](https://image.prntscr.com/image/tnOIHdtTQPWtuhuHcyO0pg.png)
