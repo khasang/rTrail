@@ -7,9 +7,7 @@ function init () {
     }, {
         editorMidPointsType: "via",
         editorDrawOver: false
-
     });
-    //routMake(multiRoute);
 
     buttonEditor = new ymaps.control.Button({
         data: { content: "Режим редактирования" }
@@ -23,10 +21,8 @@ function init () {
     });
 
     buttonEditor.events.add("deselect", function () {
-        // Выключение режима редактирования.
         multiRoute.editor.stop();
         routMake(multiRoute);
-
     });
 
     myMap = new ymaps.Map('map', {
@@ -106,7 +102,6 @@ function getById() {
             $('#id').val(result.id);
             $('#name').val(result.name);
             $('#description').val(result.description);
-
             rout = null;
             rout = [];
             for (var i = 0; i <result.checkPointList.length; i++) {
