@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<c:set var="contextPath" value="http://localhost:8080/users"/>
+<c:set var="contextPath" value="http://localhost:8080/"/>
 
 <!DOCTYPE html>
 <html lang="en">

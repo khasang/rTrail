@@ -6,8 +6,8 @@ import java.util.List;
 
 /**
  * Entity Users to reflect user's fields:
- * username (for login)
- * password (to login)
+ * username (for showLoginForm)
+ * password (to showLoginForm)
  * email for send notification (verification code) and contact user
  *
  * @author Ilya Bogachev

@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<c:set var="contextPath" value="http://localhost:8080/users"/>
+<c:set var="contextPath" value="http://localhost:8080/"/>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +32,7 @@
             <h2 class="form-heading">Log in</h2>
             <div class="form-group ${error != null ? 'has-error' : ''}">
                 <span>${message}</span>
-                <input name="email" type="text" class="form-control" placeholder="E-mail"
+                <input name="username" type="text" class="form-control" placeholder="Username"
                                            autofocus="true"/>
                 <input name="password" type="password" class="form-control" placeholder="Password"/>
                 <span>${error}</span>
