@@ -41,7 +41,7 @@
     <!-- Яндекс карта -->
     <link href="css/yandex-map.css" rel="stylesheet">
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-    <script type="text/javascript" src="js/yandex.map.js"></script>
+    <script src="js/multiroute_driving.js" type="text/javascript"></script>
 
 </head>
 
