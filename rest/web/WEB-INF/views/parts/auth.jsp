@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<form class="navbar-form navbar-right">
+<form action="/login" method="POST" class="navbar-form navbar-right">
     <div class="form-group">
-        <input type="text" placeholder="Email" class="form-control">
+        <input name="username" type="text" placeholder="Login" class="form-control">
     </div>
     <div class="form-group">
-        <input type="password" placeholder="Password" class="form-control">
+        <input name="password" type="password" placeholder="Password" class="form-control">
     </div>
-    <button type="submit" class="btn btn-success">Войти</button>
+    <button type="submit" class="btn btn-success">Sign in</button>
 </form>
