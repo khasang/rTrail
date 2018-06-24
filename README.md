@@ -60,7 +60,14 @@ Communication uses json format.
 5. /get/all - return all routs. Method GET. Returns list of routs.
 6. /get/name/{name} - return routs list with same name. Method GET. Returns list of routs.
 7. /get/routByOwner/{owner} - return routs list belongs owner. Method GET. Returns list of routs.
-
+ _______
+ 
+ ## Admin controller
+This controller allows the administrator to get online users in json format.
+1. /admin/users/get/current - return the current authorized user.
+2. /admin/users/get/all - return all authorized users.
+3. /admin/users/get/role/{role} - return all authorized users with role.
+4. /admin/users/get/name/{name} - return authorized users with name.
  _______
  
  ## Hello page
