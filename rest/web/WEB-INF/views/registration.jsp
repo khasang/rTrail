@@ -30,13 +30,20 @@
 
 <div class="container">
 
-    <form:form method="POST" modelAttribute="user" class="form-signin">
+    <form:form method="POST"  modelAttribute="user" class="form-signin">
         <h2 class="form-signin-heading">Create account</h2>
         <spring:bind path="username">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input type="text" path="username" class="form-control" placeholder="Username"
                             autofocus="true"></form:input>
                 <form:errors path="username"></form:errors>
+            </div>
+        </spring:bind>
+
+        <spring:bind path="login">
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:input type="text" path="login" class="form-control" placeholder="Login"></form:input>
+                <form:errors path="login"></form:errors>
             </div>
         </spring:bind>
 

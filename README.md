@@ -27,6 +27,43 @@
 | Text1 | Text2 |
 | Text1 | Text2 |
 
+## User API
+This API allows to made CRUD operations with rout entity.
+It realizes with:
+1. Entity
+2. DAO
+3. Service
+4. Controller
+5. DTO
+
+### User Entity
+User entity contains such field as:
+1. ID - unique number in Data Base.
+2. username - name of User
+3. password - user's password
+4. passwordConfirm - transient password for confirm registration form password
+5. email - email of user
+
+### User DAO
+User dao interface implements BasicDao with CRUD methods and contains one method for getting users by name
+
+### User service
+User service is layer between controller and DAO. This layer take request from controller, receive response from DAO, 
+turn it to DTO and transfer to controller
+
+### User controller
+User controller is the layer for communication between client and server.
+Communication uses json format.
+1. /add - add new user to DataBase. Method POST, user transfer in json format in request body. Returns UserDTO.
+2. /get/{id} - return user with id. Method GET. Returns UserDTO.
+3. /delete/{id} - delete user with id. Method DELETE. Returns deleted userDTO. 
+4. /update - update user. Method PUT. Returns updated UserDTO.
+5. /get/all - return all users. Method GET. Returns list of UserDTO.
+6. /get/name/{username} - return user list with the same name. Method GET. Returns list of UserDTO.
+
+### UserDTO
+User Data Transfer Object for represents data to client for CRUD requests
+
 ## Rout API
 This API allow to made CRUD operations with rout entity.
 It realize with:
@@ -106,3 +143,24 @@ screen resolution:
  When you click the **Toggle nav** button, the menu appears.
  
  ![Mobile version of the left menu](https://image.prntscr.com/image/tnOIHdtTQPWtuhuHcyO0pg.png)
+ 
+  _______
+  
+ ## Registration page
+ Link location: http://localhost:8080/hellopage
+ ![Registration Form](https://cloud.mail.ru/public/32To/DHYXx6YgA)
+ Contains registration fields for new users:
+ 1. Username - must be between 6 and 32 characters and unic
+ 2. Email - should be valid email
+ 3. Password - length at least 8 characters
+ 4. ConfirmPassword - confirm input password
+ 
+ Validation form return messages for incorrect fields:
+ ![Incorrect Fields](https://cloud.mail.ru/public/7ic3/joHZqtjwL)
+ 
+ Form has a link to login form:
+ ![Login Form](https://cloud.mail.ru/public/Bu5b/uGDsLcYMC)
+ 
+ Correct data send to the DataBase and the new user may be log in into the application
+ 
+ 

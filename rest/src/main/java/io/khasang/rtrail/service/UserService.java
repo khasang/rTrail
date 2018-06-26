@@ -61,4 +61,11 @@ public interface UserService {
      * @return a list of users
      */
     List<UserDTO> getAllUsers();
+
+    /**
+     * method for getting user by login
+     * @param login
+     * @return
+     */
+    List <UserDTO> getUserByLogin(String login);
 }

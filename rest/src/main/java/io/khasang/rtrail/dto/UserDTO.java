@@ -12,12 +12,13 @@ import java.util.List;
  * connect View and Service
  *
  * @author Ilya Bogachev
- * @since 22.06.2018
+ * @since 24.06.2018
  */
 @Component
 public class UserDTO {
     private Long id;
     private String username;
+    private String login;
     private String password;
     private String email;
     private List<RoleDTO> roleDTOList = new ArrayList<>();
@@ -54,6 +55,14 @@ public class UserDTO {
         this.email = email;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
     public void setRoleDTOList(List<RoleDTO> roleDTOList) {
         this.roleDTOList = roleDTOList;
     }
@@ -69,6 +78,7 @@ public class UserDTO {
             UserDTO userDTO = new UserDTO();
             userDTO.setId(user.getId());
             userDTO.setUsername(user.getUsername());
+            userDTO.setLogin(user.getLogin());
             userDTO.setEmail(user.getEmail());
             userDTO.setPassword(user.getPassword());
             getRoleDTOListFromUser(user, roleDTOList);
@@ -83,6 +93,7 @@ public class UserDTO {
             UserDTO userDTO = new UserDTO();
             userDTO.setId(user.getId());
             userDTO.setUsername(user.getUsername());
+            userDTO.setLogin(user.getLogin());
             userDTO.setEmail(user.getEmail());
             userDTO.setPassword(user.getPassword());
             getRoleDTOListFromUser(user, roleDTOList);
@@ -100,7 +111,7 @@ public class UserDTO {
         for (Role role : user.getRoleList()) {
             RoleDTO roleDTO = new RoleDTO();
             roleDTO.setId(role.getId());
-            roleDTO.setRoleName(role.getRoleName());
+            roleDTO.setRoleName(role.getRole_name());
             roleDTOList.add(roleDTO);
         }
     }

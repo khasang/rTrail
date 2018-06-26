@@ -12,10 +12,10 @@ import java.util.regex.Pattern;
 
 
 /**
- * validate User's input fields during registration
+ * validate User's input fields during registration form
  *
  * @author Ilya Bogachev
- * @since 22.06.2018
+ * @since 26.06.2018
  */
 @Component
 public class UserValidator implements Validator {
@@ -31,11 +31,14 @@ public class UserValidator implements Validator {
     public void validate(Object target, Errors errors) {
         User user = (User) target;
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
-        if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
-            errors.rejectValue("username", "Size.userForm.username");
+
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "login", "NotEmpty");
+        if (user.getLogin().length() < 6 || user.getLogin().length() > 32) {
+            errors.rejectValue("login", "Size.userForm.login");
         }
-        if (!(userService.getUserByName(user.getUsername())).isEmpty()) {
-            errors.rejectValue("username", "Duplicate.userForm.username");
+
+        if (!(userService.getUserByLogin(user.getLogin())).isEmpty()) {
+            errors.rejectValue("login", "Duplicate.userForm.login");
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");

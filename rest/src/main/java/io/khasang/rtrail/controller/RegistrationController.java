@@ -1,5 +1,7 @@
 package io.khasang.rtrail.controller;
 
+import io.khasang.rtrail.entity.Role;
+import io.khasang.rtrail.entity.RoleEnum;
 import io.khasang.rtrail.entity.User;
 import io.khasang.rtrail.service.UserService;
 import io.khasang.rtrail.service.validator.UserValidator;
@@ -11,8 +13,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * provide registration and showLoginForm page for validation
+ * provide registration and log page for validation
  *
  * @author Ilya Bogachev
  * @since 23.06.2018
@@ -39,21 +44,22 @@ public class RegistrationController {
         if (bindingResult.hasErrors()) {
             return "registration";
         }
-
+        Role role = new Role();
+        role.setRole_name(RoleEnum.ROLE_USER.name());
+        List<Role> roleList = new ArrayList<>();
+        roleList.add(role);
+        userFromFormRegistration.setRoleList(roleList);
         userService.addUser(userFromFormRegistration);
-
         return "redirect:/hellopage";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String showLoginForm(Model model, String error, String logout) {
-        if (error != null) {
-            model.addAttribute("error", "Your email and password is invalid");
-        }
+        if (error != null)
+            model.addAttribute("error", "Your login and password is invalid");
 
-        if (logout != null) {
+        if (logout != null)
             model.addAttribute("message", "You have been logged out successfully");
-        }
 
         return "login";
     }
