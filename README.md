@@ -40,6 +40,7 @@ It realizes with:
 User entity contains such field as:
 1. ID - unique number in Data Base.
 2. username - name of User
+3. login - use for authentication of users, must be unique
 3. password - user's password
 4. passwordConfirm - transient password for confirm registration form password
 5. email - email of user
@@ -147,19 +148,20 @@ screen resolution:
   _______
   
  ## Registration page
- Link location: http://localhost:8080/hellopage
- ![Registration Form](https://cloud.mail.ru/public/32To/DHYXx6YgA)
+ Link location: http://localhost:8080/registration
+ ![Registration Form](https://prntscr.com/jzugsy)
  Contains registration fields for new users:
- 1. Username - must be between 6 and 32 characters and unic
- 2. Email - should be valid email
+ 1. Username - not null
+ 2. Login - must be between 6 to 32 characters and unique
+ 2. Email - should be a valid email
  3. Password - length at least 8 characters
  4. ConfirmPassword - confirm input password
  
  Validation form return messages for incorrect fields:
- ![Incorrect Fields](https://cloud.mail.ru/public/7ic3/joHZqtjwL)
+ ![Incorrect Fields](https://prntscr.com/jzui45)
  
  Form has a link to login form:
- ![Login Form](https://cloud.mail.ru/public/Bu5b/uGDsLcYMC)
+ ![Login Form](https://prntscr.com/jzuisi)
  
  Correct data send to the DataBase and the new user may be log in into the application
  
