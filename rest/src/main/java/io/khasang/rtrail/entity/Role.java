@@ -17,9 +17,9 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String roleName;
+    private String role_name;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "roleList")
     private List<User> userList = new ArrayList<>();
 
     public Long getId() {
@@ -30,15 +30,15 @@ public class Role {
         this.id = id;
     }
 
-    public String getRoleName() {
-        return roleName;
+    public String getRole_name() {
+        return role_name;
     }
 
-    public void setRoleName(String roleName) {
-        if (roleName.equals(RoleEnum.valueOf(roleName).toString())) {
-            this.roleName = roleName;
+    public void setRole_name(String role_name) {
+        if (role_name.equals(RoleEnum.valueOf(role_name).toString())) {
+            this.role_name = role_name;
         } else {
-            this.roleName = null;
+            this.role_name = null;
         }
     }
 

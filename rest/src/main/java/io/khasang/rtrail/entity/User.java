@@ -6,29 +6,33 @@ import java.util.List;
 
 /**
  * Entity Users to reflect user's fields:
- * username (for login)
- * password (to login)
+ * username - name of user
+ * login use for login
+ * password used for authentication
+ * passwordConfirm - required for verification correct input of first password
  * email for send notification (verification code) and contact user
  *
  * @author Ilya Bogachev
- * @since 06.08.2018
+ * @since 24.06.2018
  */
-
 @Entity
-@Table(name = "usr")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="user_id")
     private Long id;
     private String username;
+    private String login;
     private String password;
+    @Transient
+    private String passwordConfirm;
     private String email;
 
     public User() {
     }
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "userList")
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Role> roleList = new ArrayList<>();
 
     public String getEmail() {
@@ -55,6 +59,14 @@ public class User {
         this.username = username;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -69,5 +81,14 @@ public class User {
 
     public void setRoleList(List<Role> roleList) {
         this.roleList = roleList;
+    }
+
+    @Transient
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
     }
 }

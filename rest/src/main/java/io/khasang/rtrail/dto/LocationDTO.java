@@ -2,6 +2,7 @@ package io.khasang.rtrail.dto;
 
 import io.khasang.rtrail.entity.Location;
 import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -21,4 +21,10 @@ public class UserDaoImpl extends BasicDaoImpl<User> implements UserDao {
         return (List<User>) getSessionFactory()
                 .createQuery("from User as u where u.username = ?").setParameter(0, username).list();
     }
+
+    @Override
+    public List<User> getByLogin(String login) {
+        return (List<User>) getSessionFactory()
+                .createQuery("from User as u where u.login = ?").setParameter(0, login).list();
+    }
 }

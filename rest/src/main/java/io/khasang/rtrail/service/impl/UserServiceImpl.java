@@ -5,6 +5,7 @@ import io.khasang.rtrail.dto.UserDTO;
 import io.khasang.rtrail.entity.User;
 import io.khasang.rtrail.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,9 +13,10 @@ import java.util.List;
 /**
  * service for UserService's interface CRUD methods
  * addressed realisation to userDao interface
+ * contains password encoder to save sensitive information
  *
  * @author Ilya Bogachev
- * @since 16.06.2018
+ * @since 22.06.2018
  */
 @Service
 public class UserServiceImpl implements UserService {
@@ -24,13 +26,18 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDTO userDTO;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public UserDTO addUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userDTO.getUserDTO(userDao.create(user));
     }
 
     @Override
     public UserDTO updateUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userDTO.getUserDTO(userDao.update(user));
     }
 
@@ -52,5 +59,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDTO> getAllUsers() {
         return userDTO.getUserDTOList(userDao.getList());
+    }
+
+    @Override
+    public List<UserDTO> getUserByLogin(String login) {
+        return userDTO.getUserDTOList(userDao.getByLogin(login));
     }
 }

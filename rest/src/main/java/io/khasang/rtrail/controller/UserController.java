@@ -3,8 +3,11 @@ package io.khasang.rtrail.controller;
 import io.khasang.rtrail.dto.UserDTO;
 import io.khasang.rtrail.entity.User;
 import io.khasang.rtrail.service.UserService;
+import io.khasang.rtrail.service.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,7 +16,7 @@ import java.util.List;
  * controller for REST CRUD services
  *
  * @author Ilya Bogachev
- * @since 16.08.2017=8
+ * @since 22.06.2018
  */
 @Controller
 @RequestMapping("/users")
