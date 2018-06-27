@@ -38,5 +38,5 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
         messageSource.setBasename("/WEB-INF/classes/messages");
         return messageSource;
-        }
+    }
 }

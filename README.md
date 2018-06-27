@@ -148,21 +148,34 @@ screen resolution:
   _______
   
  ## Registration page
- Link location: http://localhost:8080/registration
- ![Registration Form](https://prntscr.com/jzugsy)
+ <a href="registratinPage">Link</a> location: http://localhost:8080/registration
+ ###<a name="registrationPage"></a> Registration Page
+ ![Registration Form](https://cdn1.savepice.ru/uploads/2018/6/27/864b23840bd8edfee4a31032ec46f28a-full.png)
  Contains registration fields for new users:
  1. Username - not null
  2. Login - must be between 6 to 32 characters and unique
- 2. Email - should be a valid email
- 3. Password - length at least 8 characters
- 4. ConfirmPassword - confirm input password
+ 3. Email - should be a valid email
+ 4. Password - length at least 8 characters
+ 5. ConfirmPassword - confirm input password
  
- Validation form return messages for incorrect fields:
- ![Incorrect Fields](https://prntscr.com/jzui45)
+ <a href="validationController">Validation controller</a> return <a href="incorrectForm">messages</a> for incorrect fields.
+ ###<a name="incorrectForm"></a> Incorrect input
+ ![Incorrect Fields](https://cdn1.savepice.ru/uploads/2018/6/27/9ab15b70b94d39b75471b391362b4b3b-full.png)
  
- Form has a link to login form:
- ![Login Form](https://prntscr.com/jzuisi)
+ Form has a link to <a href="#login">login form</a>
+ ###<a name="login"></a> Login form
+ ![Login Form](https://cdn1.savepice.ru/uploads/2018/6/27/9b77c06fab15a2a0175236a9cc8bee58-full.png)
  
  Correct data send to the DataBase and the new user may be log in into the application
+ 
+ ###<a name="validationController"></a> User Validation Controller
+ Validate user's input fields from <a href="registrationPage">registration page</a>
+ Controller uses validation.properties and messages_ru.properties files for showing <a href="incorrectForm">error messages</a>.
+1. NotEmpty validate if the fields not empty.
+2. Size.userForm.login validate login should be between 6 to 32 characters.
+3. Duplicate.userForm.login verify if this login already uses via #UserAPI.
+4. Incorrect.userForm.email uses method validateEmail (String email) to verify correct email.
+5. Size.userForm.password verify input password must be at least 8 characters.
+6. Diff.userForm.passwordConfirm check if the input password and confirm password are the same.
  
  
