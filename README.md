@@ -149,8 +149,10 @@ screen resolution:
   
  ## Registration page
  <a href="registratinPage">Link</a> location: http://localhost:8080/registration
- ###<a name="registrationPage"></a> Registration Page
+ ### <a name="registrationPage"></a> Registration Page
+ 
  ![Registration Form](https://cdn1.savepice.ru/uploads/2018/6/27/864b23840bd8edfee4a31032ec46f28a-full.png)
+ 
  Contains registration fields for new users:
  1. Username - not null
  2. Login - must be between 6 to 32 characters and unique
@@ -159,16 +161,18 @@ screen resolution:
  5. ConfirmPassword - confirm input password
  
  <a href="validationController">Validation controller</a> return <a href="incorrectForm">messages</a> for incorrect fields.
- ###<a name="incorrectForm"></a> Incorrect input
+ ### <a name="incorrectForm"></a> Incorrect input
+ 
  ![Incorrect Fields](https://cdn1.savepice.ru/uploads/2018/6/27/9ab15b70b94d39b75471b391362b4b3b-full.png)
  
  Form has a link to <a href="#login">login form</a>
- ###<a name="login"></a> Login form
+ ### <a name="login"></a> Login form
+ 
  ![Login Form](https://cdn1.savepice.ru/uploads/2018/6/27/9b77c06fab15a2a0175236a9cc8bee58-full.png)
  
  Correct data send to the DataBase and the new user may be log in into the application
  
- ###<a name="validationController"></a> User Validation Controller
+ ### <a name="validationController"></a> User Validation Controller
  Validate user's input fields from <a href="registrationPage">registration page</a>
  Controller uses validation.properties and messages_ru.properties files for showing <a href="incorrectForm">error messages</a>.
 1. NotEmpty validate if the fields not empty.
