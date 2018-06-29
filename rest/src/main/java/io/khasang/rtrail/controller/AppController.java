@@ -34,7 +34,7 @@ public class AppController {
     public String getHelloPage() {
         log.error("Error is coming...");
         log.info("Error is coming...");
-        return "index";
+        return "helloPage";
     }
 
     @RequestMapping(value = "/check/{word}", method = RequestMethod.GET)
