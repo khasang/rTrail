@@ -32,4 +32,11 @@ public interface AdminService {
      * @return authorized users by name
      */
     List<UserDetails> getAuthorizedUsersByName(String name);
+
+    /**
+     * method for getting number of online users
+     *
+     * @return number of online users
+     */
+    int getNumberOnlineUsers();
 }

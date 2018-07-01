@@ -63,6 +63,11 @@ public class AdminServiceImpl implements AdminService {
         return authorizedUsersByName;
     }
 
+    @Override
+    public int getNumberOnlineUsers() {
+        return getAuthorizedUsers().size();
+    }
+
     private boolean hasRole(UserDetails userDetails, String role) {
         String rolePrefix = grantedAuthorityDefaults != null ? grantedAuthorityDefaults.getRolePrefix() : "ROLE_";
         SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(rolePrefix + role);

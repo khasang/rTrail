@@ -13,7 +13,10 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <jsp:include page="topMenu.jsp"/>
-            <jsp:include page="auth.jsp"/>
+            <div class="navbar-right navbar-margin-right-off">
+                <jsp:include page="onlineUser.jsp"/>
+                <jsp:include page="auth.jsp"/>
+            </div>
         </div><!-- /.nav-collapse -->
     </div><!-- /.container -->
 </nav>
