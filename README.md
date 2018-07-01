@@ -182,4 +182,11 @@ screen resolution:
 5. Size.userForm.password verify input password must be at least 8 characters.
 6. Diff.userForm.passwordConfirm check if the input password and confirm password are the same.
  
+ _______
  
+ ## Admin controller
+This controller allows the administrator to get online users in json format.
+1. /admin/users/get/current - return the current authorized user.
+2. /admin/users/get/all - return all authorized users.
+3. /admin/users/get/role/{role} - return all authorized users with role.
+4. /admin/users/get/name/{name} - return authorized users with name. 
