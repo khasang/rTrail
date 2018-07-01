@@ -107,11 +107,11 @@ public class UserControllerIntegrationTest {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
         Role role = new Role();
-        role.setRoleName(RoleEnum.ROLE_USER.name());
+        role.setRole_name(RoleEnum.ROLE_USER.name());
         List<Role> roleList = new ArrayList<>();
         roleList.add(role);
 
-        User user = prefillUser("testUserName", "password", "test@check.me", roleList);
+        User user = prefillUser("Login","testUserName", "password", "test@check.me", roleList);
 
         HttpEntity<User> httpEntity = new HttpEntity<>(user, headers);
         RestTemplate template = new RestTemplate();
@@ -124,13 +124,15 @@ public class UserControllerIntegrationTest {
         ).getBody();
 
         assertEquals(user.getUsername(), createdUser.getUsername());
+        assertNotNull(createdUser.getLogin());
         assertNotNull(createdUser.getId());
         assertEquals(roleList, user.getRoleList());
         return createdUser;
     }
 
-    private User prefillUser(String username, String password, String email, List<Role> roleList) {
+    private User prefillUser(String login, String username, String password, String email, List<Role> roleList) {
         User user = new User();
+        user.setLogin(login);
         user.setUsername(username);
         user.setPassword(password);
         user.setEmail(email);
