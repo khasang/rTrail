@@ -1,0 +1,32 @@
+#rt-users-block{
+    min-width:50px;
+
+    float: left;
+    margin: 12px 15px;
+}
+#rt-users-block span{
+    float:left;
+}
+#rt-users-num{
+    color: #fff;
+    font-size: 14px;
+    line-height: 25px;
+}
+
+#rt-user-info{
+    width: 25px;
+    height: 25px;
+    display: block;
+    margin-right: 2px;
+    background: url(../images/icon_user.png);
+    background-position: 0 0;
+}
+#rt-user-info.rt-icon-online{
+    background-position: 0 -25px;
+}
+#rt-user-info.rt-icon-offline{
+    background-position: 0 0;
+}
+.navbar-margin-right-off{
+    margin-right:0 !important;
+}
