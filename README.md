@@ -190,3 +190,10 @@ This controller allows the administrator to get online users in json format.
 2. /admin/users/get/all - return all authorized users.
 3. /admin/users/get/role/{role} - return all authorized users with role.
 4. /admin/users/get/name/{name} - return authorized users with name. 
+5. /admin/users/get/online - return <a href="#onlineUsers">number of online users</a>
+
+### <a name="onlineUsers"></a> Number of online users
+ 
+![Number of online users on desktop computer](https://image.ibb.co/mgnWPy/pc_offline.png)
+
+![Number of online users in mobile](https://image.ibb.co/kmZHxJ/mobile.png)
