@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Secured("ROLE_ADMIN")
 @Controller
 @RequestMapping("/admin")
-@Secured("ROLE_ADMIN")
 public class AdminController {
     @Autowired
     AdminService adminService;
@@ -39,5 +39,12 @@ public class AdminController {
     @ResponseBody
     public List<UserDetails> getAuthorizedUsersByName(@PathVariable(value = "name") String name) {
         return adminService.getAuthorizedUsersByName(name);
+    }
+
+    @Secured({"ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN", "ROLE_MODERATOR"})
+    @RequestMapping(value = "/users/get/online", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public int getNumberOnlineUsers() {
+        return adminService.getNumberOnlineUsers();
     }
 }

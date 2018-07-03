@@ -17,15 +17,20 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <jsp:include page="topMenu.jsp"/>
-            <c:if test="${pageContext.request.userPrincipal.name != null}">
-                <form id="logoutForm" method="POST" action="${contextPath}/logout">
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                </form>
-                <h4 style="color: white" align="right">Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h4>
-            </c:if>
-             <c:if test="${pageContext.request.userPrincipal.name == null}">
-                <jsp:include page="auth.jsp"/>
-            </c:if>
+            <div class="navbar-right navbar-margin-right-off">
+                <jsp:include page="onlineUser.jsp"/>
+                <c:if test="${pageContext.request.userPrincipal.name != null}">
+                    <div class="navbar-form navbar-right navbar-user-name">
+                        <form id="logoutForm" method="POST" action="${contextPath}/logout">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                        </form>
+                        <h4 style="color: white" align="right">Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h4>
+                    </div>
+                </c:if>
+                <c:if test="${pageContext.request.userPrincipal.name == null}">
+                    <jsp:include page="auth.jsp"/>
+                </c:if>
+            </div>
         </div><!-- /.nav-collapse -->
     </div><!-- /.container -->
 </nav>
