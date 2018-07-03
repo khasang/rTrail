@@ -1,4 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
         <div class="navbar-header">
@@ -13,7 +17,15 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <jsp:include page="topMenu.jsp"/>
-            <jsp:include page="auth.jsp"/>
+            <c:if test="${pageContext.request.userPrincipal.name != null}">
+                <form id="logoutForm" method="POST" action="${contextPath}/logout">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                </form>
+                <h4 style="color: white" align="right">Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h4>
+            </c:if>
+             <c:if test="${pageContext.request.userPrincipal.name == null}">
+                <jsp:include page="auth.jsp"/>
+            </c:if>
         </div><!-- /.nav-collapse -->
     </div><!-- /.container -->
 </nav>
