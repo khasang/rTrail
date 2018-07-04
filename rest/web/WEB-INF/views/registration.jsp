@@ -71,9 +71,14 @@
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
     </form:form>
-
-    <h4 class="text-center"><a href="${contextPath}/login">Log In</a></h4>
-
+    <!--Hide login form if user authenticated-->
+    <c:if test="${pageContext.request.userPrincipal.name == null}">
+        <h4 class="text-center"><a href="${contextPath}/login">Log In</a></h4>
+    </c:if>
+    <!--If user authenticated show home page link on the form-->
+    <c:if test="${pageContext.request.userPrincipal.name != null}">
+    <h4 class="text-center"><a href="${contextPath}/">Main Page</button>
+    </c:if>
 </div>
 <!-- /container -->
 <script src="/js/jquery.min.js" type="text/javascript"></script>

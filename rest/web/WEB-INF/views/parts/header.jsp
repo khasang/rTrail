@@ -31,6 +31,7 @@
                     <jsp:include page="auth.jsp"/>
                 </c:if>
             </div>
+            <button type="button" class="btn btn-primary btn-lg" onclick="window.location='${contextPath}/registration'">Registration</button>
         </div><!-- /.nav-collapse -->
     </div><!-- /.container -->
 </nav>
