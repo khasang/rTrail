@@ -55,11 +55,13 @@ public class RegistrationController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String showLoginForm(Model model, String error, String logout) {
-        if (error != null)
+        if (error != null) {
             model.addAttribute("error", "Your login and password is invalid");
+        }
 
-        if (logout != null)
+        if (logout != null) {
             model.addAttribute("message", "You have been logged out successfully");
+        }
 
         return "login";
     }

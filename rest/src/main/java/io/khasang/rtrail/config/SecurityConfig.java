@@ -28,6 +28,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/create").access("hasRole('ADMIN')")
                 .antMatchers("/user/**").access("hasRole('USER')")
+        .and().formLogin()
+                .loginProcessingUrl("/login")
+                .loginPage("/login")
+                .usernameParameter("login")
+                .passwordParameter("password")
+                .permitAll()
+        .and().logout()
+                .logoutSuccessUrl("/")
+                .permitAll()
                 .and().csrf().disable().formLogin().defaultSuccessUrl("/", false);
 
         http.sessionManagement().maximumSessions(1).sessionRegistry(sessionRegistry);
