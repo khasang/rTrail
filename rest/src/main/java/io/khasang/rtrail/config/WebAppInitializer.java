@@ -1,9 +1,11 @@
 package io.khasang.rtrail.config;
 
 import io.khasang.rtrail.config.application.WebConfig;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import javax.servlet.Filter;
+import javax.servlet.ServletContext;
 
 // web.xml
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -20,6 +22,12 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     @Override
     protected String[] getServletMappings() {
         return new String[]{"/"};
+    }
+
+    @Override
+    protected void registerContextLoaderListener(ServletContext servletContext) {
+        servletContext.addListener(HttpSessionEventPublisher.class);
+        super.registerContextLoaderListener(servletContext);
     }
 
     /**
